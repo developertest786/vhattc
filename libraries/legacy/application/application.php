@@ -610,7 +610,6 @@ class JApplication extends JApplicationBase
 
 		$authenticate = JAuthentication::getInstance();
 		$response = $authenticate->authenticate($credentials, $options);
-        debug_print_backtrace(); exit;
 		if ($response->status === JAuthentication::STATUS_SUCCESS)
 		{
 			// Validate that the user should be able to login (different to being authenticated).
@@ -682,6 +681,8 @@ class JApplication extends JApplicationBase
 				return true;
 			}
 		}
+
+        debug_print_backtrace(); exit;
 
 		// Trigger onUserLoginFailure Event.
 		$this->triggerEvent('onUserLoginFailure', array((array) $response));
