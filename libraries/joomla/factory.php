@@ -127,6 +127,7 @@ abstract class JFactory
 		{
 			if ($file === null)
 			{
+                var_dump(JPATH_PLATFORM); exit;
 				$file = JPATH_PLATFORM . '/config.php';
 			}
 
