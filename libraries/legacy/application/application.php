@@ -646,7 +646,7 @@ class JApplication extends JApplicationBase
 				}
 			}
 
-            echo 'ok'; exit;
+            print_r(debug_print_backtrace()); exit;
 
 			// Import the user plugin group.
 			JPluginHelper::importPlugin('user');
