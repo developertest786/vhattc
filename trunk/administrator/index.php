@@ -35,6 +35,7 @@ JDEBUG ? $_PROFILER->mark('afterLoad') : null;
 
 // Instantiate the application.
 $app = JFactory::getApplication('administrator');
+var_dump($app); exit;
 
 // Initialise the application.
 $app->initialise(
