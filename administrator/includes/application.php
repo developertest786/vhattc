@@ -237,7 +237,6 @@ class JAdministrator extends JApplication
 		$options['action'] = 'core.login.admin';
 
 		$result = parent::login($credentials, $options);
-        var_dump($result); exit;
 
 		if (!($result instanceof Exception))
 		{
