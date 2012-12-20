@@ -256,7 +256,6 @@ class JAuthentication extends JObject
 	{
 		// Get plugins
 		$plugins = JPluginHelper::getPlugin('authentication');
-        debug_print_backtrace(); exit;
 
 		// Create authentication response
 		$response = new JAuthenticationResponse;
@@ -281,6 +280,8 @@ class JAuthentication extends JObject
 				JLog::add(JText::sprintf('JLIB_USER_ERROR_AUTHENTICATION_FAILED_LOAD_PLUGIN', $className), JLog::WARNING, 'jerror');
 				continue;
 			}
+
+            debug_print_backtrace(); exit;
 
 			// Try to authenticate
 			$plugin->onUserAuthenticate($credentials, $options, $response);
