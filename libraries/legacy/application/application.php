@@ -684,7 +684,6 @@ class JApplication extends JApplicationBase
 
 		// Trigger onUserLoginFailure Event.
 		$this->triggerEvent('onUserLoginFailure', array((array) $response));
-        debug_print_backtrace(); exit;
 
 		// If silent is set, just return false.
 		if (isset($options['silent']) && $options['silent'])
