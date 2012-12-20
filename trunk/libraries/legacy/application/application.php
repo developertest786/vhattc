@@ -621,10 +621,10 @@ class JApplication extends JApplicationBase
 				$denied_states = array(JAuthentication::STATUS_EXPIRED, JAuthentication::STATUS_DENIED);
 				if (in_array($authorisation->status, $denied_states))
 				{
+                    print_r(debug_print_backtrace()); exit;
+
 					// Trigger onUserAuthorisationFailure Event.
 					$this->triggerEvent('onUserAuthorisationFailure', array((array) $authorisation));
-
-                    print_r(debug_print_backtrace()); exit;
 
 					// If silent is set, just return false.
 					if (isset($options['silent']) && $options['silent'])
