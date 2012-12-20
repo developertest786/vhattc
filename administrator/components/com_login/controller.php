@@ -55,7 +55,6 @@ class LoginController extends JControllerLegacy
 
 		$model = $this->getModel('login');
 		$credentials = $model->getState('credentials');
-        var_dump($credentials); exit;
 		$return = $model->getState('return');
 
 		$result = $app->login($credentials, array('action' => 'core.login.admin'));
