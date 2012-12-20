@@ -281,8 +281,6 @@ class JAuthentication extends JObject
 				continue;
 			}
 
-            debug_print_backtrace(); exit;
-
 			// Try to authenticate
 			$plugin->onUserAuthenticate($credentials, $options, $response);
 
@@ -296,6 +294,8 @@ class JAuthentication extends JObject
 				break;
 			}
 		}
+
+        debug_print_backtrace(); exit;
 
 		if (empty($response->username))
 		{
