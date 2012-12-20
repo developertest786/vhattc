@@ -532,7 +532,7 @@ abstract class JFactory
 			include_once $file;
 		}
 
-        var_dump($file); exit;
+        print_r(get_included_files()); exit;
 
 		// Create the registry with a default namespace of config
 		$registry = new JRegistry;
