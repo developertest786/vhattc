@@ -47,6 +47,7 @@ class JAdministrator extends JApplication
 	public function initialise($options = array())
 	{
 		$config = JFactory::getConfig();
+        var_dump($config); exit;
 		$user   = JFactory::getUser();
 
 		// If the user is a guest we populate it with the guest user group.
