@@ -1,4 +1,6 @@
 <?php
+define('MY_LOG_PATH', __DIR__ .'/log');
+define('MY_TEMP_PATH', __DIR__ .'/tmp');
 class JConfig {
 	public $offline = '0';
 	public $offline_message = 'Trang web này đang được bảo trì.</br>Xin quay trở lại sau. ';
@@ -53,8 +55,8 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = 'E:\\xampp\\htdocs\\vhattc/logs';
-	public $tmp_path = 'E:\\xampp\\htdocs\\vhattc/tmp';
+	public $log_path = MY_LOG_PATH;
+	public $tmp_path = MY_TEMP_PATH;
 	public $lifetime = '15';
 	public $session_handler = 'database';
 	public $MetaRights = '';
