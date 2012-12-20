@@ -610,7 +610,6 @@ class JApplication extends JApplicationBase
 
 		$authenticate = JAuthentication::getInstance();
 		$response = $authenticate->authenticate($credentials, $options);
-        echo 'ok'; exit;
 
 		if ($response->status === JAuthentication::STATUS_SUCCESS)
 		{
@@ -646,6 +645,8 @@ class JApplication extends JApplicationBase
 					}
 				}
 			}
+
+            echo 'ok'; exit;
 
 			// Import the user plugin group.
 			JPluginHelper::importPlugin('user');
