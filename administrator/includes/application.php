@@ -238,8 +238,6 @@ class JAdministrator extends JApplication
 
 		$result = parent::login($credentials, $options);
 
-        debug_print_backtrace(); exit;
-
 		if (!($result instanceof Exception))
 		{
 			$lang = $this->input->get('lang');
