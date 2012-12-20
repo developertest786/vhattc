@@ -682,8 +682,6 @@ class JApplication extends JApplicationBase
 			}
 		}
 
-        debug_print_backtrace(); exit;
-
 		// Trigger onUserLoginFailure Event.
 		$this->triggerEvent('onUserLoginFailure', array((array) $response));
 
