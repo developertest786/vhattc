@@ -127,7 +127,6 @@ abstract class JFactory
 		{
 			if ($file === null)
 			{
-                var_dump(JPATH_PLATFORM); exit;
 				$file = JPATH_PLATFORM . '/config.php';
 			}
 
@@ -532,6 +531,8 @@ abstract class JFactory
 		{
 			include_once $file;
 		}
+
+        var_dump($file); exit;
 
 		// Create the registry with a default namespace of config
 		$registry = new JRegistry;
