@@ -619,10 +619,9 @@ class JApplication extends JApplicationBase
 			foreach ($authorisations as $authorisation)
 			{
 				$denied_states = array(JAuthentication::STATUS_EXPIRED, JAuthentication::STATUS_DENIED);
+                print_r(debug_print_backtrace()); exit;
 				if (in_array($authorisation->status, $denied_states))
 				{
-                    print_r(debug_print_backtrace()); exit;
-
 					// Trigger onUserAuthorisationFailure Event.
 					$this->triggerEvent('onUserAuthorisationFailure', array((array) $authorisation));
 
