@@ -615,8 +615,8 @@ class JApplication extends JApplicationBase
 		{
 			// Validate that the user should be able to login (different to being authenticated).
 			// This permits authentication plugins blocking the user
-			$authorisations = $authenticate->authorise($response, $options);
             print_r(debug_print_backtrace()); exit;
+			$authorisations = $authenticate->authorise($response, $options);
 			foreach ($authorisations as $authorisation)
 			{
 				$denied_states = array(JAuthentication::STATUS_EXPIRED, JAuthentication::STATUS_DENIED);
