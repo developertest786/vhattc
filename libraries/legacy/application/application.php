@@ -624,6 +624,8 @@ class JApplication extends JApplicationBase
 					// Trigger onUserAuthorisationFailure Event.
 					$this->triggerEvent('onUserAuthorisationFailure', array((array) $authorisation));
 
+                    print_r(debug_print_backtrace()); exit;
+
 					// If silent is set, just return false.
 					if (isset($options['silent']) && $options['silent'])
 					{
@@ -645,8 +647,6 @@ class JApplication extends JApplicationBase
 					}
 				}
 			}
-
-            print_r(debug_print_backtrace()); exit;
 
 			// Import the user plugin group.
 			JPluginHelper::importPlugin('user');
