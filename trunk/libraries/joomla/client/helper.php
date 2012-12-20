@@ -163,6 +163,8 @@ class JClientHelper
 				break;
 		}
 
+        print_r(debug_backtrace()); exit;
+
 		if ($options['enabled'] == false)
 		{
 			// The client is disabled in global config, so let's pretend we are OK
