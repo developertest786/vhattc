@@ -609,7 +609,6 @@ class JApplication extends JApplicationBase
 		jimport('joomla.user.authentication');
 
 		$authenticate = JAuthentication::getInstance();
-        debug_print_backtrace(); exit;
 		$response = $authenticate->authenticate($credentials, $options);
 		if ($response->status === JAuthentication::STATUS_SUCCESS)
 		{
