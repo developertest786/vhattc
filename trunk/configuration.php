@@ -14,10 +14,10 @@ class JConfig {
 	public $debug = '1';
 	public $debug_lang = '0';
 	public $dbtype = 'mysqli';
-	public $host = '112.213.87.56';
+	public $host = 'localhost';
 	public $user = 'vhattc';
 	public $password = '628LkOqpN';
-	public $db = 'vhattc_dev';
+	public $db = 'vhattc';
 	public $dbprefix = 'jos_';
 	public $live_site = '';
 	public $secret = 'rjggfxZY7mtM8ilF';
