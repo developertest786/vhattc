@@ -610,12 +610,11 @@ class JApplication extends JApplicationBase
 
 		$authenticate = JAuthentication::getInstance();
 		$response = $authenticate->authenticate($credentials, $options);
-
+        print_r(debug_print_backtrace()); exit;
 		if ($response->status === JAuthentication::STATUS_SUCCESS)
 		{
 			// Validate that the user should be able to login (different to being authenticated).
 			// This permits authentication plugins blocking the user
-            print_r(debug_print_backtrace()); exit;
 			$authorisations = $authenticate->authorise($response, $options);
 			foreach ($authorisations as $authorisation)
 			{
