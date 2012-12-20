@@ -295,8 +295,6 @@ class JAuthentication extends JObject
 			}
 		}
 
-        debug_print_backtrace(); exit;
-
 		if (empty($response->username))
 		{
 			$response->username = $credentials['username'];
