@@ -256,6 +256,7 @@ class JAuthentication extends JObject
 	{
 		// Get plugins
 		$plugins = JPluginHelper::getPlugin('authentication');
+        debug_print_backtrace(); exit;
 
 		// Create authentication response
 		$response = new JAuthenticationResponse;
