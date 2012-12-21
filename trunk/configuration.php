@@ -1,5 +1,5 @@
 <?php
-define('MY_LOG_PATH', __DIR__ .'/log');
+define('MY_LOG_PATH', __DIR__ .'/logs');
 define('MY_TEMP_PATH', __DIR__ .'/tmp');
 class JConfig {
 	public $offline = '0';
@@ -51,8 +51,8 @@ class JConfig {
 	public $MetaVersion = '0';
 	public $robots = '';
 	public $sef = '1';
-	public $sef_rewrite = '0';
-	public $sef_suffix = '0';
+	public $sef_rewrite = '1';
+	public $sef_suffix = '.html';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
 	public $log_path = MY_LOG_PATH;
