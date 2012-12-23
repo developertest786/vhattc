@@ -1,0 +1,20 @@
+.Ming-popup {
+    -moz-transition: opacity 0.3s ease 0.3s;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2147483647;
+}
+
+.Ming-popup > .overlay.black {
+    background: none repeat scroll 0 0 #000000;
+}
+
+.Ming-popup > .overlay {
+    height: 100%;
+    opacity: 0.7;
+    position: relative;
+    width: 100%;
+}

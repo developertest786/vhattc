@@ -1,0 +1,45 @@
+<div class="title"><h5>QUẢN TRỊ PHÂN LOẠI</h5></div>
+<!-- Dynamic table -->
+<p style="text-align: right">
+    <a href="<?php echo Ming_Factory::getDocument()->getBaseUrl().'taxonomy/add'?>">Thêm mới</a>
+</p>
+<div class="table" style="margin-top: 10px">
+
+<div class="head"><h5 class="iFrames">Danh sách phân loại</h5></div>
+
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<thead>
+<tr>
+    <th>STT</th>
+    <th>Title</th>
+    <th>Slug</th>
+    <th>Description</th>
+    <th>Option</th>
+
+</tr>
+</thead>
+<tbody>
+<?php
+
+$i = 0;
+if(isset($taxos))
+
+foreach($taxos as $taxo) {?>
+    <tr class="gradeX">
+        <td><?php echo ($i+=1); ?></td>
+
+        <td><?php echo $taxo['title'];?></td>
+        <td><?php echo @$taxo['slug'];?></td>
+        <td class="center">
+            <?php echo $taxo['description'];?>
+        </td>
+        <td class="center">
+            <a href="<?php echo Ming_Factory::getRouter()->getBaseUrl().'taxonomy/edit?id='.$taxo['_id']; ?>">Sửa</a>
+            &nbsp; || &nbsp;
+            <a href="<?php echo Ming_Factory::getRouter()->getBaseUrl().'taxonomy/remove?id='.$taxo['_id']; ?>">Xóa</a>
+        </td>
+    </tr>
+<?php } ?>
+</tbody>
+</table>
+</div>

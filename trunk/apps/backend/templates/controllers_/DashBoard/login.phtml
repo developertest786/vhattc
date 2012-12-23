@@ -1,0 +1,41 @@
+<!-- Login form area -->
+
+<div class="loginWrapper">
+    <div class="loginLogo"><img src="images/loginLogo.png" alt="" /></div>
+    <div class="loginPanel">
+        <div class="head"><h5 class="iUser">Đăng nhập</h5></div>
+        <?php if(!empty($error)){?>
+            <div style="margin-left: 10px;">
+                <?php
+                    $error_arr = UserAuth::errorLabel($error);
+
+                        foreach($error_arr as $err){
+                            echo $err.'<br/>';
+                        }
+
+                ?>
+            </div>
+        <?php }?>
+        <form action="" method="post" id="valid" class="mainForm">
+            <fieldset>
+                <div class="loginRow noborder">
+                    <label for="req1">Username:</label>
+                    <div class="loginInput"><input type="text" name="username" class="validate[required]" id="req1" /></div>
+                    <div class="fix"></div>
+                </div>
+
+                <div class="loginRow">
+                    <label for="req2">Mật khẩu:</label>
+                    <div class="loginInput"><input type="password" name="password" class="validate[required]" id="req2" /></div>
+                    <div class="fix"></div>
+                </div>
+
+                <div class="loginRow">
+                    <div class="rememberMe"><input type="checkbox" id="check2" name="chbox" /><label>Nhớ mật khẩu</label></div>
+                    <input type="submit" value="Đăng nhập" class="greyishBtn submitForm" />
+                    <div class="fix"></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
