@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="icon" type="image/x-icon" href="<?php echo $this->doc()->getPublicPath(); ?>assets/images/favicon.ico" />
+        <meta http-equiv="Content-language" content="vi" />
+        <title><?php echo $this->doc()->title; ?></title>
+        <meta name="description" content="<?php echo $this->doc()->description; ?>" />
+        <meta name="keywords" content="<?php echo $this->doc()->keyword ?>" />
+        <base href="<?php echo $this->doc()->getBaseUrl(); ?>" />
+        <link rel="canonical" href="<?php echo $this->doc()->canonicalUrl; ?>" />
+        <script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery/jquery-1.7.1.min.js"></script>
+        <link href="<?php echo $this->doc()->getBaseUrl(); ?>assets/css/main.css" rel="stylesheet" type="text/css" />
+        <?php $this->doc()->css(); ?>
+    </head>
+<body>
+<!-- Main wrapper -->
+<div class="wrapper">
+    <!-- Left navigation -->
+    <?php //\Flywheel\Loader::import('template.widgets.left', true, '.phtml'); ?>
+
+    <!-- Content -->
+    <div class="content">
+        <?php echo $this->doc()->getComponentData();?>
+    </div>
+<div class="fix"></div>
+</div>
+
+<?php //\Flywheel\Loader::import('global.widgets.ga', true, '.phtml'); ?>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/spinner/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/spinner/ui.spinner.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery/jquery-ui.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/fileManager/elfinder.min.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/wysiwyg/jquery.wysiwyg.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/wysiwyg/wysiwyg.image.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/wysiwyg/wysiwyg.link.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/wysiwyg/wysiwyg.table.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/flot/jquery.flot.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/flot/jquery.flot.pie.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/flot/excanvas.min.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/dataTables/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/dataTables/colResizable.min.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/forms/forms.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/forms/autogrowtextarea.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/forms/autotab.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/forms/jquery.validationEngine-en.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/forms/jquery.validationEngine.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/colorPicker/colorpicker.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/uploader/plupload.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/uploader/plupload.html5.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/uploader/plupload.html4.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/uploader/jquery.plupload.queue.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/ui/progress.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/ui/jquery.jgrowl.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/ui/jquery.tipsy.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/ui/jquery.alerts.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jBreadCrumb.1.1.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/cal.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery.collapsible.min.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery.ToTop.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery.listnav.js"></script>
+<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/jquery.sourcerer.js"></script>
+
+<!--<script type="text/javascript" src="<?php echo $this->doc()->getBaseUrl(); ?>assets/js/custom.js"></script>-->
+</body>
+</html>
+
+
+

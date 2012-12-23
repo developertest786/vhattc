@@ -1,0 +1,37 @@
+<div class="title"><h5>THÊM MỚI TAXONAMI</h5></div>
+
+
+<div class="pt20">
+    <?php if(@$valid and !empty($valid)) { ?>
+    <div class="nNote nWarning hideit">
+        <?php foreach ($valid as $v){?>
+            <p><strong>WARNING: </strong><?php echo $v;?></p>
+        <?php }?>
+    </div>
+    <?php } ?>
+
+</div>
+<form class="mainForm" action="" method="post">
+
+<!-- Input text fields -->
+<fieldset>
+    <div class="widget first">
+        <div class="head"><h5 class="iList">Thêm mới</h5></div>
+        <div class="rowElem noborder">
+            <label>Title:</label>
+            <div><input type="text" name="title" style="width: 150px" /></div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <label>Description:</label><textarea name="description" style="width: 200px"></textarea>
+        </div>
+        <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <input type="submit" class="rowElem greyishBtn submitForm" name="add" value="Cập nhật" />
+        </div>
+
+        <div class="fix"></div>
+    </div>
+</fieldset>
+</form>
