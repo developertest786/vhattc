@@ -1,0 +1,181 @@
+
+@import "variables_hoangnm.less"; // Modify this for custom colors, font-sizes, etc
+@import "mixins_hoangnm.less";
+
+@import "reset.less";
+// Core variables and mixins
+
+/* ------------- layout ------------- */
+.row{
+    .col{
+        float: left;
+    }
+    &.c3{
+        margin-left: -30px;
+    }
+    &.c3 .col{
+        width: 313px;
+        margin-left: 30px
+    }
+}
+
+/* ------------- header ------------- */
+#header{
+    .center-block();
+    width: @fixCenterWidth;
+    h1{
+        .f-l();
+        padding-top: 8px;
+    }
+    .right-panel{
+        .f-r();
+            .language{
+                .f-r();
+                margin-left:20px;
+                position: relative;
+                .current-lang{
+                    color: #FFF;
+                    padding: 5px 8px 3px;
+                    cursor: pointer;
+                    .bg-grd-ver(#00467f,#07589b);
+                    .border-bottom-radius(4px);
+                    span{
+                        margin: 0 4px 0 2px;
+                    }
+                }
+            }
+            .sign-in{
+                .f-r();
+                padding-top: 6px;
+                a{
+                    color:@linkColor2;
+                }
+                span.sep{
+                    margin: 0 9px;
+                }
+            }
+        h3.small-logo{
+            .t-r();
+            padding: 14px 0 16px;
+        }
+    }
+}
+
+/* ------------- menu ------------- */
+#main-menu{
+    background: #00467f;
+    ul{
+        .f-l();
+        > li {
+            .f-l();
+            &:first-child{display: none}
+            &.active > a{
+                color: #FFF;
+                background: url("../images/iPickUpW.png") no-repeat center bottom;
+            }
+            position: relative;
+            > a{
+                display: block;
+                color: #b1dafb;
+                text-transform: uppercase;
+                height: @menu-height;
+                line-height: 40px;
+                padding: 0 34px;
+                font-weight: bold;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+            .dropdown{
+                display: none;
+                position: absolute;
+                width: 100%;
+                background: #FFF;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                border: solid #990000;
+                border-width: 3px 0 1px 0;
+                padding-bottom: 15px;
+                .t-c();
+                > a{
+                    display: block;
+                    color: @linkColor2;
+                    padding:3px;
+                    &.title{
+                        padding: 0;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        height: 37px;
+                        line-height: 36px;
+                        &:hover{text-decoration: none}
+                    }
+                }
+            }
+            &:hover .dropdown{display: block;}
+        }
+        > li.sep {
+            width: 2px;
+            background: url("../images/sep-menu.png") no-repeat center center;
+            height: @menu-height;
+        }
+    }
+}
+
+/* ------------- slide ------------- */
+#main-slide{
+    background: url("../images/slide-bg.png") repeat-x top center;
+    #main-slider-code{
+        position: relative;
+    }
+    .viewport{
+        overflow: hidden;
+        position: relative;
+        height: 370px;
+        .overview{
+            position: absolute;
+            top:0;
+            left:0;
+            li{
+                float: left;
+                height: 370px;
+                img{
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .pager{
+        display: none;
+        position: absolute;
+        width:100%;
+        background: url("../images/paging-bg.png") no-repeat bottom center;
+        padding-bottom: 10px;
+        text-align: center;
+        > li{
+            display: inline-block;
+            .ie7-inline-block();
+        }
+    }
+}
+
+
+/* ------------- about ------------- */
+.lst-top-about{
+    padding-top:10px;
+
+    h2.title{
+        font-family: @MyriadFF;
+        font-size: 1.767em;
+        line-height: 2em;
+        text-transform: uppercase;
+    }
+    .viewmore{
+        padding-top: 8px;
+        .t-r();
+        .icon{
+            margin-left: 2px;
+        }
+    }
+}

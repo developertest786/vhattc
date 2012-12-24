@@ -1,0 +1,411 @@
+/*hoang*/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+/*.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}*/
+/*.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  .box-sizing(border-box); // Makes inputs behave like true block-level elements
+}*/
+/*hoang*/
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+/*.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}*/
+/*.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
+  .box-sizing(border-box); // Makes inputs behave like true block-level elements
+}*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+audio:not([controls]) {
+  display: none;
+}
+@font-face {
+  font-family: 'MyriadPro-Cond';
+  src: url('../font/myriadpro-cond.eot');
+  src: url('../font/myriadpro-cond.eot?#iefix') format('embedded-opentype'), url('../font/myriadpro-cond.woff') format('woff'), url('../font/myriadpro-cond.ttf') format('truetype'), url('../font/myriadpro-cond.svg#myriadpro-cond') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  color: #333333;
+  background-color: #ffffff;
+}
+.rs,
+h1.rs,
+h2.rs,
+h3.rs,
+h4.rs,
+h5.rs,
+h6.rs {
+  margin: 0;
+  padding: 0;
+}
+ul.rs,
+ol.rs {
+  list-style: none;
+}
+a {
+  color: #195189;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:hover,
+a:active {
+  outline: 0;
+}
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+
+  max-width: 100%;
+  /* Part 1: Set a maxium relative to the parent */
+
+  /*width: auto\9; */
+  /* IE7-8 need help adjusting responsive images */
+
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+button,
+input {
+  *overflow: visible;
+  line-height: normal;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+.fixCenter1K {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+}
+.icon {
+  background: transparent url("../images/sprites.png?v=1.12") no-repeat;
+  border: none;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+.iPickReadR {
+  width: 4px;
+  height: 8px;
+  background-position: 0 0;
+}
+.iPickDownW {
+  width: 9px;
+  height: 5px;
+  background-position: -70px 0;
+}
+/* ------------- layout ------------- */
+.row .col {
+  float: left;
+}
+.row.c3 {
+  margin-left: -30px;
+}
+.row.c3 .col {
+  width: 313px;
+  margin-left: 30px;
+}
+/* ------------- header ------------- */
+#header {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1000px;
+}
+#header h1 {
+  float: left;
+  padding-top: 8px;
+}
+#header .right-panel {
+  float: right;
+}
+#header .right-panel .language {
+  float: right;
+  margin-left: 20px;
+  position: relative;
+}
+#header .right-panel .language .current-lang {
+  color: #FFF;
+  padding: 5px 8px 3px;
+  cursor: pointer;
+  background-color: #034d8a;
+  background-image: -moz-linear-gradient(top, #00467f, #07589b);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#00467f), to(#07589b));
+  background-image: -webkit-linear-gradient(top, #00467f, #07589b);
+  background-image: -o-linear-gradient(top, #00467f, #07589b);
+  background-image: linear-gradient(to bottom, #00467f, #07589b);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff00467f', endColorstr='#ff07589b', GradientType=0);
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+}
+#header .right-panel .language .current-lang span {
+  margin: 0 4px 0 2px;
+}
+#header .right-panel .sign-in {
+  float: right;
+  padding-top: 6px;
+}
+#header .right-panel .sign-in a {
+  color: #00467f;
+}
+#header .right-panel .sign-in span.sep {
+  margin: 0 9px;
+}
+#header .right-panel h3.small-logo {
+  text-align: right;
+  padding: 14px 0 16px;
+}
+/* ------------- menu ------------- */
+#main-menu {
+  background: #00467f;
+}
+#main-menu ul {
+  float: left;
+}
+#main-menu ul > li {
+  float: left;
+  position: relative;
+}
+#main-menu ul > li:first-child {
+  display: none;
+}
+#main-menu ul > li.active > a {
+  color: #FFF;
+  background: url("../images/iPickUpW.png") no-repeat center bottom;
+}
+#main-menu ul > li > a {
+  display: block;
+  color: #b1dafb;
+  text-transform: uppercase;
+  height: 39px;
+  line-height: 40px;
+  padding: 0 34px;
+  font-weight: bold;
+}
+#main-menu ul > li > a:hover {
+  text-decoration: none;
+}
+#main-menu ul > li .dropdown {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #FFF;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border: solid #990000;
+  border-width: 3px 0 1px 0;
+  padding-bottom: 15px;
+  text-align: center;
+}
+#main-menu ul > li .dropdown > a {
+  display: block;
+  color: #00467f;
+  padding: 3px;
+}
+#main-menu ul > li .dropdown > a.title {
+  padding: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 37px;
+  line-height: 36px;
+}
+#main-menu ul > li .dropdown > a.title:hover {
+  text-decoration: none;
+}
+#main-menu ul > li:hover .dropdown {
+  display: block;
+}
+#main-menu ul > li.sep {
+  width: 2px;
+  background: url("../images/sep-menu.png") no-repeat center center;
+  height: 39px;
+}
+/* ------------- slide ------------- */
+#main-slide {
+  background: url("../images/slide-bg.png") repeat-x top center;
+}
+#main-slide #main-slider-code {
+  position: relative;
+}
+#main-slide .viewport {
+  overflow: hidden;
+  position: relative;
+  height: 370px;
+}
+#main-slide .viewport .overview {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#main-slide .viewport .overview li {
+  float: left;
+  height: 370px;
+}
+#main-slide .viewport .overview li img {
+  max-width: 100%;
+  width: 100%;
+}
+#main-slide .pager {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: url("../images/paging-bg.png") no-repeat bottom center;
+  padding-bottom: 10px;
+  text-align: center;
+}
+#main-slide .pager > li {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+/* ------------- about ------------- */
+.lst-top-about {
+  padding-top: 10px;
+}
+.lst-top-about h2.title {
+  font-family: 'MyriadPro-Cond', Arial, sans-serif;
+  font-size: 1.767em;
+  line-height: 2em;
+  text-transform: uppercase;
+}
+.lst-top-about .viewmore {
+  padding-top: 8px;
+  text-align: right;
+}
+.lst-top-about .viewmore .icon {
+  margin-left: 2px;
+}
