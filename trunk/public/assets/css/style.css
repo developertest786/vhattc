@@ -11,19 +11,6 @@
 .clearfix:after {
   clear: both;
 }
-/*.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}*/
-/*.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
-  .box-sizing(border-box); // Makes inputs behave like true block-level elements
-}*/
 /*hoang*/
 .clearfix {
   *zoom: 1;
@@ -37,19 +24,6 @@
 .clearfix:after {
   clear: both;
 }
-/*.hide-text {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  background-color: transparent;
-  border: 0;
-}*/
-/*.input-block-level {
-  display: block;
-  width: 100%;
-  min-height: @inputHeight; // Make inputs at least the height of their button counterpart (base line-height + padding + border)
-  .box-sizing(border-box); // Makes inputs behave like true block-level elements
-}*/
 article,
 aside,
 details,
@@ -394,7 +368,10 @@ textarea {
 }
 /* ------------- about ------------- */
 .lst-top-about {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dfdfdf;
   padding-top: 10px;
+  overflow: hidden;
 }
 .lst-top-about h2.title {
   font-family: 'MyriadPro-Cond', Arial, sans-serif;
