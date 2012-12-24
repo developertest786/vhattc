@@ -16,6 +16,7 @@ class WebRouter extends BaseRouter
 
     public function __construct() {
         $routes = ConfigHandler::load('app.config.routing', 'routing', true);
+
         unset($routes['__urlSuffix__']);
         unset($routes['__remap__']);
         unset($routes['/']);
@@ -101,8 +102,9 @@ class WebRouter extends BaseRouter
     {
         $config = ConfigHandler::get('routing');
         $rawUrl = $url;
-        $url = $this->removeUrlSuffix($url, isset($config['__urlSuffix__'])? $config['__urlSuffix__']: null);
 
+        $url = $this->removeUrlSuffix($url, isset($config['__urlSuffix__'])? $config['__urlSuffix__']: null);
+        //echo $url;exit;
         if ('/' == $url) {
             if (!isset($config['/'])) { //default
                 throw new \Flywheel\Exception\Routing('Router: Not found default "/" in config. Default must be set!');

@@ -100,7 +100,7 @@ class Factory
                 throw new \Flywheel\Exception('Session: config file not found, "session.cfg.php" must be exist at globals/config or '
                     .\Flywheel\Base::getAppPath() .' config directory');            }
 
-            self::$_registry['session'] = new \Flywheel\Session($config, 'session');
+            self::$_registry['session'] = new \Flywheel\Session\Session($config, 'session');
         }
         return self::$_registry['session'];
     }
@@ -113,7 +113,7 @@ class Factory
     public static function getCookie() {
         if (!isset(self::$_registry['cookie'])) {
             self::getSession(); //make s$ure that session initialized
-            self::$_registry['cookie'] = new \Flywheel\Cookie(ConfigHandler::get('session'));
+            self::$_registry['cookie'] = new \Flywheel\Session\Cookie(ConfigHandler::get('session'));
         }
         return self::$_registry['cookie'];
     }
