@@ -330,7 +330,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
         foreach ($data as $p=>$value) {
             if (isset(static::$_schema[$p])) {
-                $this->_modifiedCols[$p] = true;
+				$this->_modifiedCols[$p] = true;
                 $this->_data[$p] = $this->fixData($value, static::$_schema[$p]);
             } else {
                 $this->$p = $value;
@@ -693,6 +693,32 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
             return $this->$name;
         }
+
+        $lcMethod = strtolower($method);
+        if (substr($lcMethod, 0, 6) == 'findby') {
+            $by = substr($method, 6, strlen($method));
+            $method = 'findBy';
+            $one = false;
+        } else if(substr($lcMethod, 0, 9) == 'findoneby') {
+            $by = substr($method, 9, strlen($method));
+            $method = 'findOneBy';
+            $one = true;
+        }
+
+        if (isset($by)) {
+            if (!isset($params[0])) {
+                throw new Exception('You must specify the value to ' . $method);
+            }
+
+            /*if ($one) {
+                $fieldName = static::_resolveFindByFieldName($by);
+                if(false == $fieldName) {
+                    throw new Exception('Column ' .$fieldName .' not found!');
+                }
+            }*/
+
+            return static::findBy($by, $params, $one);
+        }
     }
 
     public function __set($name, $value) {
@@ -748,10 +774,10 @@ abstract class ActiveRecord extends \Flywheel\Object {
                     throw new Exception('You must specify the value to ' . $method);
                 }
 
-                $fieldName = static::_resolveFindByFieldName($by);
+                /*$fieldName = static::_resolveFindByFieldName($by);
                 if(false == $fieldName) {
                     throw new Exception('Column ' .$fieldName .' not found!');
-                }
+                }*/
 
                 return static::findBy($by, $params, true);
             }
@@ -762,6 +788,9 @@ abstract class ActiveRecord extends \Flywheel\Object {
         $this->clearErrors();
         $this->_beforeValidate();
         $unique = array();
+        //thay thế static::$_validate bằng validate get
+
+        //print_r(static::$_validate);exit;
         foreach (static::$_validate as $name => $rules) {
 
             $isNull = false;
@@ -786,11 +815,30 @@ abstract class ActiveRecord extends \Flywheel\Object {
             //check unique
             if (isset($rules['unique']))
                 $unique[$name] = $rules;
-            //check numberonly
-            //if(isset($rules['number'])){
-                 //is_numeric()
-            //}
 
+            //check type
+            if(isset($rules['type'])){
+                 //is_numeric()
+                switch ($rules['type']){
+                    case 'number':
+                        if(!is_numeric($this->$name))
+                            $this->setValidationFailure($name,$name.' must be a number');
+                        break;
+                    case 'email':
+                        if(false === ValidatorUtil::isValidEmail($this->$name)){
+                            $this->setValidationFailure($name,$name.' must be a email');
+                        }
+                        break;
+                }
+            }
+
+            //check patent
+            if(isset($rules['patent'])){
+
+                if(!preg_match($rules['patent'], $this->$name)){
+                    $this->setValidationFailure($name, $name.' does not matched patent');
+                }
+            }
 
         }
 

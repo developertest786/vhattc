@@ -18,12 +18,12 @@ abstract class BaseRouter extends \Flywheel\Object
 
     public function __construct() {
         $this->_url = $this->getPathInfo();
-        $this->_domain = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')? 'https://':'http://') .$_SERVER['HTTP_HOST'];
+        $this->_domain = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')? 'https://':'http://') .@$_SERVER['HTTP_HOST'];
         $this->_baseUrl = $this->_domain .str_replace('index.php', '', $_SERVER['SCRIPT_NAME']);
         if (isset($_SERVER['SCRIPT_NAME']) && $pos = strripos($this->_url, basename($_SERVER['SCRIPT_NAME'])) !== false)
             $this->_baseUrl = substr($this->_baseUrl, 0, $pos);
 
-        $this->_uri = $this->_domain.$_SERVER['REQUEST_URI'];
+        $this->_uri = $this->_domain.@$_SERVER['REQUEST_URI'];
         $this->parseUrl($this->_url);
     }
 
@@ -115,12 +115,11 @@ abstract class BaseRouter extends \Flywheel\Object
             $pathInfo = $_SERVER['PATH_INFO'];
         }
         else {
-            $pathInfo = preg_replace('/^'.preg_quote($_SERVER['SCRIPT_NAME'], '/').'/', '', $_SERVER['REQUEST_URI']);
+            $pathInfo = preg_replace('/^'.preg_quote($_SERVER['SCRIPT_NAME'], '/').'/', '', @$_SERVER['REQUEST_URI']);
             $pathInfo = preg_replace('/^'.preg_quote(preg_replace('#/[^/]+$#', '', $_SERVER['SCRIPT_NAME']), '/').'/', '', $pathInfo);
-            $pathInfo = preg_replace('/\??'.preg_quote($_SERVER['QUERY_STRING'], '/').'$/', '', $pathInfo);
+            $pathInfo = preg_replace('/\??'.preg_quote(@$_SERVER['QUERY_STRING'], '/').'$/', '', $pathInfo);
             if ($pathInfo == '') $pathInfo = '/';
         }
-
         return $pathInfo;
     }
 

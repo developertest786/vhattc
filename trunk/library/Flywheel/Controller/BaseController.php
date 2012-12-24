@@ -27,7 +27,7 @@ abstract class BaseController extends \Flywheel\Object
     public function request() {
         return Factory::getRequest();
     }
-
+	
     /**
      * @return \Flywheel\Http\Response
      */

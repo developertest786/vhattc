@@ -1,15 +1,15 @@
 <?php
 /**
- * Ming Cookie Handler
+ * Cookie Handler
  * 	cookie's management, support secure write and read
  * 
  * @author Luu Trong Hieu <tronghieu1012@yahoo.com>
  * @version	$Id$
- * @package	Ming
+ * @package	t90
  * @subpackage Cookie
  */
 namespace Flywheel\Session;
-use \Flywheel\Filter\Input as FilterInput;
+use \Flywheel\Filter\Input as Input;
 class Cookie {
 	private $_secret = '';
 	private $_exception = false;
@@ -64,18 +64,18 @@ class Cookie {
 	 * @param mixed		$default
 	 * 
 	 * @return mixed
-
+    */ 
 	public function read($name, $type = \Flywheel\Filter\Input::TYPE_STRING, $default = null) {
         if (!isset($_COOKIE[$name]))
             return $default;
         return \Flywheel\Filter\Input::clean($_COOKIE[$name], $type);
 	}
-     */
+     
 	/**
 	 * write cookie secure
 	 * 
 	 * Sign and timestamp a cookie so it cannot be forged using cookie_secret in session.ini. 
-	 * Secure cookie must read by Ming_Cookie::readSecure() method
+	 * Secure cookie must read by Cookie::readSecure() method
 	 * 
 	 * @param string	$name the cookie name
 	 * @param mixed		$value the cookie value
