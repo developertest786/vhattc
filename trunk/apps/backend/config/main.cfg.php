@@ -15,5 +15,5 @@ return array(
     'components' => array(),
     'timezone' => 'Asia/Ho_Chi_Minh',
     'csrf_preventing' => true,
-    'template' => 'crow'
+    'template' => 'crown'
 );

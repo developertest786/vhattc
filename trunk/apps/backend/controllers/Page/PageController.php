@@ -13,10 +13,20 @@ class PageController extends BackendController {
 
     public function executeEdit() {
         $this->setView('form');
+        $page = Page::findOneById($this->request()->get('page_id', 'INT'));
+        if (!$page) {
+        }
 
+        if($this->request()->isPostRequest()) {
+            if ($this->_save($page)) {
+            }
+        }
     }
 
-    private function _save(\Page &$page) {
+    public function executeAddBlock() {
+    }
+
+    private function _save(Page &$page) {
         $failures = array();
         $attribute = $this->request()->post('page', 'ARRAY');
         $page->hydrate($attribute);

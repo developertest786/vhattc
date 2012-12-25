@@ -3,13 +3,14 @@ use Flywheel\Db\Manager;
 use Flywheel\Model\ActiveRecord;
 /**.
  * Page
- *  This class has been auto-generated at 23/12/2012 18:05:25
+ *  This class has been auto-generated at 25/12/2012 04:30:37
  * @version		$Id$
  * @package		Model
 
  * @property integer $id id primary auto_increment type : int(11)
  * @property integer $parent_id parent_id type : int(11)
- * @property string $status status type : enum('AUTO-DRAFT','DRAFT','PUBLISH','UNPUBLISH') max_length : 10
+ * @property string $status status type : enum('AUTO-DRAFT','DRAFT','PUBLISH','UNPUBLISH','TRASH') max_length : 10
+ * @property integer $home_page home_page type : tinyint(4)
  * @property string $lang_code lang_code type : char(7) max_length : 7
  * @property string $name name type : varchar(255) max_length : 255
  * @property string $template template type : varchar(255) max_length : 255
@@ -27,6 +28,8 @@ use Flywheel\Model\ActiveRecord;
  * @method static \Page findOneByParentId(integer $parent_id) find object in database by parent_id
  * @method static \Page[] findByStatus(string $status) find objects in database by status
  * @method static \Page findOneByStatus(string $status) find object in database by status
+ * @method static \Page[] findByHomePage(integer $home_page) find objects in database by home_page
+ * @method static \Page findOneByHomePage(integer $home_page) find object in database by home_page
  * @method static \Page[] findByLangCode(string $lang_code) find objects in database by lang_code
  * @method static \Page findOneByLangCode(string $lang_code) find object in database by lang_code
  * @method static \Page[] findByName(string $name) find objects in database by name
@@ -69,8 +72,14 @@ abstract class PageBase extends ActiveRecord {
                 'length' => 4),
         'status' => array('name' => 'status',
                 'type' => 'string',
-                'db_type' => 'enum(\'AUTO-DRAFT\',\'DRAFT\',\'PUBLISH\',\'UNPUBLISH\')',
+                'db_type' => 'enum(\'AUTO-DRAFT\',\'DRAFT\',\'PUBLISH\',\'UNPUBLISH\',\'TRASH\')',
                 'length' => 10),
+        'home_page' => array('name' => 'home_page',
+                'default' => 0,
+                'type' => 'integer',
+                'auto_increment' => false,
+                'db_type' => 'tinyint(4)',
+                'length' => 1),
         'lang_code' => array('name' => 'lang_code',
                 'default' => '*',
                 'type' => 'string',
@@ -121,8 +130,9 @@ abstract class PageBase extends ActiveRecord {
         'parent_id' => array('require' => '"parent_id" is required!',
                 'unique' => 'parent_id\'s values has already been taken'),
         'status' => array('require' => '"status" is required!',
-                'filter' => array('allow' => array('AUTO-DRAFT','DRAFT','PUBLISH','UNPUBLISH'),
+                'filter' => array('allow' => array('AUTO-DRAFT','DRAFT','PUBLISH','UNPUBLISH','TRASH'),
                             'message' => 'status\'s values is not allowed')),
+        'home_page' => array('require' => '"home_page" is required!'),
         'lang_code' => array('require' => '"lang_code" is required!'),
         'name' => array('require' => '"name" is required!'),
         'link' => array('require' => '"link" is required!'),
@@ -132,7 +142,7 @@ abstract class PageBase extends ActiveRecord {
         'created_time' => array('require' => '"created_time" is required!'),
         'modified_time' => array('require' => '"modified_time" is required!'),
 );
-    protected static $_cols = array('id','parent_id','status','lang_code','name','template','layout','link','ordering','created_by','modified_by','created_time','modified_time');
+    protected static $_cols = array('id','parent_id','status','home_page','lang_code','name','template','layout','link','ordering','created_by','modified_by','created_time','modified_time');
 
     public function setTableDefinition() {
     }
