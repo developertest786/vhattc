@@ -184,6 +184,16 @@ textarea {
 
   *zoom: 1;
 }
+.iComment {
+  width: 12px;
+  height: 12px;
+  background-position: -4px 0;
+}
+.iNote {
+  width: 11px;
+  height: 13px;
+  background-position: -16px 0;
+}
 .iPickReadR {
   width: 4px;
   height: 8px;
@@ -194,6 +204,27 @@ textarea {
   height: 5px;
   background-position: -70px 0;
 }
+.block > h3.title {
+  font-family: 'MyriadPro-Cond', Arial, sans-serif;
+  font-size: 1.767em;
+  line-height: 2em;
+  text-transform: uppercase;
+  position: relative;
+}
+.block > h3.title .more {
+  position: absolute;
+  top: 17px;
+  right: 0;
+  font-weight: normal;
+  text-transform: none;
+  font-family: Arial, sans-serif;
+  font-size: 0.524em;
+  line-height: 1.167em;
+}
+.block > h3.title .more .icon {
+  margin-left: 2px;
+  vertical-align: -1px;
+}
 /* ------------- layout ------------- */
 .row .col {
   float: left;
@@ -201,9 +232,14 @@ textarea {
 .row.c3 {
   margin-left: -30px;
 }
-.row.c3 .col {
+.row.c3 .col,
+.row.l656 .col {
   width: 313px;
   margin-left: 30px;
+}
+.row.l656 .col:first-child {
+  width: 656px;
+  margin-left: 0;
 }
 /* ------------- header ------------- */
 #header {
@@ -366,9 +402,9 @@ textarea {
 
   *zoom: 1;
 }
-/* ------------- about ------------- */
 .lst-top-about {
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 25px;
   border-bottom: 1px solid #dfdfdf;
   padding-top: 10px;
   overflow: hidden;
@@ -381,8 +417,51 @@ textarea {
 }
 .lst-top-about .viewmore {
   padding-top: 8px;
+  font-size: 0.917em;
+  line-height: 1.167em;
   text-align: right;
 }
 .lst-top-about .viewmore .icon {
+  vertical-align: -1px;
   margin-left: 2px;
+}
+/* ------------- lst-trainning ------------- */
+.lst-trainning .block-content {
+  padding-top: 5px;
+}
+.lst-trainning .train-item {
+  border-top: 1px dotted #999;
+  padding: 15px 0;
+}
+.lst-trainning .train-item:first-child {
+  padding-top: 0;
+  border: none;
+}
+.lst-trainning .train-item h4 {
+  font-size: 1.083em;
+  line-height: 1.333em;
+}
+.lst-trainning .train-item .date {
+  padding-bottom: 7px;
+}
+.lst-trainning .train-item .desc {
+  padding-bottom: 4px;
+}
+.lst-trainning .train-item .link-action a {
+  font-size: 0.917em;
+}
+.lst-trainning .train-item .link-action .sep {
+  margin: 0 10px;
+}
+.lst-trainning .train-item .link-action .iComment {
+  vertical-align: -4px;
+  margin-right: 3px;
+}
+.lst-trainning .train-item .link-action .iComment {
+  vertical-align: -4px;
+  margin-right: 3px;
+}
+.lst-trainning .train-item .link-action .iNote {
+  vertical-align: -2px;
+  margin-right: 2px;
 }
