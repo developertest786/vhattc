@@ -211,6 +211,22 @@ textarea {
   height: 5px;
   background-position: -70px 0;
 }
+.iFb {
+  width: 11px;
+  height: 23px;
+  background-position: -59px 0;
+}
+.iTw {
+  width: 32px;
+  height: 23px;
+  background-position: -27px 0;
+}
+/*row 2*/
+.iPickRightW {
+  width: 4px;
+  height: 8px;
+  background-position: 0 -16px;
+}
 .iconB {
   background: transparent url("../images/sprites-big.png?v=1.12") no-repeat;
   border: none;
@@ -310,6 +326,31 @@ textarea {
 #header .right-panel .language .current-lang span {
   margin: 0 4px 0 2px;
 }
+#header .right-panel .language #sys-lst-language {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 24px;
+  background: #FFF;
+  border-top: 1px solid #8a8a8a;
+  width: 100%;
+}
+#header .right-panel .language #sys-lst-language li {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: solid #8a8a8a;
+  border-width: 0 1px 1px;
+  padding: 4px 3px;
+}
+#header .right-panel .language #sys-lst-language li:hover {
+  background: #e7e7e7;
+}
+#header .right-panel .language:hover #sys-lst-language {
+  display: block;
+}
 #header .right-panel .sign-in {
   float: right;
   padding-top: 6px;
@@ -341,6 +382,9 @@ textarea {
 #main-menu ul > li.active > a {
   color: #FFF;
   background: url("../images/iPickUpW.png") no-repeat center bottom;
+  height: 36px;
+  line-height: 34px;
+  border-top: 3px solid #990000;
 }
 #main-menu ul > li > a {
   display: block;
@@ -353,6 +397,11 @@ textarea {
 }
 #main-menu ul > li > a:hover {
   text-decoration: none;
+  background: #FFF;
+  color: #00467f;
+  height: 36px;
+  line-height: 34px;
+  border-top: 3px solid #990000;
 }
 #main-menu ul > li .dropdown {
   display: none;
@@ -623,8 +672,12 @@ textarea {
   float: left;
   width: 229px;
 }
+#footer .col-type2 .wrap-foot-item {
+  padding: 0;
+}
 #footer .wrap-foot-item {
   color: #FFF;
+  padding-right: 10px;
 }
 #footer .wrap-foot-item h5.title {
   padding-bottom: 11px;
@@ -651,4 +704,42 @@ textarea {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+}
+#footer .wrap-foot-item .social-contact {
+  padding-bottom: 20px;
+}
+#footer .wrap-foot-item .social-contact .iFb {
+  margin-right: 20px;
+}
+#footer .email-subcrible {
+  background: #FFF;
+}
+#footer .email-subcrible label {
+  position: relative;
+  background: #FFF;
+  float: left;
+  width: 160px;
+  padding-left: 8px;
+}
+#footer .email-subcrible label input {
+  border: none;
+  padding: 7px 0;
+  width: 100%;
+  outline: none;
+}
+#footer .email-subcrible label .iPickRightW {
+  position: absolute;
+  top: 10px;
+  right: -10px;
+}
+#footer .email-subcrible input[type="submit"] {
+  float: right;
+  border: none;
+  color: #FFF;
+  background: #ffb700;
+  text-transform: uppercase;
+  text-shadow: 0 1px #e99301;
+  font-weight: bold;
+  width: 55px;
+  padding: 7px 0;
 }

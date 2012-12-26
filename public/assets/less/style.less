@@ -20,7 +20,10 @@
     .iNote          {width:11px;height:13px;background-position:-16px 0}
     .iPickReadR     {width:4px;height:8px;background-position:0 0}
     .iPickDownW     {width:9px;height:5px;background-position: -70px 0}
-
+    .iFb            {.ico(11px,23px,-59px,0);}
+    .iTw            {.ico(32px,23px,-27px,0);}
+    /*row 2*/
+    .iPickRightW    {.ico(4px,8px,0,-16px);}
 .iconB{
     background: transparent url("../images/sprites-big.png?v=1.12") no-repeat;
     border: none;
@@ -85,31 +88,55 @@
     }
     .right-panel{
         .f-r();
-            .language{
-                .f-r();
-                margin-left:20px;
-                position: relative;
-                .current-lang{
-                    color: #FFF;
-                    padding: 5px 8px 3px;
-                    cursor: pointer;
-                    .bg-grd-ver(#00467f,#07589b);
-                    .border-bottom-radius(4px);
-                    span{
-                        margin: 0 4px 0 2px;
+        .language{
+            .f-r();
+            margin-left:20px;
+            position: relative;
+            .current-lang{
+                color: #FFF;
+                padding: 5px 8px 3px;
+                cursor: pointer;
+                .bg-grd-ver(#00467f,#07589b);
+                .border-bottom-radius(4px);
+                span{
+                    margin: 0 4px 0 2px;
+                }
+            }
+            #sys-lst-language{
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 24px;
+                background: #FFF;
+                border-top: 1px solid @langBorderColor;
+                width:100%;
+                li{
+                    &:hover{
+                        background: #e7e7e7;
                     }
+                    .transition(all 0.3s);
+                    cursor: pointer;
+                    border: solid @langBorderColor;
+                    border-width: 0 1px 1px;
+                    padding: 4px 3px;
                 }
             }
-            .sign-in{
-                .f-r();
-                padding-top: 6px;
-                a{
-                    color:@linkColor2;
-                }
-                span.sep{
-                    margin: 0 9px;
+            &:hover{
+                #sys-lst-language{
+                    display: block;
                 }
             }
+        }
+        .sign-in{
+            .f-r();
+            padding-top: 6px;
+            a{
+                color:@linkColor2;
+            }
+            span.sep{
+                margin: 0 9px;
+            }
+        }
         h3.small-logo{
             .t-r();
             padding: 14px 0 16px;
@@ -128,6 +155,9 @@
             &.active > a{
                 color: #FFF;
                 background: url("../images/iPickUpW.png") no-repeat center bottom;
+                height: 36px;
+                line-height: 34px;
+                border-top: 3px solid #990000;
             }
             position: relative;
             > a{
@@ -140,6 +170,11 @@
                 font-weight: bold;
                 &:hover{
                     text-decoration: none;
+                    background: #FFF;
+                    color: @linkColor2;
+                    height: 36px;
+                    line-height: 34px;
+                    border-top: 3px solid #990000;
                 }
             }
             .dropdown{
@@ -417,9 +452,13 @@
     .col-type2{
         float: left;
         width: 229px;
+        .wrap-foot-item{
+            padding: 0;
+        }
     }
     .wrap-foot-item{
         color: #FFF;
+        padding-right:10px;
 
         h5.title{
             padding-bottom: 11px;
@@ -446,6 +485,71 @@
                 .ie7-inline-block();
             }
         }
+        .social-contact{
+            padding-bottom: 20px;
+            .iFb{
+                margin-right: 20px;
+            }
+        }
+
+    }
+    .email-subcrible{
+        background: #FFF;
+        label{
+            position:relative;
+            background: #FFF;
+            float: left;
+            width: 160px;
+            padding-left: 8px;
+            input{
+                border: none;
+                padding: 7px 0;
+                width: 100%;
+                outline: none;
+            }
+            .iPickRightW{
+                position: absolute;
+                top: 10px;
+                right: -10px;
+            }
+        }
+        input[type="submit"]{
+            float: right;
+            border: none;
+            color:#FFF;
+            background: #ffb700;
+            text-transform: uppercase;
+            text-shadow: 0 1px #e99301;
+            font-weight: bold;
+            width: 55px;
+            padding: 7px 0;
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -9,11 +9,7 @@
     <![endif]-->
     <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/jquery.tinycarousel.js"></script>
-    <script type="text/javascript">
-        $(function(){
-            $("#slider_partner").tinycarousel();
-        });
-    </script>
+    <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 <div class="main-layout">
@@ -31,6 +27,23 @@
                         <span>English</span>
                         <i class="icon iPickDownW"></i>
                     </div>
+                    <ul id="sys-lst-language" class="rs">
+                        <li>
+                            <img src="images/en.png" alt="$LANG_NAME">
+                            <span>English</span>
+                        </li>
+                        <li>
+                            <img src="images/en.png" alt="$LANG_NAME">
+                            <span>Vietnamese</span>
+                        </li>
+                    </ul>
+                    <form id="sys_choose_lang" style="display: none">
+                        <select name="lang" id="sys_language_select">
+                            <option value="1">Eng</option>
+                            <option value="2">Vie</option>
+                        </select>
+                    </form>
+
                 </div>
                 <div class="sign-in">
                     <a href="#">Sign in</a>
@@ -443,7 +456,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div><!--end: col-type1 -->
                 <div class="col-type1">
                     <div class="wrap-foot-item">
                         <h5 class="rs title">Quick Links</h5>
@@ -472,7 +485,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div><!--end: col-type1 -->
                 <div class="col-type1">
                     <div class="wrap-foot-item">
                         <h5 class="rs title">Contact Us</h5>
@@ -487,6 +500,27 @@
                             <a href="mailto:sdfafa@fsa.com" class="val fc-w">noreply@youtdomain.com</a>
                         </p>
                     </div>
+                </div><!--end: col-type1 -->
+                <div class="col-type2">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">Connect with us</h5>
+                        <div class="social-contact">
+                            <a href="#">
+                                <i class="icon iFb"></i>
+                            </a>
+                            <a href="#">
+                                <i class="icon iTw"></i>
+                            </a>
+                        </div>
+                        <h5 class="rs title">Email to Subcrible</h5>
+                        <form class="email-subcrible clearfix" name="email">
+                            <label for="email-subcrible">
+                                <input type="text" id="email-subcrible" placeholder="Your email">
+                                <i class="icon iPickRightW"></i>
+                            </label>
+                            <input type="submit" value="Send">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -494,3 +528,20 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
