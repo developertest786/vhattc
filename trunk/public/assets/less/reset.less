@@ -69,10 +69,6 @@ body {
 }
 .rs,h1.rs,h2.rs,h3.rs,h4.rs,h5.rs,h6.rs{margin:0;padding:0}
 ul.rs,ol.rs{list-style: none}
-// Heading
-//--------------------------
-
-
 
 // Links
 // -------------------------
@@ -130,9 +126,10 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
-  font-size: 100%;
-  vertical-align: middle;
+    margin: 0;
+    vertical-align: middle;
+    font-family:  arial,sans-serif;
+    font-size: inherit;
 }
 button,
 input {
@@ -144,6 +141,7 @@ input::-moz-focus-inner { // Inner padding and border oddities in FF3/4
   padding: 0;
   border: 0;
 }
+input, select, button{}
 button,
 html input[type="button"], // Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio` and `video` controls.
 input[type="reset"],
