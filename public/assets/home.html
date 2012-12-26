@@ -4,7 +4,16 @@
     <title>Home</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="css/ie7.css">
+    <![endif]-->
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.tinycarousel.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#slider_partner").tinycarousel();
+        });
+    </script>
 </head>
 <body>
 <div class="main-layout">
@@ -230,13 +239,258 @@
                 </div>
             </div>
             <div class="col">
-                fsafas
+                <div class="block lst-resources">
+                    <h3 class="title rs">
+                        Resources
+                        <a href="#" class="more">
+                            View more
+                            <i class="icon iPickReadR"></i>
+                        </a>
+                    </h3>
+                    <div class="block-content">
+                        <div class="wrap-lst-resource">
+                            <div class="resource-item">
+                                <h4 class="rs">Webinar</h4>
+                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                            </div>
+                            <div class="resource-item">
+                                <h4 class="rs">Webinar</h4>
+                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                            </div>
+                        </div>
+                        <form class="search-resource clearfix">
+                            <label for="keyword">
+                                <input id="keyword" type="text" placeholder="search resource">
+                            </label>
+                            <input type="submit" value="find">
+                        </form>
+                    </div>
+                </div><!-- end: lst-resources-->
+                <div class="block lst-partner-trained">
+                    <h3 class="title rs">
+                        training by our partners
+                    </h3>
+                    <div class="block-content">
+                        <ul class="wrap-lst rs">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            <li>Cras eu felis in lorem interdum lobortis</li>
+                            <li>Duis sagittis ipsum vel lacus facilisis et cursus ipsum fermentum</li>
+                        </ul>
+                    </div>
+                </div><!-- end: lst-partner-trained-->
             </div>
         </div>
     </div>
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <div id="slide-partner-org">
+        <div class="fixCenter1K">
+            <div class="block">
+                <h3 class="title">Partner organizations</h3>
+                <div class="block-content">
+                    <div id="slider_partner">
+                        <a class="buttons prev" href="#">
+                            <i class="iconB iPrev"></i>
+                        </a>
+                        <a class="buttons next" href="#">
+                            <i class="iconB iNext"></i>
+                        </a>
+                        <div class="viewport">
+                            <ul class="rs overview clearfix">
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-226x122.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">VAAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">DWAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">DWAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">CLGT</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--end: ...-->
+            </div>
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div class="fixCenter1K">
+            <div class="top-thumb">
+                <img src="images/ex/th-227x50.png" alt="#NAME">
+                <img src="images/ex/th-227x50-1.png" alt="#NAME">
+                <img src="images/ex/th-227x50-2.png" alt="#NAME">
+            </div>
+            <div class="clearfix">
+                <div class="col-type1">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">VN - ATTC</h5>
+                        <ul class="rs">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">About us</a>
+                            </li>
+                            <li>
+                                <a href="#">Training/Events</a>
+                            </li>
+                            <li>
+                                <a href="#">Resources</a>
+                            </li>
+                            <li>
+                                <a href="#">Online Conversation</a>
+                            </li>
+                            <li>
+                                <a href="#">News</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact us</a>
+                            </li>
+                            <li>
+                                <a href="#">Sitemap</a>
+                            </li>
+                            <li>
+                                <a href="#">Rss</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-type1">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">Quick Links</h5>
+                        <ul class="rs">
+                            <li>
+
+                                <a href="#">NIDA/SAMHSA Blending Initiative</a>
+                            </li>
+                            <li>
+                                <a href="#">Leadership Initiative</a>
+                            </li>
+                            <li>
+                                <a href="#">Directory of Addiction Study Programs (DASP)</a>
+                            </li>
+                            <li>
+                                <a href="#">Certification Information</a>
+                            </li>
+                            <li>
+                                <a href="#">Featured Topics Library</a>
+                            </li>
+                            <li>
+                                <a href="#">Addiction Messenger</a>
+                            </li>
+                            <li>
+                                <a href="#">AddictionCarreers.org</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-type1">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">Contact Us</h5>
+                        <p class="rs desc-contact">Maecenas euismod molestie viverra. Nam viverra neque ut eros pharetra mattis. Aliquam venenatis eros commodo nisi</p>
+
+                        <p class="rs item-info">
+                            <span class="lbl">Hotline:</span>
+                            <span class="val">+84 9876 54321</span>
+                        </p>
+                        <p class="rs item-info">
+                            <span class="lbl">Email:</span>
+                            <a href="mailto:sdfafa@fsa.com" class="val fc-w">noreply@youtdomain.com</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 </body>
 </html>

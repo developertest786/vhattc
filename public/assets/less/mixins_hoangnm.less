@@ -57,6 +57,23 @@
     padding: 0;
 }
 
+// Sizing shortcuts
+// -------------------------
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size, @size);
+}
+// Sprite icon
+// -------------------------
+.ico(@width,@height,@X,@Y){
+    width: @width;
+    height: @height;
+    background-position: @X @Y;
+}
+
 // Webkit-style focus
 // ------------------
 .tab-focus() {
@@ -105,15 +122,6 @@
   *margin-right: .3em;
 }
 
-// Sizing shortcuts
-// -------------------------
-.size(@height, @width) {
-  width: @width;
-  height: @height;
-}
-.square(@size) {
-  .size(@size, @size);
-}
 
 // Placeholder text
 // -------------------------
