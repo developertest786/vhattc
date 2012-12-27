@@ -1,29 +1,5 @@
 /*hoang*/
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
 /*hoang*/
-.clearfix {
-  *zoom: 1;
-}
-.clearfix:before,
-.clearfix:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.clearfix:after {
-  clear: both;
-}
 article,
 aside,
 details,
@@ -170,8 +146,27 @@ textarea {
   overflow: auto;
   vertical-align: top;
 }
+.clearfix,
+.row {
+  *zoom: 1;
+}
+.clearfix:before,
+.row:before,
+.clearfix:after,
+.row:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after,
+.row:after {
+  clear: both;
+}
 .fc-w {
   color: #ffffff;
+}
+.fc-r {
+  color: #f00000;
 }
 .fw-b {
   font-weight: bold;
@@ -742,4 +737,142 @@ textarea {
   font-weight: bold;
   width: 55px;
   padding: 7px 0;
+}
+/* ------------- Contact Us ------------- */
+#contact-us {
+  padding: 21px 0 40px;
+}
+#contact-us .col-type1 {
+  float: left;
+  width: 429px;
+}
+#contact-us .col-maps {
+  width: 569px;
+  line-height: 0;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+}
+#contact-us .col-maps img {
+  height: 100%;
+  width: 100%;
+}
+#contact-us .col-type2 {
+  float: left;
+  width: 569px;
+}
+#contact-us .address-info {
+  background: #f4f3f8;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e6e6e7;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+#contact-us .main-address {
+  padding: 25px 15px 10px;
+  border-right: 1px solid #FFF;
+}
+#contact-us .main-address p {
+  margin: 0;
+  padding: 0 0 8px 0;
+}
+#contact-us .main-address .detail {
+  padding: 10px 12px;
+  border-left: 3px solid #004781;
+  margin-left: -15px;
+  margin-bottom: 8px;
+}
+#contact-us .main-address .detail p {
+  padding-top: 11px;
+}
+#contact-us .main-address .detail p:first-child {
+  padding: 0;
+}
+#contact-us .main-address .detail .lbl {
+  width: 60px;
+  font-weight: bold;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+#contact-us .contact-form {
+  padding: 25px 0;
+}
+#contact-us .contact-form .col-type1 p {
+  margin: 0;
+  padding: 0 30px 8px 0;
+}
+#contact-us .contact-form h3.title {
+  font-family: "MyriadPro-Cond", sans-serif;
+  font-size: 1.750em;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+}
+#contact-us .contact-form p.note {
+  padding-bottom: 15px;
+}
+#contact-us .form-input p.wrap {
+  margin: 0;
+  padding: 0 0 8px;
+}
+#contact-us .form-input p.wrap label {
+  cursor: pointer;
+  float: left;
+  width: 70px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+#contact-us .form-input p.wrap input,
+#contact-us .form-input p.wrap textarea {
+  float: left;
+  width: 350px;
+  background: #f4f3f8;
+  padding: 6px 8px;
+  border: 1px solid #e6e6e7;
+  outline: none;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  border-radius: 1px;
+}
+#contact-us .form-input p.wrap textarea {
+  width: 470px;
+  resize: none;
+  height: 85px;
+}
+#contact-us .form-input p.wrap-submit {
+  padding-left: 70px;
+}
+#contact-us .form-input p.wrap-submit label {
+  cursor: pointer;
+}
+#contact-us .form-input p.wrap-submit label input[type="checkbox"] {
+  vertical-align: -2px;
+  margin-right: 3px;
+}
+#contact-us .form-input p.wrap-submit button {
+  border: 1px solid #efab00;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #ffaf00;
+  background-image: -moz-linear-gradient(top, #ffa000, #ffc500);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffa000), to(#ffc500));
+  background-image: -webkit-linear-gradient(top, #ffa000, #ffc500);
+  background-image: -o-linear-gradient(top, #ffa000, #ffc500);
+  background-image: linear-gradient(to bottom, #ffa000, #ffc500);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffa000', endColorstr='#ffffc500', GradientType=0);
+  float: right;
+  width: 124px;
+  color: #FFF;
+  text-transform: uppercase;
+  text-shadow: 0 1px #e99301;
+  font-weight: bold;
+  padding: 8px 0 9px;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 190, 0.75) inset;
 }
