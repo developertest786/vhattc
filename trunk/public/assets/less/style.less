@@ -3,8 +3,28 @@
 @import "mixins_hoangnm.less";
 
 @import "reset.less";
+
+// Clearfix
+// --------
+// For clearing floats like a boss h5bp.com/q
+.clearfix,.row {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
 // Core variables and mixins
 .fc-w{color: #FFF}
+.fc-r{color: #f00000}
 .fw-b{font-weight: bold;}
 
 .fixCenter1K{
@@ -527,27 +547,133 @@
     }
 }
 
+/* ------------- Contact Us ------------- */
+#contact-us{
+    padding: 21px 0 40px;
+    .col-type1{
+        float: left;
+        width: 429px;
+    }
+    .col-maps{
+        width: 569px;
+        line-height: 0;
+        position: absolute;
+        height: 100%;
+        top:0;
+        right: 0;
+        img{
+            height: 100%;
+            width:100%;
+        }
+    }
+    .col-type2{
+        float: left;
+        width: 569px;
+    }
+    .address-info{
+        background: #f4f3f8;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid #e6e6e7;
+        .border-radius(1px);
+    }
+        .main-address{
+            padding: 25px 15px 10px;
+            border-right: 1px solid #FFF;
 
+            p{
+                margin: 0;
+                padding: 0 0 8px 0;
+            }
+            .detail{
+                padding: 10px 12px;
+                border-left: 3px solid #004781;
+                margin-left: -15px;
+                margin-bottom:8px;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                p{
+                    padding-top:11px;
+                    &:first-child{
+                        padding: 0;
+                    }
+                }
+                .lbl{
+                    width: 60px;
+                    font-weight: bold;
+                    display: inline-block;
+                    .ie7-inline-block();
+                }
+            }
+        }
+    .contact-form{
+        padding: 25px 0;
+        .col-type1{
+            p{
+                margin: 0;
+                padding: 0 30px 8px 0;
+            }
+        }
+        h3.title{
+            font-family: "MyriadPro-Cond", sans-serif;
+            font-size: 1.750em;
+            text-transform: uppercase;
+            padding-bottom: 15px;
+        }
+        p.note{
+            padding-bottom: 15px;
+        }
+    }
+        .form-input{
+            p.wrap{
+                margin: 0;
+                padding:0 0 8px;
+                label{
+                    cursor: pointer;
+                    float: left;
+                    width: 70px;
+                    margin-top: 5px;
+                    font-weight: bold;
+                }
+                input,textarea{
+                    float: left;
+                    width: 350px;
+                    background: #f4f3f8;
+                    padding: 6px 8px;
+                    border: 1px solid #e6e6e7;
+                    outline:none;
+                    .border-radius(1px);
+                }
+                textarea{
+                    width: 470px;
+                    resize: none;
+                    height: 85px;
+                }
+            }
+            p.wrap-submit{
+                padding-left: 70px;
+                label{
+                    cursor: pointer;
+                    input[type="checkbox"]{
+                        vertical-align: -2px;
+                        margin-right: 3px;
+                    }
+                }
+                button{
+                    border: 1px solid #efab00;
+                    .border-radius(4px);
+                    .bg-grd-ver(#ffa000,#ffc500);
+                    float: right;
+                    width: 124px;
+                    color:#FFF;
+                    text-transform: uppercase;
+                    text-shadow: 0 1px #e99301;
+                    font-weight: bold;
+                    padding: 8px 0 9px;
+                    box-shadow: 0 0 1px 1px rgba(255, 255, 190, 0.75) inset;
+                }
+            }
+        }
+}
 
 
 
