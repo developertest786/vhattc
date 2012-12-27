@@ -96,6 +96,19 @@
         width: 656px;
         margin-left: 0;
     }
+    &.l260 .col-type1{
+        width: 260px;
+    }
+    &.l260 .col-type2{
+        width: 720px;
+        padding-left: 20px;
+    }
+    &.faux-left-gray{
+        background: @fauxColGrayColor;
+        .col-type2{
+            background: #FFF;
+        }
+    }
 }
 
 /* ------------- header ------------- */
@@ -174,7 +187,6 @@
             &:first-child{display: none}
             &.active > a{
                 color: #FFF;
-                background: url("../images/iPickUpW.png") no-repeat center bottom;
                 height: 36px;
                 line-height: 34px;
                 border-top: 3px solid #990000;
@@ -674,6 +686,44 @@
         }
 }
 
+#about-page{
+    margin-bottom: 70px;
+    .quick-nav{
+        padding: 10px 15px 20px;
+    }
+        .grp-lst-nav{
+            padding-bottom: 10px;
+            border-top: 1px solid #e4e4e4;
+            > h4.title{
+                font-size: 1.083em;
+                line-height: 1.333em;
+                padding-top:10px;
+                border-top: 1px solid #FFF;
+                a{
+                    color: #333;
+                }
+            }
+            &:first-child{
+                border: none;
+                h4.title {
+                    border: none;
+                }
+            }
+        }
+            .lst-nav{
+                padding-top:3px;
+                li{
+                    padding:5px 12px;
+                    background: url("../images/iPickRightRed.png") no-repeat 0 9px;
+                    a{
+                        color: #333;
+                    }
+                }
+            }
+    .text-content{
+        padding-top: 15px;
+    }
+}
 
 
 

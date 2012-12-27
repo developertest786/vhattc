@@ -280,6 +280,19 @@ textarea {
   width: 656px;
   margin-left: 0;
 }
+.row.l260 .col-type1 {
+  width: 260px;
+}
+.row.l260 .col-type2 {
+  width: 720px;
+  padding-left: 20px;
+}
+.row.faux-left-gray {
+  background: #f3f4f7;
+}
+.row.faux-left-gray .col-type2 {
+  background: #FFF;
+}
 /* ------------- header ------------- */
 #header {
   display: block;
@@ -376,7 +389,6 @@ textarea {
 }
 #main-menu ul > li.active > a {
   color: #FFF;
-  background: url("../images/iPickUpW.png") no-repeat center bottom;
   height: 36px;
   line-height: 34px;
   border-top: 3px solid #990000;
@@ -867,4 +879,42 @@ textarea {
   text-shadow: 0 1px #e99301;
   font-weight: bold;
   padding: 11px 0 10px;
+}
+#about-page {
+  margin-bottom: 70px;
+}
+#about-page .quick-nav {
+  padding: 10px 15px 20px;
+}
+#about-page .grp-lst-nav {
+  padding-bottom: 10px;
+  border-top: 1px solid #e4e4e4;
+}
+#about-page .grp-lst-nav > h4.title {
+  font-size: 1.083em;
+  line-height: 1.333em;
+  padding-top: 10px;
+  border-top: 1px solid #FFF;
+}
+#about-page .grp-lst-nav > h4.title a {
+  color: #333;
+}
+#about-page .grp-lst-nav:first-child {
+  border: none;
+}
+#about-page .grp-lst-nav:first-child h4.title {
+  border: none;
+}
+#about-page .lst-nav {
+  padding-top: 3px;
+}
+#about-page .lst-nav li {
+  padding: 5px 12px;
+  background: url("../images/iPickRightRed.png") no-repeat 0 9px;
+}
+#about-page .lst-nav li a {
+  color: #333;
+}
+#about-page .text-content {
+  padding-top: 15px;
 }
