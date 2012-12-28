@@ -1,0 +1,38 @@
+
+/* ------------- slide ------------- */
+#main-slide{
+    background: url("../images/slide-bg.png") repeat-x top center;
+    #main-slider-code{
+        position: relative;
+    }
+    .viewport{
+        overflow: hidden;
+        position: relative;
+        height: 370px;
+        .overview{
+            position: absolute;
+            top:0;
+            left:0;
+            li{
+                float: left;
+                height: 370px;
+                img{
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .pager{
+        display: none;
+        position: absolute;
+        width:100%;
+        background: url("../images/paging-bg.png") no-repeat bottom center;
+        padding-bottom: 10px;
+        text-align: center;
+        > li{
+            display: inline-block;
+            .ie7-inline-block();
+        }
+    }
+}
