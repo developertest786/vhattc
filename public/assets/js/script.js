@@ -13,5 +13,15 @@ $(function () {
         $("#sys_choose_lang").submit();
     });
 
+    if($("#all-news").find(".news-item").length>3) {
+        $("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
+    }
+
+
+    $("#datepicker_custom").datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
+
     $("#slider_partner").tinycarousel();
 });

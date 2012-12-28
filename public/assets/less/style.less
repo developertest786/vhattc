@@ -42,6 +42,8 @@
     .iPickDownW     {width:9px;height:5px;background-position: -70px 0}
     .iFb            {.ico(11px,23px,-59px,0);}
     .iTw            {.ico(32px,23px,-27px,0);}
+    .iPrevArrow     {.ico(5px,9px,-79px,0);}
+    .iNextArrow     {.ico(5px,9px,-79px,-9px);}
     /*row 2*/
     .iPickRightW    {.ico(4px,8px,0,-16px);}
 .iconB{
@@ -83,6 +85,7 @@
 .row{
     .col{
         float: left;
+        overflow: hidden;
     }
     &.c3{
         margin-left: -30px;
@@ -283,7 +286,7 @@
     }
 }
 
-
+/* ------------- lst-top-about ------------- */
 .lst-top-about{
     margin-bottom: 20px;
     padding-bottom: 25px;
@@ -389,6 +392,37 @@
             border: none;
             width:59px;
         }
+    }
+}
+
+/* ------------- lst-partner-trained ------------- */
+.search-box-common{
+    padding: 8px;
+    background: #ededed;
+    label{
+        .f-l();
+        margin-right: 4px;
+        width: 220px;
+        padding: 0 7px;
+        background: #FFF;
+        border-top: 1px solid #C2c2c2;
+        input{
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 5px 0 7px;
+        }
+    }
+    input[type="submit"]{
+        float: left;
+        text-align: center;
+        background: #00467f;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 7px 0 6px;
+        border: none;
+        width:59px;
     }
 }
 
@@ -686,6 +720,7 @@
         }
 }
 
+/* ------------- About ------------- */
 #about-page{
     margin-bottom: 70px;
     .quick-nav{
@@ -725,6 +760,216 @@
     }
 }
 
+/* ------------- Breadcrumb ------------- */
+#breadcrumb{
+    padding:10px 0;
+    a{
+        color: #195189;
+        &.current-page{
+            color: #333;
+        }
+    }
+    .sep{
+        vertical-align: 1px;
+        margin: 0 7px;
+    }
+}
 
+/* ------------- News List ------------- */
+#news-list{
+    padding-bottom:50px;
+    .news-paging{
+        position: relative;
+        text-align: center;
+        .line-through{
+            width: 100%;
+            height: 1px;
+            background: #dfdfdf;
+            position: absolute;
+            top:12px;
+            left: 0;
+        }
+        .wrap-pager{
+            position: relative;
+            z-index: 2;
+            background: #FFF;
+            padding: 0 13px;
+            display: inline-block;
+            .ie7-inline-block();
+            a{
+                font-size: 0.917em;
+                width:21px;
+                height:21px;
+                line-height: 22px;
+                text-align: center;
+                border: 1px solid #dfdfdf;
+                display: inline-block;
+                .ie7-inline-block();
+                &.nobor{
+                    border: none;
+                    margin: 0 5px;
+                }
+                &.active{
+                    color: #f81435;
+                }
+            }
+        }
+    }
+    .search-box-common{
+        margin-bottom: 10px;
+    }
+}
+    #all-news{
+        margin-left:-25px;
+        padding-top: 15px;
+        border-top: 1px solid #dfdfdf;
 
+        .news-item{
+            float: left;
+            width: 33.33%;
+        }
+            .wrap-content{
+                /*position: relative;*/
+                padding: 0 0 30px 25px;
+                .thumb{
+                    display: block;
+                    /*line-height: 0;*/
+                    img{
+                        width: 100%;
+                    }
+                }
+                .date{
+                    padding: 8px 0 3px;
+                }
+                h3.title{
+                    font-size: 1em;
+                    padding-bottom: 7px;
+                    a{
+                        color: #333;
+                    }
+                }
+                .lead-news{
+                    padding-bottom: 5px;
 
+                }
+                .view-detail{
+                    /*position:absolute;*/
+                    .icon{
+                        margin-left: 4px;
+                    }
+                }
+            }
+    }
+
+/* -------------  DatePicker ------------- */
+#datepicker_custom{
+    background: #ededed;
+    margin-bottom:18px;
+
+    .ui-helper-clearfix{
+        *zoom: 1;
+        &:before,
+        &:after {
+            display: table;
+            content: "";
+            // Fixes Opera/contenteditable bug:
+            // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+            line-height: 0;
+        }
+        &:after {
+            clear: both;
+        }
+    }
+    .ui-datepicker-header{
+        position: relative;
+        border-bottom: 1px solid #FFF;
+        line-height: 40px;
+    }
+    .ui-datepicker-title{
+        padding: 0px 30px;
+        text-align: center;
+        font-size: 1.167em;
+        border-bottom: 1px solid #d9d9d9;
+    }
+    .ui-datepicker-prev,
+    .ui-datepicker-next{
+        position: absolute;
+        top: 10px;
+        left: 7px;
+        /*border: 1px solid red;*/
+        width: 20px;
+        height: 20px;
+        line-height: 22px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .ui-datepicker-next{
+        left: auto;
+        right: 7px;
+    }
+    .ui-icon-circle-triangle-w{
+        background: transparent url("../images/sprites.png?v=1.12") no-repeat;
+        border: none;
+        .dp-ib();
+        .ico(5px,9px,-79px,0);
+        text-indent: -9999px;
+    }
+    .ui-icon-circle-triangle-e{
+        background: transparent url("../images/sprites.png?v=1.12") no-repeat;
+        border: none;
+        .dp-ib();
+        .ico(5px,9px,-79px,-9px);
+        text-indent: -9999px;
+    }
+    table{
+        padding: 10px 12px 15px;
+        th{
+            color: #666;
+            height: 22px;
+            vertical-align: middle;
+        }
+        td{
+            cursor: pointer;
+            width: 39px;
+            height: 28px;
+            text-align: center;
+            font-weight: bold;
+            vertical-align: middle;
+            background: #d8d7d7;
+            a{
+                color: #666;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+            &.ui-datepicker-other-month{
+                background: #e2e1e1;
+            }
+            &.ui-datepicker-current-day{
+                background: #004781;
+                a{
+                    color: #FFF;
+                }
+            }
+            &.ui-datepicker-today{
+                background: #bfbebe;
+                a{
+                    color: #666;
+                }
+            }
+        }
+    }
+}
+
+/* -------------  Articles Archive ------------- */
+.articles-archive{
+    display:none;
+    .item{
+        float: left;
+        width: 50%;
+        background:#ededed;
+        > div{
+
+        }
+    }
+}
