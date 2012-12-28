@@ -392,6 +392,8 @@ textarea {
   float: left;
 }
 #main-menu ul > li {
+  padding: 0;
+  margin: 0;
   float: left;
   position: relative;
 }
@@ -1164,24 +1166,62 @@ textarea {
 #datepicker_custom table td.ui-datepicker-other-month {
   background: #e2e1e1;
 }
-#datepicker_custom table td.ui-datepicker-current-day {
-  background: #004781;
-}
-#datepicker_custom table td.ui-datepicker-current-day a {
-  color: #FFF;
-}
 #datepicker_custom table td.ui-datepicker-today {
   background: #bfbebe;
 }
 #datepicker_custom table td.ui-datepicker-today a {
   color: #666;
 }
+#datepicker_custom table td.ui-datepicker-current-day {
+  background: #004781;
+}
+#datepicker_custom table td.ui-datepicker-current-day a {
+  color: #FFF;
+}
 /* -------------  Articles Archive ------------- */
 .articles-archive {
-  display: none;
+  margin-bottom: 10px;
+}
+.articles-archive .wrap-lst {
+  overflow: hidden;
 }
 .articles-archive .item {
   float: left;
   width: 50%;
+  margin-left: -1px;
+  margin-top: -1px;
   background: #ededed;
+}
+.articles-archive .item > div {
+  border: solid #d9d9d9;
+  border-width: 1px 0 0 1px;
+  padding: 11px 12px;
+}
+.articles-archive .item a {
+  color: #333;
+}
+.articles-archive .item a span {
+  font-weight: bold;
+}
+/* ------------- tags-cloud ------------- */
+.tags-cloud {
+  margin-bottom: 10px;
+}
+.tags-cloud a {
+  color: #333;
+  line-height: 1.6em;
+}
+.tags-cloud .s2 {
+  font-size: 1.167em;
+}
+.tags-cloud .s3 {
+  font-size: 1.333em;
+}
+.tags-cloud .s4 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.tags-cloud .s5 {
+  font-size: 1.833em;
+  font-weight: bold;
 }
