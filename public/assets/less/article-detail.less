@@ -1,5 +1,78 @@
 
 /* ------------- tags-cloud ------------- */
 #article-detail{
-
+    .desc-img{
+        width: 100%;
+    }
+    .art-title{
+        font-size: 2em;
+        line-height: 2.5em;
+    }
+    .art-ultility{
+        background: #f9f9f9;
+        padding: 5px 8px;
+        border: 1px solid #ededed;
+        .border-radius(3px);
+        .date-created{
+            float: left;
+            margin-top: 3px;
+            font-size: 0.9714em;
+            color: #666;
+            .sep{
+                margin: 0 7px;
+            }
+        }
+        .art-tool{
+            float: right;
+            > span{
+                float: left;
+                margin-top:3px;
+                &.sep{
+                    height:16px;
+                    border-left: 1px solid #e7e7e7;
+                    border-right: 1px solid #fff;
+                    margin: 3px 9px 0;
+                }
+                &.like-fb{
+                    position: relative;
+                    width: 71px;
+                    height: 22px;
+                    margin: 0;
+                }
+            }
+            .iPrinter{
+                vertical-align: -2px;
+                margin-right: 2px;
+            }
+            .iEmail{
+                vertical-align: -1px;
+                margin-right: 2px;
+            }
+        }
+    }
+    .text-content{
+        padding-bottom: 10px;
+    }
+    .art-comment{
+        padding-bottom:10px;
+        border-bottom: 1px solid #e3e3e3;
+        margin-bottom:10px;
+        > h4.title{
+            font-size: 1em;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e3e3e3;
+        }
+    }
+    .relation-articles{
+        padding-bottom:30px;
+        h3.title{
+            padding-bottom: 5px;
+        }
+        ul{
+             li{
+                background: url("../images/iPickRightRed.png") no-repeat 0 5px;
+                padding: 0 0 12px 15px;
+            }
+        }
+    }
 }

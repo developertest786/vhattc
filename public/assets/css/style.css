@@ -168,8 +168,16 @@ textarea {
 .fc-r {
   color: #f00000;
 }
+.fc-g {
+  color: #666666;
+}
 .fw-b {
   font-weight: bold;
+}
+.fs11 {
+  font-size: 0.917em;
+  /*12px -> 11px*/
+
 }
 .fixCenter1K {
   display: block;
@@ -225,6 +233,16 @@ textarea {
   width: 5px;
   height: 9px;
   background-position: -79px -9px;
+}
+.iEmail {
+  width: 18px;
+  height: 12px;
+  background-position: -84px 0;
+}
+.iPrinter {
+  width: 18px;
+  height: 14px;
+  background-position: -102px 0;
 }
 /*row 2*/
 .iPickRightW {
@@ -282,19 +300,19 @@ textarea {
 .row.c3 {
   margin-left: -30px;
 }
-.row.c3 .col,
-.row.l656 .col {
+.row.c3 > .col,
+.row.l656 > .col {
   width: 313px;
   margin-left: 30px;
 }
-.row.l656 .col:first-child {
+.row.l656 > .col:first-child {
   width: 656px;
   margin-left: 0;
 }
-.row.l260 .col-type1 {
+.row.l260 > .col-type1 {
   width: 260px;
 }
-.row.l260 .col-type2 {
+.row.l260 > .col-type2 {
   width: 720px;
   padding-left: 20px;
 }
@@ -608,6 +626,7 @@ textarea {
 }
 /* ------------- lst-partner-trained ------------- */
 .search-box-common {
+  margin-bottom: 10px;
   padding: 8px;
   background: #ededed;
 }
@@ -1024,9 +1043,6 @@ textarea {
 #news-list .news-paging .wrap-pager a.active {
   color: #f81435;
 }
-#news-list .search-box-common {
-  margin-bottom: 10px;
-}
 #all-news {
   margin-left: -25px;
   padding-top: 15px;
@@ -1224,4 +1240,79 @@ textarea {
 .tags-cloud .s5 {
   font-size: 1.833em;
   font-weight: bold;
+}
+/* ------------- tags-cloud ------------- */
+#article-detail .desc-img {
+  width: 100%;
+}
+#article-detail .art-title {
+  font-size: 2em;
+  line-height: 2.5em;
+}
+#article-detail .art-ultility {
+  background: #f9f9f9;
+  padding: 5px 8px;
+  border: 1px solid #ededed;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+#article-detail .art-ultility .date-created {
+  float: left;
+  margin-top: 3px;
+  font-size: 0.9714em;
+  color: #666;
+}
+#article-detail .art-ultility .date-created .sep {
+  margin: 0 7px;
+}
+#article-detail .art-ultility .art-tool {
+  float: right;
+}
+#article-detail .art-ultility .art-tool > span {
+  float: left;
+  margin-top: 3px;
+}
+#article-detail .art-ultility .art-tool > span.sep {
+  height: 16px;
+  border-left: 1px solid #e7e7e7;
+  border-right: 1px solid #fff;
+  margin: 3px 9px 0;
+}
+#article-detail .art-ultility .art-tool > span.like-fb {
+  position: relative;
+  width: 71px;
+  height: 22px;
+  margin: 0;
+}
+#article-detail .art-ultility .art-tool .iPrinter {
+  vertical-align: -2px;
+  margin-right: 2px;
+}
+#article-detail .art-ultility .art-tool .iEmail {
+  vertical-align: -1px;
+  margin-right: 2px;
+}
+#article-detail .text-content {
+  padding-bottom: 10px;
+}
+#article-detail .art-comment {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e3e3e3;
+  margin-bottom: 10px;
+}
+#article-detail .art-comment > h4.title {
+  font-size: 1em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e3e3e3;
+}
+#article-detail .relation-articles {
+  padding-bottom: 30px;
+}
+#article-detail .relation-articles h3.title {
+  padding-bottom: 5px;
+}
+#article-detail .relation-articles ul li {
+  background: url("../images/iPickRightRed.png") no-repeat 0 5px;
+  padding: 0 0 12px 15px;
 }
