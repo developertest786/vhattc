@@ -25,7 +25,11 @@
 // Core variables and mixins
 .fc-w{color: #FFF}
 .fc-r{color: #f00000}
+.fc-g{color: #666}
 .fw-b{font-weight: bold;}
+.fs11{
+    font-size: 0.917em;/*12px -> 11px*/
+}
 
 .fixCenter1K{
     .center-block();
@@ -44,6 +48,9 @@
     .iTw            {.ico(32px,23px,-27px,0);}
     .iPrevArrow     {.ico(5px,9px,-79px,0);}
     .iNextArrow     {.ico(5px,9px,-79px,-9px);}
+    .iEmail         {.ico(18px,12px,-84px,0);}
+    .iPrinter       {.ico(18px,14px,-102px,0);}
+
     /*row 2*/
     .iPickRightW    {.ico(4px,8px,0,-16px);}
 .iconB{
@@ -90,19 +97,19 @@
     &.c3{
         margin-left: -30px;
     }
-    &.c3 .col,
-    &.l656 .col{
+    &.c3 > .col,
+    &.l656 > .col{
         width: 313px;
         margin-left: 30px;
     }
-    &.l656 .col:first-child{
+    &.l656 > .col:first-child{
         width: 656px;
         margin-left: 0;
     }
-    &.l260 .col-type1{
+    &.l260 > .col-type1{
         width: 260px;
     }
-    &.l260 .col-type2{
+    &.l260 > .col-type2{
         width: 720px;
         padding-left: 20px;
     }
@@ -229,6 +236,7 @@
 
 /* ------------- lst-partner-trained ------------- */
 .search-box-common{
+    margin-bottom: 10px;
     padding: 8px;
     background: #ededed;
     label{
@@ -646,9 +654,6 @@
                 }
             }
         }
-    }
-    .search-box-common{
-        margin-bottom: 10px;
     }
 }
     #all-news{

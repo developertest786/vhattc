@@ -17,11 +17,13 @@ $(function () {
         $("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
     }
 
-
-    $("#datepicker_custom").datepicker({
-        showOtherMonths: true,
-        selectOtherMonths: true
-    });
-
-    $("#slider_partner").tinycarousel();
+    if($("#datepicker_custom").length>0) {
+        $("#datepicker_custom").datepicker({
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+    }
+    if($("#slider_partner").length>0) {
+        $("#slider_partner").tinycarousel();
+    }
 });
