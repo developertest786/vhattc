@@ -1218,6 +1218,7 @@ textarea {
 .tags-cloud a {
   color: #333;
   line-height: 1.6em;
+  margin-right: 4px;
 }
 .tags-cloud .s2 {
   font-size: 1.167em;
@@ -1233,7 +1234,7 @@ textarea {
   font-size: 1.833em;
   font-weight: bold;
 }
-/* ------------- tags-cloud ------------- */
+/* ------------- article detail ------------- */
 #article-detail .desc-img {
   width: 100%;
 }
