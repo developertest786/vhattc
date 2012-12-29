@@ -367,6 +367,7 @@ textarea {
 #header .right-panel .language #sys-lst-language li {
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
   cursor: pointer;
@@ -471,10 +472,14 @@ textarea {
 }
 /* ------------- slide ------------- */
 #main-slide {
-  background: url("../images/slide-bg.png") repeat-x top center;
+  background: url("../images/slide-bg-1.png") repeat-x top center;
 }
 #main-slide #main-slider-code {
   position: relative;
+  padding-bottom: 48px;
+}
+#main-slide #main-slider-code .buttons {
+  display: none;
 }
 #main-slide .viewport {
   overflow: hidden;
@@ -491,16 +496,26 @@ textarea {
   height: 370px;
 }
 #main-slide .viewport .overview li img {
-  max-width: 100%;
-  width: 100%;
+  height: 369px;
+  width: 1000px;
 }
-#main-slide .pager {
-  display: none;
+#main-slide .wrap-pager {
   position: absolute;
   width: 100%;
   background: url("../images/paging-bg.png") no-repeat bottom center;
-  padding-bottom: 10px;
+  padding-bottom: 7px;
+  top: 364px;
   text-align: center;
+}
+#main-slide .mack {
+  position: absolute;
+  background: white;
+  width: 100%;
+  height: 15px;
+  bottom: 7px;
+}
+#main-slide .pager {
+  position: relative;
 }
 #main-slide .pager > li {
   display: inline-block;
@@ -508,6 +523,34 @@ textarea {
   /* IE7 inline-block hack */
 
   *zoom: 1;
+}
+#main-slide .pager > li a {
+  width: 47px;
+  height: 47px;
+  margin: 0 2px;
+  line-height: 48px;
+  color: #666;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+#main-slide .pager > li a:hover {
+  text-decoration: none;
+  background: #52514f;
+  color: #FFF;
+}
+#main-slide .pager > li a.active {
+  background: #00467f;
+  color: #FFF;
 }
 /* ------------- lst-top-about ------------- */
 .lst-top-about {

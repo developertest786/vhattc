@@ -23,6 +23,12 @@ $(function () {
             selectOtherMonths: true
         });
     }
+    if($("#main-slider-code").length>0) {
+        $("#main-slider-code").tinycarousel({
+            pager:true,
+            interval:true
+        });
+    }
     if($("#slider_partner").length>0) {
         $("#slider_partner").tinycarousel();
     }
