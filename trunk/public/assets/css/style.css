@@ -472,7 +472,7 @@ textarea {
 }
 /* ------------- slide ------------- */
 #main-slide {
-  background: url("../images/slide-bg-1.png") repeat-x top center;
+  background: url("../images/slide-bg.png") repeat-x top center;
 }
 #main-slide #main-slider-code {
   position: relative;
