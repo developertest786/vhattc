@@ -1,12 +1,13 @@
 
 /* ------------- article detail ------------- */
-#article-detail{
+#article-detail,#event-detail{
     .desc-img{
         width: 100%;
     }
     .art-title{
+        padding-top: 5px;
         font-size: 2em;
-        line-height: 2.5em;
+        line-height: 2.2em;
     }
     .art-ultility{
         background: #f9f9f9;
@@ -60,6 +61,7 @@
         margin-bottom:10px;
         > h4.title{
             font-size: 1em;
+            margin-bottom: 6px;
             padding-bottom: 10px;
             border-bottom: 1px solid #e3e3e3;
         }
@@ -74,6 +76,65 @@
                 background: url("../images/iPickRightRed.png") no-repeat 0 5px;
                 padding: 0 0 12px 15px;
             }
+        }
+    }
+}
+#event-detail{
+    padding-bottom:30px;
+    .art-full-info{
+        border-top: 1px solid #dfdfdf;
+    }
+    .art-ultility{
+        margin-bottom: 10px;
+    }
+    .event-fixed-time{
+        font-weight: bold;
+        padding: 6px 0;
+    }
+    .iClock,.iPlace{
+        vertical-align: -4px;
+        margin-right:10px;
+    }
+    .view-more{
+        &.active{
+            .iPickDownR{
+                background-position: -4px -20px;
+                vertical-align: 2px;
+            }
+        }
+        .iPickDownR{
+            margin-left: 5px;
+        }
+    }
+    .text-content{
+        padding: 0;
+    }
+    .art-comment{
+        padding-top: 20px;
+    }
+    .lst-other-event{
+        li{
+            padding: 6px 15px;
+            background: url("../images/iPickRightRed.png") no-repeat 0 10px;
+        }
+    }
+    .btn-regiter{
+        background: url("../images/btn-yellow.png") no-repeat left top;
+        padding-left: 5px;
+        text-align: center;
+        color: #FFF;
+        font-weight: bold;
+        text-shadow: 0 1px #e99301;
+        display: inline-block;
+        .ie7-inline-block();
+        > span{
+            background: url("../images/btn-yellow.png") no-repeat right top;
+            padding-right: 5px;
+            width:140px;
+            height: 40px;
+            line-height: 42px;
+            display: inline-block;
+            .ie7-inline-block();
         }
     }
 }

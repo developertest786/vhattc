@@ -174,6 +174,9 @@ textarea {
 .fc-g {
   color: #666666;
 }
+.fc-gb {
+  color: #999999;
+}
 .fw-b {
   font-weight: bold;
 }
@@ -247,11 +250,31 @@ textarea {
   height: 14px;
   background-position: -102px 0;
 }
+.iPlace {
+  width: 18px;
+  height: 20px;
+  background-position: -140px 0;
+}
+.iClock {
+  width: 19px;
+  height: 19px;
+  background-position: -158px 0;
+}
 /*row 2*/
 .iPickRightW {
   width: 4px;
   height: 8px;
   background-position: 0 -16px;
+}
+.iPickDownR {
+  width: 8px;
+  height: 4px;
+  background-position: -4px -16px;
+}
+.iPickUpR {
+  width: 8px;
+  height: 4px;
+  background-position: -4px -20px;
 }
 .iconB {
   background: transparent url("../images/sprites-big.png?v=1.12") no-repeat;
@@ -1293,14 +1316,18 @@ textarea {
   font-weight: bold;
 }
 /* ------------- article detail ------------- */
-#article-detail .desc-img {
+#article-detail .desc-img,
+#event-detail .desc-img {
   width: 100%;
 }
-#article-detail .art-title {
+#article-detail .art-title,
+#event-detail .art-title {
+  padding-top: 5px;
   font-size: 2em;
-  line-height: 2.5em;
+  line-height: 2.2em;
 }
-#article-detail .art-ultility {
+#article-detail .art-ultility,
+#event-detail .art-ultility {
   background: #f9f9f9;
   padding: 5px 8px;
   border: 1px solid #ededed;
@@ -1308,64 +1335,139 @@ textarea {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-#article-detail .art-ultility .date-created {
+#article-detail .art-ultility .date-created,
+#event-detail .art-ultility .date-created {
   float: left;
   margin-top: 3px;
   font-size: 0.9714em;
   color: #666;
 }
-#article-detail .art-ultility .date-created .sep {
+#article-detail .art-ultility .date-created .sep,
+#event-detail .art-ultility .date-created .sep {
   margin: 0 7px;
 }
-#article-detail .art-ultility .art-tool {
+#article-detail .art-ultility .art-tool,
+#event-detail .art-ultility .art-tool {
   float: right;
 }
-#article-detail .art-ultility .art-tool > span {
+#article-detail .art-ultility .art-tool > span,
+#event-detail .art-ultility .art-tool > span {
   float: left;
   margin-top: 3px;
 }
-#article-detail .art-ultility .art-tool > span.sep {
+#article-detail .art-ultility .art-tool > span.sep,
+#event-detail .art-ultility .art-tool > span.sep {
   height: 16px;
   border-left: 1px solid #e7e7e7;
   border-right: 1px solid #fff;
   margin: 3px 9px 0;
 }
-#article-detail .art-ultility .art-tool > span.like-fb {
+#article-detail .art-ultility .art-tool > span.like-fb,
+#event-detail .art-ultility .art-tool > span.like-fb {
   position: relative;
   width: 71px;
   height: 22px;
   margin: 0;
 }
-#article-detail .art-ultility .art-tool .iPrinter {
+#article-detail .art-ultility .art-tool .iPrinter,
+#event-detail .art-ultility .art-tool .iPrinter {
   vertical-align: -2px;
   margin-right: 2px;
 }
-#article-detail .art-ultility .art-tool .iEmail {
+#article-detail .art-ultility .art-tool .iEmail,
+#event-detail .art-ultility .art-tool .iEmail {
   vertical-align: -1px;
   margin-right: 2px;
 }
-#article-detail .text-content {
+#article-detail .text-content,
+#event-detail .text-content {
   padding-bottom: 10px;
 }
-#article-detail .art-comment {
+#article-detail .art-comment,
+#event-detail .art-comment {
   padding-bottom: 10px;
   border-bottom: 1px solid #e3e3e3;
   margin-bottom: 10px;
 }
-#article-detail .art-comment > h4.title {
+#article-detail .art-comment > h4.title,
+#event-detail .art-comment > h4.title {
   font-size: 1em;
+  margin-bottom: 6px;
   padding-bottom: 10px;
   border-bottom: 1px solid #e3e3e3;
 }
-#article-detail .relation-articles {
+#article-detail .relation-articles,
+#event-detail .relation-articles {
   padding-bottom: 30px;
 }
-#article-detail .relation-articles h3.title {
+#article-detail .relation-articles h3.title,
+#event-detail .relation-articles h3.title {
   padding-bottom: 5px;
 }
-#article-detail .relation-articles ul li {
+#article-detail .relation-articles ul li,
+#event-detail .relation-articles ul li {
   background: url("../images/iPickRightRed.png") no-repeat 0 5px;
   padding: 0 0 12px 15px;
+}
+#event-detail {
+  padding-bottom: 30px;
+}
+#event-detail .art-full-info {
+  border-top: 1px solid #dfdfdf;
+}
+#event-detail .art-ultility {
+  margin-bottom: 10px;
+}
+#event-detail .event-fixed-time {
+  font-weight: bold;
+  padding: 6px 0;
+}
+#event-detail .iClock,
+#event-detail .iPlace {
+  vertical-align: -4px;
+  margin-right: 10px;
+}
+#event-detail .view-more.active .iPickDownR {
+  background-position: -4px -20px;
+  vertical-align: 2px;
+}
+#event-detail .view-more .iPickDownR {
+  margin-left: 5px;
+}
+#event-detail .text-content {
+  padding: 0;
+}
+#event-detail .art-comment {
+  padding-top: 20px;
+}
+#event-detail .lst-other-event li {
+  padding: 6px 15px;
+  background: url("../images/iPickRightRed.png") no-repeat 0 10px;
+}
+#event-detail .btn-regiter {
+  background: url("../images/btn-yellow.png") no-repeat left top;
+  padding-left: 5px;
+  text-align: center;
+  color: #FFF;
+  font-weight: bold;
+  text-shadow: 0 1px #e99301;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+#event-detail .btn-regiter > span {
+  background: url("../images/btn-yellow.png") no-repeat right top;
+  padding-right: 5px;
+  width: 140px;
+  height: 40px;
+  line-height: 42px;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
 }
 /* ------------- training-event ------------- */
 #training-event {
