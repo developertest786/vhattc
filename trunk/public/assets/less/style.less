@@ -26,6 +26,11 @@
 .fc-w{color: #FFF}
 .fc-r{color: #f00000}
 .fw-b{font-weight: bold;}
+.fc-g{color: #666}
+.fw-b{font-weight: bold;}
+.fs11{
+    font-size: 0.917em;/*12px -> 11px*/
+}
 
 .fixCenter1K{
     .center-block();
@@ -93,19 +98,19 @@
     &.c3{
         margin-left: -30px;
     }
-    &.c3 .col,
-    &.l656 .col{
+    &.c3 > .col,
+    &.l656 > .col{
         width: 313px;
         margin-left: 30px;
     }
-    &.l656 .col:first-child{
+    &.l656 > .col:first-child{
         width: 656px;
         margin-left: 0;
     }
-    &.l260 .col-type1{
+    &.l260 > .col-type1{
         width: 260px;
     }
-    &.l260 .col-type2{
+    &.l260 > .col-type2{
         width: 720px;
         padding-left: 20px;
     }
@@ -153,8 +158,8 @@
     }
 }
 
-/* ------------- lst-trainning ------------- */
-.lst-trainning{
+/* ------------- lst-training ------------- */
+.lst-training{
     .block-content{
         padding-top: 5px;
     }
@@ -192,7 +197,7 @@
     }
 }
 
-/* ------------- lst-trainning ------------- */
+/* ------------- lst-resources ------------- */
 .lst-resources{
     padding-bottom:20px;
     .block-content{
@@ -236,8 +241,9 @@
     }
 }
 
-/* ------------- lst-partner-trained ------------- */
+/* ------------- search-box-common ------------- */
 .search-box-common{
+    margin-bottom: 10px;
     padding: 8px;
     background: #ededed;
     label{
@@ -620,10 +626,6 @@
 /* ------------- News List ------------- */
 #news-list{
     padding-bottom:50px;
-
-    .search-box-common{
-        margin-bottom: 10px;
-    }
 }
     #all-news{
         margin-left:-25px;

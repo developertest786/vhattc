@@ -171,6 +171,17 @@ textarea {
 .fw-b {
   font-weight: bold;
 }
+.fc-g {
+  color: #666666;
+}
+.fw-b {
+  font-weight: bold;
+}
+.fs11 {
+  font-size: 0.917em;
+  /*12px -> 11px*/
+
+}
 .fixCenter1K {
   display: block;
   margin-left: auto;
@@ -292,19 +303,19 @@ textarea {
 .row.c3 {
   margin-left: -30px;
 }
-.row.c3 .col,
-.row.l656 .col {
+.row.c3 > .col,
+.row.l656 > .col {
   width: 313px;
   margin-left: 30px;
 }
-.row.l656 .col:first-child {
+.row.l656 > .col:first-child {
   width: 656px;
   margin-left: 0;
 }
-.row.l260 .col-type1 {
+.row.l260 > .col-type1 {
   width: 260px;
 }
-.row.l260 .col-type2 {
+.row.l260 > .col-type2 {
   width: 720px;
   padding-left: 20px;
 }
@@ -582,47 +593,47 @@ textarea {
   vertical-align: -1px;
   margin-left: 2px;
 }
-/* ------------- lst-trainning ------------- */
-.lst-trainning .block-content {
+/* ------------- lst-training ------------- */
+.lst-training .block-content {
   padding-top: 5px;
 }
-.lst-trainning .train-item {
+.lst-training .train-item {
   border-top: 1px dotted #999;
   padding: 15px 0;
 }
-.lst-trainning .train-item:first-child {
+.lst-training .train-item:first-child {
   padding-top: 0;
   border: none;
 }
-.lst-trainning .train-item h4 {
+.lst-training .train-item h4 {
   font-size: 1.083em;
   line-height: 1.333em;
 }
-.lst-trainning .train-item .date {
+.lst-training .train-item .date {
   padding-bottom: 7px;
 }
-.lst-trainning .train-item .desc {
+.lst-training .train-item .desc {
   padding-bottom: 4px;
 }
-.lst-trainning .train-item .link-action a {
+.lst-training .train-item .link-action a {
   font-size: 0.917em;
 }
-.lst-trainning .train-item .link-action .sep {
+.lst-training .train-item .link-action .sep {
   margin: 0 10px;
 }
-.lst-trainning .train-item .link-action .iComment {
+.lst-training .train-item .link-action .iComment {
   vertical-align: -4px;
   margin-right: 3px;
 }
-.lst-trainning .train-item .link-action .iComment {
+.lst-training .train-item .link-action .iComment {
   vertical-align: -4px;
   margin-right: 3px;
 }
-.lst-trainning .train-item .link-action .iNote {
+.lst-training .train-item .link-action .iNote {
   vertical-align: -2px;
   margin-right: 2px;
 }
-/* ------------- lst-trainning ------------- */
+/* ------------- lst-resources ------------- */
 .lst-resources {
   padding-bottom: 20px;
 }
@@ -665,8 +676,9 @@ textarea {
   border: none;
   width: 59px;
 }
-/* ------------- lst-partner-trained ------------- */
+/* ------------- search-box-common ------------- */
 .search-box-common {
+  margin-bottom: 10px;
   padding: 8px;
   background: #ededed;
 }
@@ -1037,9 +1049,6 @@ textarea {
 /* ------------- News List ------------- */
 #news-list {
   padding-bottom: 50px;
-}
-#news-list .search-box-common {
-  margin-bottom: 10px;
 }
 #all-news {
   margin-left: -25px;
