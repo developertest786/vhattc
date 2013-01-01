@@ -6,7 +6,7 @@ use Flywheel\Util\Inflection;
 
 class WebRouter extends BaseRouter
 {
-    protected $_collection = array();
+    protected $_collectors = array();
     protected $_controllerPath;
     protected $_camelControllerName;
     protected $_controller;
@@ -16,7 +16,7 @@ class WebRouter extends BaseRouter
 
     public function __construct() {
         $routes = ConfigHandler::load('app.config.routing', 'routing', true);
-
+        //print_r($routes);exit;
         unset($routes['__urlSuffix__']);
         unset($routes['__remap__']);
         unset($routes['/']);
@@ -26,6 +26,7 @@ class WebRouter extends BaseRouter
                 $this->_collectors[] = new Collection($config, $pattern);
             }
         }
+        //print_r($this->_collectors);exit;
         parent::__construct();
     }
 
@@ -85,6 +86,7 @@ class WebRouter extends BaseRouter
         $_path = '';
         for ($i = 0; $i < sizeof($route); ++$i) {
             $_camelName	= Inflection::camelize($route[$i]);
+
             $_path .= $_camelName .DIRECTORY_SEPARATOR;
             if (false === (file_exists(Base::getAppPath().'/controllers/' .$_path))) {
                 break;
@@ -94,7 +96,6 @@ class WebRouter extends BaseRouter
                 $this->_controller = $route[$i];
             }
         }
-
         return $i;
     }
 
@@ -104,22 +105,27 @@ class WebRouter extends BaseRouter
         $rawUrl = $url;
 
         $url = $this->removeUrlSuffix($url, isset($config['__urlSuffix__'])? $config['__urlSuffix__']: null);
-        //echo $url;exit;
+
         if ('/' == $url) {
             if (!isset($config['/'])) { //default
                 throw new \Flywheel\Exception\Routing('Router: Not found default "/" in config. Default must be set!');
             }
             $route = $this->_parseDefaultController();
         } else {
+
             for ($i = 0, $size = sizeof($this->_collectors); $i < $size; ++$i) {
+
+                $route = $this->_collectors[$i]->parseUrl($this, trim($url, '/'), $rawUrl);
+
                 if(false !== ($route = $this->_collectors[$i]->parseUrl($this, trim($url, '/'), $rawUrl)))
                     break;
             }
-            if (false == $route)
-                $route = trim($url, '/');
+            if (false == $route)$route = trim($url, '/');
         }
         $segment = explode('/', $route);
+
         $seek = $this->_parseControllers($route);
+
         if (count($segment) > $seek) {
             $this->_action = $segment[$seek];
             $seek++;

@@ -32,6 +32,7 @@ class Inflection
      * @return string
      */
     public static function camelize($words) {
+
         $words = ucwords(str_replace('_' , ' ', $words));
         $words = str_replace(' ', '', $words);
         return ltrim($words, '_');

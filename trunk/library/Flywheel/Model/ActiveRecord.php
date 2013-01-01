@@ -11,13 +11,12 @@ abstract class ActiveRecord extends \Flywheel\Object {
     protected static $_tableName;
     protected static $_pk;
     protected static $_dbConnectName;
-    protected static $_validate;
-    protected static $_validate_plus;
+    protected static $_validate = array();
     protected static $_cols = array();
     protected static $_schema = array();
     protected static $_alias;
     protected static $_instances = array();
-    protected static $_validators;
+    protected static $_validators = array();
 
     /**
      * status of deleted om. If object had been delete from database
@@ -42,10 +41,13 @@ abstract class ActiveRecord extends \Flywheel\Object {
         $this->setTableDefinition();
         $this->_initDataValue();
         $this->init();
-        self::getValidate();
+
+        self::$_validate = array_merge_recursive(self::$_validate, static::additionRules());
     }
 
     public function setTableDefinition() {}
+
+    public static function additionRules(){return array();}
 
     protected function _initDataValue() {
         foreach (static::$_schema as $c => $config) {
@@ -91,8 +93,12 @@ abstract class ActiveRecord extends \Flywheel\Object {
         return static::$_dbConnectName;
     }
 
+    public static function quote($name) {
+        return self::getReadConnection()->getAdapter()->quoteIdentifier($name);
+    }
+
     public static function getColumnsList($alias = null) {
-        $db = Manager::getConnection(static::getDbConnectName());
+        $db = self::getReadConnection();
 
         $list = array();
         for($i = 0, $size = sizeof(static::$_cols); $i < $size; ++$i) {
@@ -102,12 +108,27 @@ abstract class ActiveRecord extends \Flywheel\Object {
     }
 
     /**
+     * get write database connection (slave)
+     * @return \Flywheel\Db\Connection
+     */
+    public static function getWriteConnection() {
+        return Manager::getConnection(self::getDbConnectName(), Manager::__MASTER__);
+    }
+
+    /**
+     * get read database connection (slave)
+     * @return \Flywheel\Db\Connection
+     */
+    public static function getReadConnection() {
+        return Manager::getConnection(self::getDbConnectName(), Manager::__SLAVE__);
+    }
+
+    /**
      * create read query
      * @return \Flywheel\Db\Query
      */
     public static function read() {
-        return Manager::getConnection(static::getDbConnectName(), Manager::__SLAVE__)
-            ->createQuery()->from(static::getTableName());
+        return self::getReadConnection()->createQuery()->from(static::getTableName());
     }
 
     /**
@@ -115,18 +136,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
      * @return \Flywheel\Db\Query
      */
     public static function write() {
-        return Manager::getConnection(static::getDbConnectName())->createQuery()
-            ->from(static::getTableName());
-    }
-
-    /**
-     * more rules merger with static::$_validate, overwrite it in OM
-     * @see ActiveRecord::__construct()
-     * must be return a array
-     * @return array
-     */
-    public static function additionRules() {
-        return array();
+        return self::getWriteConnection()->createQuery()->from(static::getTableName());
     }
 
     /**
@@ -175,6 +185,10 @@ abstract class ActiveRecord extends \Flywheel\Object {
         return $attr;
     }
 
+    public function hasField($field) {
+        return isset(static::$_schema[$field]);
+    }
+
     /**
      * reload object data from db
      * @return bool
@@ -191,15 +205,6 @@ abstract class ActiveRecord extends \Flywheel\Object {
             return true;
         }
         throw new Exception('Reload fail!');
-    }
-
-    /**
-     * check OM's table has field
-     * @param $field
-     * @return bool
-     */
-    public function hasField($field) {
-        return isset(static::$_schema[$field]);
     }
 
     /**
@@ -225,6 +230,21 @@ abstract class ActiveRecord extends \Flywheel\Object {
     public function getValidationFailures()
     {
         return $this->_validationFailures;
+    }
+
+    /**
+     * @param string $sep
+     * @return null|string
+     */
+    public function getValidationFailuresMessage($sep = "<br />") {
+        if (!empty($this->_validationFailures)) {
+            $r = array();
+            foreach ($this->_validationFailures as $col => $mess) {
+                $r[] = $col .' : ' .implode($sep, $mess);
+            }
+            return implode($sep, $r);
+        }
+        return null;
     }
 
     protected function _beforeSave() {
@@ -330,7 +350,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
         foreach ($data as $p=>$value) {
             if (isset(static::$_schema[$p])) {
-				$this->_modifiedCols[$p] = true;
+                $this->_modifiedCols[$p] = true;
                 $this->_data[$p] = $this->fixData($value, static::$_schema[$p]);
             } else {
                 $this->$p = $value;
@@ -389,27 +409,13 @@ abstract class ActiveRecord extends \Flywheel\Object {
                     return $data;
             }
         } else {
-            if (false == $config['not_null']) {
-                switch ($type) {
-                    case 'integer':
-                    case 'int':
-                    case 'timestamp':
-                    case 'time':
-                    case 'float':
-                    case 'decimal':
-                    case 'double':
-                    case 'number':
-                    case 'date':
-                    case 'datetime':
-                    case 'blob':
-                    case 'string':
-                        return null;
-                    case 'boolean':
-                    case 'bool':
-                        return 0;
-                    case 'array':
-                        return array();
-                }
+            if (!isset(self::$_validate[$config['name']])
+                || !isset(self::$_validate[$config['name']]['require'])) {
+                if ('bool' == $type)
+                    return 0;
+
+                if ('array' == $type)
+                    return array();
             } else {
                 switch ($type) {
                     case 'integer':
@@ -459,6 +465,9 @@ abstract class ActiveRecord extends \Flywheel\Object {
      */
     public function saveToDb() {
         if (!$this->validate()) {
+            if(\Flywheel\Base::ENV_DEV){
+                print_r(static::getValidationFailures());
+            }
             return false;
         }
 
@@ -471,7 +480,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
             }
         }
 
-        $db = Manager::getConnection(static::getDbConnectName());
+        $db = self::getWriteConnection();
         $databind = $this->_populateStmtValues($data);
         if ($this->isNew()) { //insert new record
             $status = $db->insert(static::getTableName(), $data, $databind);
@@ -495,7 +504,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
                 if (null == $v && (!isset(static::$_validate[$n]) || !isset(static::$_validate[$n]['require']))) {
                     unset($data[$n]); // no thing
                 } else {
-                    $databind[] = Manager::getConnection(static::getDbConnectName())->getAdapter()->getPDOParam(static::$_schema[$n]['db_type']);
+                    $databind[] = self::getReadConnection()->getAdapter()->getPDOParam(static::$_schema[$n]['db_type']);
                 }
             }
         }
@@ -515,15 +524,128 @@ abstract class ActiveRecord extends \Flywheel\Object {
         }
 
         $pkField = static::getPrimaryKeyField();
-        $db = Manager::getConnection(static::getDbConnectName());
-        $affectedRows = $db->delete(static::getTableName(), array($pkField, $this->getPkValue()));
+        $affectedRows = self::getWriteConnection()->delete(static::getTableName(), array($pkField, $this->getPkValue()));
         if ($affectedRows)
             $this->_deleted = true;
         return $affectedRows;
     }
 
+    /**
+     * begin transaction
+     * @return bool
+     */
+    public function beginTransaction() {
+        return self::getWriteConnection()->beginTransaction();
+    }
+	
+	/**
+     * commit transaction
+     * @return bool
+     */
+    public function commit() {
+        return self::getWriteConnection()->commit();
+    }
+
+    /**
+     * rollback
+     * @return bool
+     */
+    public function rollBack() {
+        return self::getWriteConnection()->rollBack();
+    }
+
     abstract public function save();
     abstract public function delete();
+
+    public function validate() {
+        $this->clearErrors();
+        $this->_beforeValidate();
+        $unique = array();
+
+        foreach (static::$_validate as $name => $rules) {
+
+            $isNull = false;
+            //check not null
+            if (isset($rules['require']) && ValidatorUtil::isEmpty($this->$name)) {
+                if (isset(static::$_schema[$name]['default']) && null != static::$_schema[$name]['default']) {
+                    $this->$name = static::$_schema[$name]['default'];
+                } else {
+                    $isNull = true;
+                    $this->setValidationFailure($name, $rules['require']); //$rules['require'] store message
+                }
+            }
+            //check allow value for enum type
+            if (!$isNull && isset($rules['filter']) && !ValidatorUtil::isEmpty($this->$name)
+                && !in_array($this->$name, $rules['filter']['allow'])) {
+                $this->setValidationFailure($name, $rules['filter']['message']);
+            }
+            if (!$isNull && isset($rules['length']) && 'string' == static::$_schema[$name]['type']
+                && !ValidatorUtil::isEmpty($this->$name) && mb_strlen($this->$name) > $rules['length']['max']) {
+                $this->setValidationFailure($name, $rules['length']['message']);
+            }
+            //check unique
+            if (isset($rules['unique']))
+                $unique[$name] = $rules;
+
+            //check type
+            if(isset($rules['type'])){
+                //is_numeric()
+                switch ($rules['type']){
+                    case 'number':
+                        if(!is_numeric($this->$name))
+                            $this->setValidationFailure($name,$name.' must be a number');
+                        break;
+                    case 'email':
+                        if(false === ValidatorUtil::isValidEmail($this->$name)){
+                            $this->setValidationFailure($name,$name.' must be a email');
+                        }
+                        break;
+                }
+            }
+
+            //check patent
+            if(isset($rules['pattern'])){
+                if(!preg_match($rules['pattern'], $this->$name)){
+                    $this->setValidationFailure($name, $name.' does not matched pattern');
+                }
+            }
+
+        }
+
+        if (!empty($unique)) {
+            $where = array();
+            $params = array();
+            foreach ($unique as $name => $mess) {
+                $where[] = static::getTableName().".{$name} = ?";
+                $params[] = $this->$name;
+            }
+
+            if (!$this->isNew()) {
+                $where[] = static::getTableName().'.' .static::getPrimaryKeyField() .' != ?';
+                $params[] = static::getPkValue();
+            }
+            $where = implode(' AND ', $where);
+
+            $data = static::read()->select(implode(',', array_keys($unique)))
+                ->where($where)
+                ->setMaxResults(1)
+                ->setParameters($params)
+                ->execute()
+                ->fetch(\PDO::FETCH_ASSOC);
+
+            if ($data) {
+                foreach ($data as $field => $value) {
+                    if($this->$field == $value)
+                        $this->setValidationFailure($field, static::$_validate[$field]['unique']);
+                }
+            }
+        }
+
+        $this->_afterValidate();
+
+        $this->_valid = empty($this->_validationFailures);
+        return $this->isValid();
+    }
 
     /**
      * add instance to pool
@@ -548,15 +670,6 @@ abstract class ActiveRecord extends \Flywheel\Object {
     }
 
     /**
-     * get all instances from pool by key
-     * @static
-     * @return get_called_class()[] | null
-     */
-    public static function getInstancesFromPool() {
-        return static::$_instances;
-    }
-
-    /**
      * get instance from pool by key
      * @static
      * @param $key
@@ -564,6 +677,15 @@ abstract class ActiveRecord extends \Flywheel\Object {
      */
     public static function getInstanceFromPool($key) {
         return isset(static::$_instances[$key])? static::$_instances[$key] : null;
+    }
+
+    /**
+     * get all instances from pool by key
+     * @static
+     * @return get_called_class()[] | null
+     */
+    public static function getInstancesFromPool() {
+        return static::$_instances;
     }
 
     /**
@@ -593,16 +715,17 @@ abstract class ActiveRecord extends \Flywheel\Object {
         $fieldName = Inflection::camelCaseToHungary($name);
         if (isset(static::$_schema[$fieldName])) {
             return (static::getTableAlias()? static::getTableAlias() .'.' :'')
-                .Manager::getConnection(static::getDbConnectName())->getAdapter()->quoteIdentifier($fieldName);
+                .self::getReadConnection()->getAdapter()->quoteIdentifier($fieldName);
         }
 
         return false;
     }
 
     public static function buildFindByWhere($fieldName) {
-        if ('' == $fieldName || 1 == $fieldName || '*' == $fieldName || 'all' == strtolower($fieldName))
+        if ('' == $fieldName || '1' == $fieldName || '*' == $fieldName || 'all' == strtolower($fieldName))
+        {
             return '1';
-
+        }
         $ands = array();
         $e = explode('And', $fieldName);
         foreach ($e as $k => $v) {
@@ -626,7 +749,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
     public static function findAll() {
         static::create();
-        $stmt = Manager::getConnection(static::getDbConnectName(), Manager::__SLAVE__)->createQuery()
+        $stmt = self::getReadConnection()->createQuery()
             ->select(static::getColumnsList(static::getTableAlias()))
             ->from(static::getTableName(), static::getTableAlias())
             ->execute();
@@ -644,10 +767,11 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
     public static function findBy($by, $param = null, $first = false) {
         static::create();
-        $q = Manager::getConnection(static::getDbConnectName(), Manager::__SLAVE__)->createQuery()
+        $q = self::getReadConnection()->createQuery()
             ->select(static::getColumnsList(static::getTableAlias()))
             ->from(static::getTableName(), static::getTableAlias())
             ->where(static::buildFindByWhere($by));
+
         if ($first)
             $q->setMaxResults(1);
 
@@ -655,7 +779,6 @@ abstract class ActiveRecord extends \Flywheel\Object {
             $q->setParameters($param);
 
         $stmt = $q->execute();
-
         $result = array();
         while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
             $om = new static();
@@ -666,8 +789,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
             $result[] = $om;
         }
-
-        return (empty($result))? $result : null;
+        return (!empty($result))? $result : null;
     }
 
     public function __call($method, $params) {
@@ -711,7 +833,7 @@ abstract class ActiveRecord extends \Flywheel\Object {
             }
 
             /*if ($one) {
-                $fieldName = static::_resolveFindByFieldName($by);
+                $fieldName = static::_resolveFindByFieldsName($by);
                 if(false == $fieldName) {
                     throw new Exception('Column ' .$fieldName .' not found!');
                 }
@@ -723,8 +845,10 @@ abstract class ActiveRecord extends \Flywheel\Object {
 
     public function __set($name, $value) {
         if (isset(static::$_schema[$name])) {
-            $this->_data[$name] = $this->fixData($value, static::$_schema[$name]);
-            $this->_modifiedCols[$name] = true;
+            $v = $this->fixData($value, static::$_schema[$name]);
+            $this->_data[$name] = $v;
+            if (null != $v)
+                $this->_modifiedCols[$name] = true;
         } else {
             $this->$name = $value;
         }
@@ -782,98 +906,5 @@ abstract class ActiveRecord extends \Flywheel\Object {
                 return static::findBy($by, $params, true);
             }
         }
-    }
-
-    public function validate() {
-        $this->clearErrors();
-        $this->_beforeValidate();
-        $unique = array();
-        //thay thế static::$_validate bằng validate get
-
-        //print_r(static::$_validate);exit;
-        foreach (static::$_validate as $name => $rules) {
-
-            $isNull = false;
-            //check not null
-            if (isset($rules['require']) && ValidatorUtil::isEmpty($this->$name)) {
-                if (isset(static::$_schema[$name]['default']) && null != static::$_schema[$name]['default']) {
-                    $this->$name = static::$_schema[$name]['default'];
-                } else {
-                    $isNull = true;
-                    $this->setValidationFailure($name, $rules['require']); //$rules['require'] store message
-                }
-            }
-            //check allow value for enum type
-            if (!$isNull && isset($rules['filter']) && !ValidatorUtil::isEmpty($this->$name)
-                && !in_array($this->$name, $rules['filter']['allow'])) {
-                $this->setValidationFailure($name, $rules['filter']['message']);
-            }
-            if (!$isNull && isset($rules['length']) && 'string' == static::$_schema[$name]['type']
-                && !ValidatorUtil::isEmpty($this->$name) && mb_strlen($this->$name) > $rules['length']['max']) {
-                $this->setValidationFailure($name, $rules['length']['message']);
-            }
-            //check unique
-            if (isset($rules['unique']))
-                $unique[$name] = $rules;
-
-            //check type
-            if(isset($rules['type'])){
-                 //is_numeric()
-                switch ($rules['type']){
-                    case 'number':
-                        if(!is_numeric($this->$name))
-                            $this->setValidationFailure($name,$name.' must be a number');
-                        break;
-                    case 'email':
-                        if(false === ValidatorUtil::isValidEmail($this->$name)){
-                            $this->setValidationFailure($name,$name.' must be a email');
-                        }
-                        break;
-                }
-            }
-
-            //check patent
-            if(isset($rules['patent'])){
-
-                if(!preg_match($rules['patent'], $this->$name)){
-                    $this->setValidationFailure($name, $name.' does not matched patent');
-                }
-            }
-
-        }
-
-        if (!empty($unique)) {
-            $where = array();
-            $params = array();
-            foreach ($unique as $name => $mess) {
-                $where[] = static::getTableName().".{$name} = ?";
-                $params[] = $this->$name;
-            }
-
-            if (!$this->isNew()) {
-                $where[] = static::getTableName().'.' .static::getPrimaryKeyField() .' != ?';
-                $params[] = static::getPkValue();
-            }
-            $where = implode(' AND ', $where);
-
-            $data = static::read()->select(implode(',', array_keys($unique)))
-                ->where($where)
-                ->setMaxResults(1)
-                ->setParameters($params)
-                ->execute()
-                ->fetch(\PDO::FETCH_ASSOC);
-
-            if ($data) {
-                foreach ($data as $field => $value) {
-                    if($this->$field == $value)
-                        $this->setValidationFailure($field, static::$_validate[$field]['unique']);
-                }
-            }
-        }
-        
-        $this->_afterValidate();
-
-        $this->_valid = empty($this->_validationFailures);
-        return $this->isValid();
     }
 }

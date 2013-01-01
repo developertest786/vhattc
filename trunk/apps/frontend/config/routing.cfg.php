@@ -20,7 +20,7 @@ return array(
      *   ),
      * 'tronghieu1012' will be set as first param
      */
-    '__remap__' => array('route' => 'home/default'),
+    '__remap__' => array('route' => 'page/default'),
 
     /*
      * rules description
@@ -38,17 +38,17 @@ return array(
      */
     //default controller
     '/' => array(
-        'route' => 'home/default'
+        'route' => 'page/default'
     ),
-    'dang-nhap' => array(
-        'route' => 'auth/sign_in',
+    '{lang:(en|vi)}' => array(
+        'route' => 'page/default'
     ),
-    'dang-ky' => array(
-        'route' => 'registry',
+    '{action:(sign_in|sign_out)}' => array(
+        'route' => 'auth/{action}',
     ),
-    'auth/OAuth/{type:\w+}' => array(
-        'route' => 'auth/o_authen',
-    )
+    'con-{controller}/{action}' => array(
+        'route' => '{controller}/{action}'
+    ),
 
     /*'{main_cat:[a-zA-Z0-9-]+}' => array(
         'route' => 'category/default'

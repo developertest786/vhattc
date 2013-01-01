@@ -2,6 +2,16 @@
 namespace Flywheel\Filter;
 class Input
 {
+    const TYPE_STRING = 1;
+    const TYPE_INT = 2;
+    const TYPE_FLOAT = 3;
+    const TYPE_DOUBLE = 4;
+    const TYPE_BOOLEAN = 5;
+    const TYPE_ALNUM = 6;
+    const TYPE_BASE64 = 7;
+    const TYPE_CMD = 8;
+    const TYPE_ARRAY = 9;
+    const TYPE_PLAINTEXT = 10;
     /**
      * Method to be called by another php script. Processes for XSS and
      * specified bad code.

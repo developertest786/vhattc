@@ -57,12 +57,14 @@ class Collection
 
         if (isset($config['options']))
             $this->options = array_merge($this->options, $config['options']);
+        // && preg_match_all('/{(\w+)}/', $pattern, $matches)
 
-        if (strpos($pattern,'{')!==false && preg_match_all('/{(\w+)}/', $pattern, $matches)) {
+        if (strpos($this->route,'{')!==false && preg_match_all('/{(\w+)}/', $this->route, $matches)) {
+            //print_r($matches);exit;
             foreach($matches[1] as $name)
                 $this->references[$name] = '{' .$name .'}';
         }
-
+        //action=>{action}
         if (isset($this->filter['method']) && null != $this->filter['method'])
             $this->filter['method'] = preg_split('/[\s,]+/',strtoupper($this->filter['method']),-1,PREG_SPLIT_NO_EMPTY);
 
@@ -83,13 +85,15 @@ class Collection
         $p = trim($p, '/');
         $this->template = preg_replace('/{(\w+):?.*?}/', '{$1}', $p);
         $this->pattern = '/^' .strtr($this->template, $tr) .'\/';
-        if ($this->append)
+        if ($this->append){
             $this->pattern .=  '/u';
-        else
+        } else {
             $this->pattern .= '$/u';
+        }
 
-        if (is_array($this->references) && sizeof($this->references) > 0)
+        if (is_array($this->references) && sizeof($this->references) > 0){
             $this->routePattern = '/^' .strtr($this->route, $tr2) .'$/u';
+        }
     }
 
     /**
@@ -102,38 +106,45 @@ class Collection
     public function parseUrl($router,$pathInfo,$rawPathInfo)
     {
         $request = \Flywheel\Factory::getRequest();
+
         if (isset($this->filter['method']) && is_array($this->filter['method'])
             && !in_array($request->getMethod(), $this->filter['method'], true))
             return false;
 
-        if(isset($this->options['urlSuffix']) && null !== $this->options['urlSuffix'])
+        if(isset($this->options['urlSuffix']) && null !== $this->options['urlSuffix']){
             $pathInfo = $router->removeUrlSuffix($rawPathInfo,$this->options['urlSuffix']);
+        }
 
         $pathInfo.='/';
-        if(preg_match($this->pattern,$pathInfo,$matches))
-        {
-            foreach($this->initParameters as $name=>$value)
-            {
+
+        if(preg_match($this->pattern,$pathInfo,$matches)){
+            foreach($this->initParameters as $name=>$value){
                 if(!isset($_GET[$name]))
                     $this->params[$name] = $_GET[$name] = $value;
             }
-            $tr=array();
-            foreach($matches as $key=>$value)
-            {
-                if(isset($this->references[$key]))
+            //print_r($this->params[$name]);exit;
+
+            $tr = array();
+            foreach($matches as $key=>$value){
+                if(isset($this->references[$key])){
                     $tr[$this->references[$key]]=$value;
-                else if(isset($this->params[$key]))
+                }else if(isset($this->params[$key])){
                     $router->params[$key] = $_GET[$key] = $value;
+                }
             }
 
-            if($pathInfo!==$matches[0]) // there're additional GET params
+            if($pathInfo!==$matches[0]){
                 $router->parsePathInfo(ltrim(substr($pathInfo,strlen($matches[0])),'/'));
-            if($this->routePattern!==null)
+            }
+
+            if($this->routePattern!==null){
                 return strtr($this->route,$tr);
-            else
+            }else{
                 return $this->route;
+            }
         }
-        else
+        else{
             return false;
+        }
     }
 }
