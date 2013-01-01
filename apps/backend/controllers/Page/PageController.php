@@ -1,5 +1,5 @@
 <?php
-class PageController extends BackendController {
+class PageController extends FrontendController {
     public function executeDefault() {
         var_dump($_GET);
     }

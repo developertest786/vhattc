@@ -1,3 +1,3 @@
 <?php
-abstract class FrontendController extends \Flywheel\Controller\WebController {
+class FrontendController extends \Flywheel\Controller\WebController {
 }
