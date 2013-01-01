@@ -135,4 +135,11 @@ class Render {
     public function setFileExtension($ext) {
         $this->_ext = $ext;
     }
+
+    /**
+     * @return \Flywheel\Http\Request
+     */
+    public function request() {
+        return \Flywheel\Factory::getRequest();
+    }
 }

@@ -34,4 +34,6 @@ abstract class BaseController extends \Flywheel\Object
     public function response() {
         return Factory::getResponse();
     }
+
+
 }

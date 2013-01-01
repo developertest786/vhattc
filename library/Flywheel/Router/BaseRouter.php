@@ -24,6 +24,7 @@ abstract class BaseRouter extends \Flywheel\Object
             $this->_baseUrl = substr($this->_baseUrl, 0, $pos);
 
         $this->_uri = $this->_domain.@$_SERVER['REQUEST_URI'];
+
         $this->parseUrl($this->_url);
     }
 

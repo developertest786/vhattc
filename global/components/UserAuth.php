@@ -6,7 +6,7 @@
  * Time: 12:24
  * To change this template use File | Settings | File Templates.
  */
-class UserAuth extends \Flywheel\Authenticate
+class UserAuth extends \Flywheel\Session\Authenticate
 {
     const ERROR_USER_BLOCKED = 101;
     const ERROR_USER_BANNED = 102;
@@ -14,9 +14,9 @@ class UserAuth extends \Flywheel\Authenticate
     protected static $_instance;
 
     public function init() {
-        $session = Ming_Factory::getSession();
+        $session = \Flywheel\Factory::getSession();
         if (null != ($id = $session->get('auth\id'))) {
-            if (Users::retrieveByPk($id)) {
+            if (Users::findOneById($id)) {
                 $this->_setIsAuthenticated(true);
                 $this->setIdentity($session->get('auth\username'));
             }
@@ -41,21 +41,23 @@ class UserAuth extends \Flywheel\Authenticate
         $this->cookieSupport = $remember;
 
         $user = new Users();
-        $user->findOneBy('username',array($username));
+        //$user->findOneBy('username',array($username));
 
-        if (!$user) {
+        $user_data = $user->findOneByUsername($username);
+
+        //print_r($user_data);exit;
+        if (!$user_data) {
 
             $this->_error[] = self::ERROR_USERNAME_INVALID;
             return false;
         }
         // compare password here
-        if(false === self::comparePassword($password,$user->password)){
+        if(false === self::comparePassword($password,$user_data->password)){
 
             $this->_error[] = self::ERROR_PASSWORD_INVALID;
             return false;
         }
-
-        Ming_Factory::getSession()->set('auth', $user->getAttributes('id,username'));
+        \Flywheel\Factory::getSession()->set('auth', $user_data->getAttributes('id,username'));
         if ($remember)
             $this->writeCookie();
         $this->_setIsAuthenticated(true);
@@ -64,12 +66,12 @@ class UserAuth extends \Flywheel\Authenticate
     }
 
     public function logout() {
-        Ming_Factory::getSession()->remove('auth');
-        Ming_Factory::getCookie()->clear('auth');
+        \Flywheel\Factory::getSession()->remove('auth');
+        \Flywheel\Factory::getCookie()->clear('auth');
     }
 
     protected function _authenticateByCookie() {
-        $cookie = Ming_Factory::getCookie();
+        $cookie = \Flywheel\Factory::getCookie();
         $data = $cookie->readSecure('auth');
         if (null == $data)
             return false;
@@ -79,7 +81,7 @@ class UserAuth extends \Flywheel\Authenticate
             return false;
         $user = new Users();
         if ($user->findOneByUsername($data[0]) && sha1($user->secret) == $data[1]) {
-            Ming_Factory::getSession()->set('auth',$user->getAttribute('id,username'));
+            \Flywheel\Factory::getSession()->set('auth',$user->getAttribute('id,username'));
             $this->_setIsAuthenticated(true);
             return true;
         }
@@ -93,7 +95,7 @@ class UserAuth extends \Flywheel\Authenticate
      *
      */
     public function writeCookie() {
-        $cookie = Ming_Factory::getCookie();
+        $cookie = \Flywheel\Factory::getCookie();
         if (!($user = $this->getUser()))
             return false;
         $cookie->writeSecure('auth', base64_encode($user->username .':' . sha1($user->secret)));
@@ -104,11 +106,16 @@ class UserAuth extends \Flywheel\Authenticate
      *
      * @return Users | false
      */
-    public function getUser() {
-        if (!$this->isAuthenticated())
-            return false;
+    public static function getUser() {
 
-        return Users::retrieveByPk(Ming_Factory::getSession()->get('auth\id'));
+        $user_auth = self::getInstance();
+        /*if (!$user_auth->isAuthenticated()){
+            return false;
+        }*/
+
+
+        return Users::findOneById($_SESSION['auth']['id']);
+        //return Users::retrieveByPk(\Flywheel\Factory::getSession()->get('auth\id'));
     }
     /**
 	 * Compare password input password with encryted pass included salt string	 

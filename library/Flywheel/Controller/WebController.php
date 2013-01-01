@@ -11,6 +11,7 @@ abstract class WebController extends BaseController
     protected $_name;
 
     protected $_path;
+    public $base_url;
     /**
      * Render Mode
      *
@@ -22,28 +23,11 @@ abstract class WebController extends BaseController
     protected $time;
     public function __construct($name, $path) {
         parent::__construct($name, $path);
-        $this->_view = $this->_path .'default';
+		$this->_view = $this->_path .'default';
         $this->time		= time();
     }
-
-    /**
-     * Redirects the browser to the specified URL.
-     * @param string $url URL to be redirected to. If the URL is a relative one, the base URL of
-     * the application will be inserted at the beginning.
-     * @param int $code the HTTP status code. Defaults to 302. See {@link http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html}
-     * @param bool $end whether to terminate the current application
-     */
-    public function redirect($url, $code = 302, $end = true) {
-        $this->request()->redirect($url, $code, $end);
-    }
-
-    /**
-     * Check Xml HTTP Request (Ajax) else end application
-     * @param bool $end
-     * @param string $endMess
-     * @return bool
-     */
-    public function validAjaxRequest($end = true, $endMess = 'Invalid request!') {
+	
+	public function validAjaxRequest($end = true, $endMess = 'Invalid request!') {
         $valid = $this->request()->isXmlHttpRequest();
         if ($valid) {
             return true;
@@ -53,8 +37,7 @@ abstract class WebController extends BaseController
             Base::end($endMess);
         }
     }
-
-    /**
+	/**
      * @return \Flywheel\Document\Html
      */
     public function document() {
@@ -82,7 +65,7 @@ abstract class WebController extends BaseController
         /* @var \Flywheel\Router\WebRouter $router */
         $router = Factory::getRouter();
         $action = 'execute' . Inflection::camelize($router->getAction());
-
+        //echo $action;exit;
         if (!method_exists($this, $action))
             throw new \Flywheel\Exception\NotFound404("Controller: Action \"". $router->getController().'/'.$action ."\" doesn't exist");
 
@@ -273,7 +256,7 @@ abstract class WebController extends BaseController
         $this->_view = $view;
     }
 
-    abstract public function executeDefault();
+    public function executeDefault(){}
 
     /**
      * Get Render Mode
