@@ -111,7 +111,7 @@ class WebApp extends BaseApp
      * @param bool $isRemap
      * @return mixed
      */
-    private function _loadController($isRemap = false) {
+    protected function _loadController($isRemap = false) {
         /* @var \Flywheel\Router\WebRouter $router */
         $router 		= \Flywheel\Factory::getRouter();
         $controllerName	= $router->getCamelControllerName();

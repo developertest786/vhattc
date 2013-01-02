@@ -256,7 +256,7 @@ abstract class WebController extends BaseController
         $this->_view = $view;
     }
 
-    public function executeDefault(){}
+    public abstract function executeDefault();
 
     /**
      * Get Render Mode

@@ -3,7 +3,7 @@ use Flywheel\Db\Manager;
 use Flywheel\Model\ActiveRecord;
 /**.
  * Page
- *  This class has been auto-generated at 25/12/2012 04:30:37
+ *  This class has been auto-generated at 02/01/2013 01:33:10
  * @version		$Id$
  * @package		Model
 
@@ -127,8 +127,7 @@ abstract class PageBase extends ActiveRecord {
                 'length' => 4),
 );
     protected static $_validate = array(
-        'parent_id' => array('require' => '"parent_id" is required!',
-                'unique' => 'parent_id\'s values has already been taken'),
+        'parent_id' => array('require' => '"parent_id" is required!'),
         'status' => array('require' => '"status" is required!',
                 'filter' => array('allow' => array('AUTO-DRAFT','DRAFT','PUBLISH','UNPUBLISH','TRASH'),
                             'message' => 'status\'s values is not allowed')),

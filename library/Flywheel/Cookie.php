@@ -64,10 +64,10 @@ class Cookie {
 	 * 
 	 * @return mixed
 	 */
-	public function read($name, $type = Ming_Filter::TYPE_STRING, $default = null) {
+	public function read($name, $type = 'STRING', $default = null) {
         if (!isset($_COOKIE[$name]))
             return $default;
-        return Ming_Filter::clean($_COOKIE[$name], $type);
+        return \Flywheel\Filter\Input::clean($_COOKIE[$name], $type);
 	}
 	
 	/**
