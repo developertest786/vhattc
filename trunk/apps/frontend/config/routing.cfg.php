@@ -43,10 +43,16 @@ return array(
     '{lang:(en|vi)}' => array(
         'route' => 'page/default'
     ),
+    'p-{slug:[a-zA-Z0-9-]+}' => array(
+        'route' => 'page/default'
+    ),
+    '{lang:(en|vi)}/p-{slug:[a-zA-Z0-9-]+}' => array(
+        'route' => 'page/default'
+    ),
     '{action:(sign_in|sign_out)}' => array(
         'route' => 'auth/{action}',
     ),
-    'con-{controller}/{action}' => array(
+    '{controller}/{action}' => array(
         'route' => '{controller}/{action}'
     ),
 

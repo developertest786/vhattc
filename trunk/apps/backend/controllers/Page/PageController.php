@@ -1,8 +1,6 @@
 <?php
-class PageController extends FrontendController {
-    public function executeDefault() {
-        var_dump($_GET);
-    }
+class PageController extends BackendController {
+    public function executeDefault() {}
 
     public function executeNew() {
         $this->setView('form');

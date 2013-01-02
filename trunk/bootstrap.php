@@ -11,4 +11,5 @@ require_once LIBRARY_PATH .'/Flywheel/Loader.php';
 Loader::register();
 Loader::setPathOfAlias('global', GLOBAL_PATH);
 Loader::setPathOfAlias('library', LIBRARY_PATH);
-Loader::setPathOfAlias('PiCMS', LIBRARY_PATH .'PiCMS'. DIRECTORY_SEPARATOR);
+Loader::setPathOfAlias('PiCMS', LIBRARY_PATH .DIRECTORY_SEPARATOR .'PiCMS');
+Loader::import('PiCMS.*');

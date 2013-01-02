@@ -9,6 +9,12 @@ class Base
     private static $_env;
     private static $_appPath;
 
+    public static $registry = array(
+        'WebApp' => '\Flywheel\Application\WebApp',
+        'ApiApp' => '\Flywheel\Application\ApiApp',
+        'ConsoleApp' => '\Flywheel\Application\ConsoleApp',
+    );
+
     /**
      * @return \Flywheel\Application\BaseApp
      */
@@ -21,7 +27,7 @@ class Base
     }
 
     public static function createWebApp($config, $env, $debug = false) {
-        return self::_createApplication('\Flywheel\Application\WebApp', $config, $env, $debug, BaseApp::TYPE_WEB);
+        return self::_createApplication(self::$registry['WebApp'], $config, $env, $debug, BaseApp::TYPE_WEB);
     }
     public static function createApiApp($config, $env, $debug = false) {
         return self::_createApplication('\Flywheel\Application\ApiApp', $config, $env, $debug, BaseApp::TYPE_API);

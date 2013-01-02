@@ -5,6 +5,7 @@ return array(
     'viewPath' => APP_PATH .DIRECTORY_SEPARATOR .'templates/',
     'template' => 'vhattc',
     'import' => array(
+        'app.components.*',
         'global.model.*', //if application don't use global models can redefine self model path
         'global.components.*',
         'global.config.*'
