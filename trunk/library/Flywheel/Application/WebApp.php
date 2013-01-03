@@ -85,7 +85,8 @@ class WebApp extends BaseApp
     }
 
     public function run() {
-        //@TODO start session here
+        Factory::getSession()->start();
+
         $buffer = $this->_loadController();
 
         $renderMode = $this->_controller->getRenderMode();

@@ -10,6 +10,7 @@ class UserAuth extends \Flywheel\Session\Authenticate
 {
     const ERROR_USER_BLOCKED = 101;
     const ERROR_USER_BANNED = 102;
+    const ERROR_USER_NOT_ALLOW = 103;
     public $cookieSupport;
     protected static $_instance;
 
@@ -107,15 +108,11 @@ class UserAuth extends \Flywheel\Session\Authenticate
      * @return Users | false
      */
     public static function getUser() {
-
-        $user_auth = self::getInstance();
-        /*if (!$user_auth->isAuthenticated()){
+        if (!self::getInstance()->isAuthenticated()){
             return false;
-        }*/
+        }
 
-
-        return Users::findOneById($_SESSION['auth']['id']);
-        //return Users::retrieveByPk(\Flywheel\Factory::getSession()->get('auth\id'));
+        return Users::retrieveByPk(\Flywheel\Factory::getSession()->get('auth\id'));
     }
     /**
 	 * Compare password input password with encryted pass included salt string	 
@@ -152,16 +149,19 @@ class UserAuth extends \Flywheel\Session\Authenticate
             foreach($error as $_err){
                 switch($_err){
                     case self::ERROR_USERNAME_INVALID :
-                        $label[] = 'Tên đăng nhập không đúng';
+                        $label[] = 'Invalid username';
                         break;
                     case self::ERROR_PASSWORD_INVALID:
-                        $label[] = 'Mật khẩu không đúng';
+                        $label[] = 'Invalid password';
                         break;
                     case self::ERROR_USER_BANNED:
-                        $label[] = 'Người dùng này đã bị band';
+                        $label[] = 'Your account was banned';
                         break;
                     case self::ERROR_USER_BLOCKED:
-                        $label[] = 'Người dùng này đã bị khóa';
+                        $label[] = 'Your account was blocked';
+                        break;
+                    case self::ERROR_USER_NOT_ALLOW:
+                        $label[] = 'You do not have permission to access this area';
                         break;
                 }
             }

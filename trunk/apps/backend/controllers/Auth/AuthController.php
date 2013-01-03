@@ -7,45 +7,53 @@
  * To change this template use File | Settings | File Templates.
  */
 class AuthController extends \Flywheel\Controller\WebController {
-    public $backendAuth = '';
-    public $base_url = '';
-    public $view = '';
-
-    public function beforeExecute(){
-        parent::beforeExecute();
-        $this->backendAuth = new BackendAuth;
-        $this->request = \FlyWheel\Factory::getRequest();
-        $this->base_url = \FlyWheel\Factory::getDocument()->getBaseUrl();
-        $this->view = \FlyWheel\Factory::getView();
-    }
 
     public function executeDefault() {
-        $this->setLayout('head_footer');
-        $this->setView('login');
+        return $this->executeSignIn();
     }
 
     public function executeSignIn() {
-        $this->setLayout('head_footer');
-        $this->setView('login');
-        $user = \FlyWheel\Factory::getSession()->get('auth');
-
-        if($user){
-            $this->getRequest()->redirect($this->base_url.'user');
+        $this->setLayout('login');
+        $this->setView('login_form');
+        $auth = UserAuth::getInstance();
+        if (($user = $auth->getUser())) {
+            $roles = $user->getRoles();
+            if (isset($roles[5])
+                || isset($roles[6])
+                || isset($roles[7])
+                || isset($roles[8])) {
+                $this->request()->redirect($this->document()->getBaseUrl());
+            }
         }
-        $user = $this->request->post('username');
-        $pass = $this->request->post('password');
-        if('POST' == $this->getRequest()->getMethod()){
-            if(true === $this->backendAuth->authenticate($user,$pass,false)){
-                //$authen = BackendAuth::getInstance();
-                $this->request->redirect($this->base_url.'user');
+
+        $username = $this->request()->post('username');
+        $password = $this->request()->post('password');
+        $this->view()->assign('username' ,$username);
+        if('POST' == $this->request()->getMethod()){
+            $error = array();
+            if(true !== $auth->authenticate($username, $password, false)){
+                $error = $auth->getError();
             }else{
-                \FlyWheel\Factory::getView()->assign('error',$this->backendAuth->getError());
+                $roles = $auth->getUser()->getRoles();
+                if (!isset($roles[5])
+                    && !isset($roles[6])
+                    && !isset($roles[7])
+                    && !isset($roles[8])) {
+                    $error[] = UserAuth::ERROR_USER_NOT_ALLOW;
+                }
+            }
+
+            if (empty($error)) {
+                $this->request()->redirect($this->document()->getBaseUrl());
+            } else {
+                $this->view()->assign('error', $error);
             }
         }
     }
+
     public function executeSignOut() {
-        BackendAuth::getInstance()->logout();
-        $this->getRequest()->redirect($this->base_url);
+        UserAuth::getInstance()->logout();
+        $this->request()->redirect($this->document()->getBaseUrl());
     }
 
 }
