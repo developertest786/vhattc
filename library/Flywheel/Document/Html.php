@@ -206,25 +206,6 @@ class Html extends BaseDoc {
 		return $html;
 	}*/
 	
-	/**
-	 * count widgets of postions
-	 * 
-	 * @param string	$condition
-	 * 
-	 * @return integer
-	 */
-	public function countModules($condition) {		
-		$result = '';
-        $words = explode(' ', $condition);
-        for($i = 0; $i < count($words); $i+=2) {
-            $position	= strtolower($words[$i]);
-            $words[$i]	= (isset($this->_blocks[$position]) || !is_array($this->_blocks[$position]))? 0 : sizeof($this->_blocks[$position]);
-        }
-        
-        $str = 'return '.implode(' ', $words).';';
-        return eval($str);		
-	}
-	
 	public function getComponentData() {
 		return $this->_buffer['component'];
 	}
