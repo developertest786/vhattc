@@ -3,50 +3,50 @@ use Flywheel\Factory;
 
 class PiApplication extends Flywheel\Application\WebApp
 {
-    public $language;
+    public $languages;
+    public $selectedLang;
 
     public function routing() {
         Factory::getRouter();
     }
 
     public function loadLanguage() {
+        $languages = Language::findByPublished(1);
+        if (!$languages) {
+            throw new PiException("No language found!");
+        }
+
+        $this->languages = $languages;
+
         $lang = Factory::getRequest()->get('lang');
+
         if (null == $lang) {
             $lang = Factory::getCookie()->read('lang');
         }
 
         if (null != $lang) { //check language support
-            if ($langOm = Language::findOneBySef($lang)) {
+            foreach ($this->languages as $language) {
+                /* @var Language $language */
+                if ($lang == $language->sef) {
+                    $_GET['lang'] = $lang;
+                    Factory::getCookie()->write('lang', $lang);
+                    $this->selectedLang = $language;
+                    return;
+                }
+            }
+            throw new PiException("Language with sef key '{$lang}' not support");
+        }
+
+        //load default language
+        foreach ($this->languages as $language) {
+            if ($language->access) {
+                $this->selectedLang = $language;
                 $_GET['lang'] = $lang;
                 Factory::getCookie()->write('lang', $lang);
-                $this->language = $langOm;
                 return;
             }
         }
 
-        //load default language
-        $langOm = Language::findOneByAccess(1);
-        if (!$langOm) {
-            throw new PiException("Default language not found!");
-        }
-        $lang = $langOm->sef;
-        $_GET['lang'] = $lang;
-        Factory::getCookie()->write('lang', $lang);
-        $this->language = $langOm;
-    }
-
-    public function loadBlock(Page $page) {
-        $blocks = PageBlock::getReadConnection()->createQuery()
-                ->from('page_block', 'p')
-                ->leftJoin('p', 'module', 'm', 'm.id = p.module_id')
-                ->where('p.page_id = ? AND p.active = 1')
-                ->orderBy('`ordering`', 'ASC')
-                ->setParameter(1, $page->id, \PDO::PARAM_INT)
-                ->execute()
-                ->fetchAll(\PDO::FETCH_ASSOC);
-
-        $doc = Factory::getDocument();
-        foreach($blocks as $block) {
-        }
+        throw new PiException("Not found default language.");
     }
 }

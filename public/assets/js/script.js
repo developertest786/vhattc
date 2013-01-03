@@ -9,8 +9,10 @@
 $(function () {
     /*--language--*/
     $("#sys-lst-language").on("click", "li", function () {
-        $("#sys_language_select").children(":eq(" + $(this).index() + ")").attr("selected","true");
-        $("#sys_choose_lang").submit();
+        var lang = $(this).data('lang');
+        window.location = base_url +'/' +lang;
+        //$("#sys_language_select").children(":eq(" + $(this).index() + ")").attr("selected","true");
+        //$("#sys_choose_lang").submit();
     });
 
     if($("#all-news").find(".news-item").length>3) {

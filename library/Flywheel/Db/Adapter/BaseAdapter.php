@@ -54,9 +54,10 @@ abstract class BaseAdapter {
      */
     public function initConnection(\PDO $con, array $settings)
     {
-        if (isset($settings['charset']['value'])) {
+        $this->setCharset($con, 'utf8');
+        /*if (isset($settings['charset']['value'])) {
             $this->setCharset($con, $settings['charset']['value']);
-        }
+        }*/
         if (isset($settings['queries']) && is_array($settings['queries'])) {
             foreach ($settings['queries'] as $queries) {
                 foreach ((array) $queries as $query) {

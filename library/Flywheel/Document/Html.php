@@ -102,9 +102,9 @@ class Html extends BaseDoc {
 	 * @var Ming_Document_Html_OpenGraph
 	 */
 	public $openGraph;
-	private $_buffer;
+	protected $_buffer;
 	
-	private $_blocks = array();
+	protected $_blocks = array();
 
     private $_mode = 1;
 
@@ -184,22 +184,6 @@ class Html extends BaseDoc {
 	}
 	
 	/**
-	 * set widgets to block
-	 * 
-	 * @param string	$pos
-	 * @param int		$ordering
-	 * @param string	$file
-	 * @param string	$name
-	 * @param string	$config
-	 */
-	public function setBlock($pos, $ordering = 0, $file, $name, $config = array()) {		
-		if (!isset($this->_blocks[$pos])) {
-			$this->_blocks[$pos] = array();
-		}
-		$this->_blocks[$pos][] = array ('file' => $file, 'name' => $name, 'config' => $config); 
-	}
-	
-	/**
 	 * render block by position
 	 * @param string $position
 	 * 
@@ -233,8 +217,8 @@ class Html extends BaseDoc {
 		$result = '';
         $words = explode(' ', $condition);
         for($i = 0; $i < count($words); $i+=2) {
-            $postion	= strtolower($words[$i]);
-            $words[$i]	= (isset($this->_blocks[$postion]) || !is_array($this->_blocks[$postion]))? 0 : sizeof($this->_blocks[$postion]);
+            $position	= strtolower($words[$i]);
+            $words[$i]	= (isset($this->_blocks[$position]) || !is_array($this->_blocks[$position]))? 0 : sizeof($this->_blocks[$position]);
         }
         
         $str = 'return '.implode(' ', $words).';';
