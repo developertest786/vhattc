@@ -2,8 +2,8 @@
 use Flywheel\Db\Manager;
 use Flywheel\Model\ActiveRecord;
 /**.
- * Module
- *  This class has been auto-generated at 02/01/2013 01:33:10
+ * Modules
+ *  This class has been auto-generated at 03/01/2013 18:04:52
  * @version		$Id$
  * @package		Model
 
@@ -15,27 +15,27 @@ use Flywheel\Model\ActiveRecord;
  * @property integer $active active type : tinyint(4)
  * @property string $setting setting type : text max_length : 
 
- * @method static \Module[] findById(integer $id) find objects in database by id
- * @method static \Module findOneById(integer $id) find object in database by id
- * @method static \Module[] findByName(string $name) find objects in database by name
- * @method static \Module findOneByName(string $name) find object in database by name
- * @method static \Module[] findByKey(string $key) find objects in database by key
- * @method static \Module findOneByKey(string $key) find object in database by key
- * @method static \Module[] findByFolder(string $folder) find objects in database by folder
- * @method static \Module findOneByFolder(string $folder) find object in database by folder
- * @method static \Module[] findByType(string $type) find objects in database by type
- * @method static \Module findOneByType(string $type) find object in database by type
- * @method static \Module[] findByActive(integer $active) find objects in database by active
- * @method static \Module findOneByActive(integer $active) find object in database by active
- * @method static \Module[] findBySetting(string $setting) find objects in database by setting
- * @method static \Module findOneBySetting(string $setting) find object in database by setting
+ * @method static \Modules[] findById(integer $id) find objects in database by id
+ * @method static \Modules findOneById(integer $id) find object in database by id
+ * @method static \Modules[] findByName(string $name) find objects in database by name
+ * @method static \Modules findOneByName(string $name) find object in database by name
+ * @method static \Modules[] findByKey(string $key) find objects in database by key
+ * @method static \Modules findOneByKey(string $key) find object in database by key
+ * @method static \Modules[] findByFolder(string $folder) find objects in database by folder
+ * @method static \Modules findOneByFolder(string $folder) find object in database by folder
+ * @method static \Modules[] findByType(string $type) find objects in database by type
+ * @method static \Modules findOneByType(string $type) find object in database by type
+ * @method static \Modules[] findByActive(integer $active) find objects in database by active
+ * @method static \Modules findOneByActive(integer $active) find object in database by active
+ * @method static \Modules[] findBySetting(string $setting) find objects in database by setting
+ * @method static \Modules findOneBySetting(string $setting) find object in database by setting
 
  */
-abstract class ModuleBase extends ActiveRecord {
-    protected static $_tableName = 'module';
+abstract class ModulesBase extends ActiveRecord {
+    protected static $_tableName = 'modules';
     protected static $_pk = 'id';
     protected static $_alias = 'm';
-    protected static $_dbConnectName = 'module';
+    protected static $_dbConnectName = 'modules';
     protected static $_instances = array();
     protected static $_schema = array(
         'id' => array('name' => 'id',

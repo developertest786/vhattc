@@ -58,6 +58,8 @@ class PageController extends FrontendController {
         $this->document()->keyword = @$meta_data['meta_keyword'];
         $this->document()->description = @$meta_data['meta_desc'];
 
-        Base::getApp()->loadBlock($page);
+        $this->loadBlock($page);
+
+        return $this->renderComponent();
     }
 }
