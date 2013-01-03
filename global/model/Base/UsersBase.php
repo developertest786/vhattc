@@ -3,20 +3,20 @@ use Flywheel\Db\Manager;
 use Flywheel\Model\ActiveRecord;
 /**.
  * Users
- *  This class has been auto-generated at 03/01/2013 18:04:53
+ *  This class has been auto-generated at 03/01/2013 21:28:06
  * @version		$Id$
  * @package		Model
 
- * @property integer $id id primary type : int(11)
+ * @property integer $id id primary auto_increment type : int(11)
  * @property string $first_name first_name type : varchar(255) max_length : 255
  * @property string $last_name last_name type : varchar(255) max_length : 255
  * @property string $username username type : varchar(150) max_length : 150
  * @property string $email email type : varchar(100) max_length : 100
- * @property string $password password type : char(64) max_length : 64
+ * @property string $password password type : char(72) max_length : 72
  * @property integer $joined_time joined_time type : int(11)
  * @property integer $last_visited_time last_visited_time type : int(11)
  * @property integer $block block type : tinyint(1)
- * @property integer $status status type : tinyint(4)
+ * @property integer $status status type : tinyint(1)
  * @property integer $active_email active_email type : tinyint(1)
  * @property string $secret secret type : char(32) max_length : 32
 
@@ -56,7 +56,7 @@ abstract class UsersBase extends ActiveRecord {
         'id' => array('name' => 'id',
                 'type' => 'integer',
                 'primary' => true,
-                'auto_increment' => false,
+                'auto_increment' => true,
                 'db_type' => 'int(11)',
                 'length' => 4),
         'first_name' => array('name' => 'first_name',
@@ -77,8 +77,8 @@ abstract class UsersBase extends ActiveRecord {
                 'length' => 100),
         'password' => array('name' => 'password',
                 'type' => 'string',
-                'db_type' => 'char(64)',
-                'length' => 64),
+                'db_type' => 'char(72)',
+                'length' => 72),
         'joined_time' => array('name' => 'joined_time',
                 'type' => 'integer',
                 'auto_increment' => false,
@@ -90,6 +90,7 @@ abstract class UsersBase extends ActiveRecord {
                 'db_type' => 'int(11)',
                 'length' => 4),
         'block' => array('name' => 'block',
+                'default' => 0,
                 'type' => 'integer',
                 'auto_increment' => false,
                 'db_type' => 'tinyint(1)',
@@ -98,7 +99,7 @@ abstract class UsersBase extends ActiveRecord {
                 'default' => 1,
                 'type' => 'integer',
                 'auto_increment' => false,
-                'db_type' => 'tinyint(4)',
+                'db_type' => 'tinyint(1)',
                 'length' => 1),
         'active_email' => array('name' => 'active_email',
                 'default' => 0,
@@ -112,7 +113,6 @@ abstract class UsersBase extends ActiveRecord {
                 'length' => 32),
 );
     protected static $_validate = array(
-        'id' => array('require' => '"id" is required!'),
         'username' => array('require' => '"username" is required!',
                 'unique' => 'username\'s values has already been taken'),
         'password' => array('require' => '"password" is required!'),
