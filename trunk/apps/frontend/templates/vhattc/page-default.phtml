@@ -38,80 +38,18 @@
     <div class="right-panel">
         <div class="clearfix">
             <?php \Flywheel\Loader::import('app.module.language_switcher.language_switcher', true, '.php') ?>
-            <div class="sign-in">
+            <!--<div class="sign-in">
                 <a href="#">Sign in</a>
                 <span class="sep">|</span>
                 <a href="#">Sign out</a>
-            </div>
+            </div>-->
         </div>
         <h3 class="rs small-logo">
-            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/logo-small.png" alt="#SITE_NAME">
+            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/logo-small.png" alt="<?php echo Setting::get('SITE_NAME') ?>">
         </h3>
     </div>
 </div>
-<div id="main-menu">
-    <div class="fixCenter1K clearfix">
-        <ul class="rs">
-            <li class="sep"></li>
-            <li class="active">
-                <a href="home.html">Home</a>
-            </li>
-
-            <li class="sep"></li>
-            <li>
-                <a href="about.html">About us</a>
-            </li>
-            <li class="sep"></li>
-            <li>
-                <a href="training-event.html">Training/event</a>
-                <div class="dropdown">
-                    <a href="training-event.html"  class="title">Training/event</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                </div>
-            </li>
-            <li class="sep"></li>
-            <li>
-                <a href="#">Resources</a>
-                <div class="dropdown">
-                    <a href="#" class="title">Resources</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                </div>
-            </li>
-            <li class="sep"></li>
-            <li>
-                <a href="#">Online conversation</a>
-                <div class="dropdown">
-                    <a href="#" class="title">Online conversation</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                </div>
-            </li>
-            <li class="sep"></li>
-            <li>
-                <a href="news-list.html">News</a>
-                <div class="dropdown">
-                    <a href="news-list.html" class="title">News</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                    <a href="#">Praesent a erat vitae</a>
-                    <a href="#">Lorem ipsum</a>
-                </div>
-            </li>
-            <li class="sep"></li>
-            <li>
-                <a href="contact.html">Contact us</a>
-            </li>
-        </ul>
-    </div>
-</div>
+<?php \Flywheel\Loader::import('app.module.main_menu.main_menu', true, '.php') ?>
 <div id="main-slide">
     <div class="fixCenter1K">
         <div id="main-slider-code">
@@ -416,51 +354,28 @@
 <div id="footer">
     <div class="fixCenter1K">
         <div class="top-thumb">
-            <img src="images/ex/th-227x50.png" alt="#NAME">
-            <img src="images/ex/th-227x50-1.png" alt="#NAME">
-            <img src="images/ex/th-227x50-2.png" alt="#NAME">
+            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50.png" alt="#NAME">
+            <a href="http://www.samhsa.gov/index.aspx" target="_blank">
+                <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50-1.png" alt="SAMHSA Logo">
+            </a>
+            <a href="http://uclaisap.org" target="_blank">
+                <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50-2.png" alt="UCLA">
+            </a>
         </div>
         <div class="clearfix">
             <div class="col-type1">
                 <div class="wrap-foot-item">
                     <h5 class="rs title">VN - ATTC</h5>
-                    <ul class="rs">
-                        <li>
-                            <a href="home.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">About us</a>
-                        </li>
-                        <li>
-                            <a href="training-event.html">Training/event</a>
-                        </li>
-                        <li>
-                            <a href="#">Resources</a>
-                        </li>
-                        <li>
-                            <a href="#">Online Conversation</a>
-                        </li>
-                        <li>
-                            <a href="news-list.html">News</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="#">Sitemap</a>
-                        </li>
-                        <li>
-                            <a href="#">Rss</a>
-                        </li>
-                    </ul>
+                    <?php \Flywheel\Loader::import('app.module.bottom_menu.bottom_menu', true, '.php') ?>
                 </div>
             </div><!--end: col-type1 -->
             <div class="col-type1">
                 <div class="wrap-foot-item">
+                    <?php \Flywheel\Loader::import('app.module.quick_link.quick_link', true, '.php') ?>
+                    <!--
                     <h5 class="rs title">Quick Links</h5>
                     <ul class="rs">
                         <li>
-
                             <a href="#">NIDA/SAMHSA Blending Initiative</a>
                         </li>
                         <li>
@@ -482,25 +397,27 @@
                             <a href="#">AddictionCarreers.org</a>
                         </li>
                     </ul>
+                    -->
                 </div>
             </div><!--end: col-type1 -->
             <div class="col-type1">
                 <div class="wrap-foot-item">
                     <h5 class="rs title">Contact Us</h5>
-                    <p class="rs desc-contact">Maecenas euismod molestie viverra. Nam viverra neque ut eros pharetra mattis. Aliquam venenatis eros commodo nisi</p>
+                    <p class="rs desc-contact"><?php echo Setting::get('CONTACT_DESC') ?></p>
 
                     <p class="rs item-info">
                         <span class="lbl">Hotline:</span>
-                        <span class="val">+84 9876 54321</span>
+                        <span class="val"><?php echo Setting::get('CONTACT_HOTLINE') ?></span>
                     </p>
                     <p class="rs item-info">
                         <span class="lbl">Email:</span>
-                        <a href="mailto:sdfafa@fsa.com" class="val fc-w">noreply@youtdomain.com</a>
+                        <a href="mailto:<?php echo Setting::get('CONTACT_EMAIL') ?>" class="val fc-w"><?php echo Setting::get('CONTACT_EMAIL') ?></a>
                     </p>
                 </div>
             </div><!--end: col-type1 -->
             <div class="col-type2">
                 <div class="wrap-foot-item">
+                    <!--
                     <h5 class="rs title">Connect with us</h5>
                     <div class="social-contact">
                         <a href="#">
@@ -518,6 +435,7 @@
                         </label>
                         <input type="submit" value="Send">
                     </form>
+                    -->
                 </div>
             </div>
         </div>
