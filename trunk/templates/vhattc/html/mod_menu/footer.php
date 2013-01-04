@@ -11,8 +11,10 @@ defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
 ?>
-
-<ul class="menu <?php echo $class_sfx;?>"<?php
+<?php if ($headerText) : ?>
+<?php echo $headerText; ?>
+<?php endif; ?>
+<ul class="menu rs"<?php
     $tag = '';
     if ($params->get('tag_id')!=NULL) {
         $tag = $params->get('tag_id').'';
