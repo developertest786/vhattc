@@ -138,8 +138,14 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     </div>
     <?php endif; ?>
 
-    <jdoc:include type="message" />
-    <jdoc:include type="component" />
+    <div class="fixCenter1K">
+        <?php if ($this->countModules('about-us')): ?>
+        <jdoc:include type="modules" name="about-us" />
+        <?php endif; ?>
+
+        <jdoc:include type="message" />
+        <jdoc:include type="component" />
+    </div>
 
     <!-- BEGIN SLIDE PARTNERS -->
     <?php if ($this->countModules('partners-list')) : ?>

@@ -1,6 +1,6 @@
 <?php
 class JConfig {
-	public $offline = '0';
+	public $offline = '1';
 	public $offline_message = 'Trang web này đang được bảo trì.</br>Xin quay trở lại sau. ';
 	public $display_offline_message = '1';
 	public $offline_image = '';
@@ -9,7 +9,7 @@ class JConfig {
 	public $captcha = '0';
 	public $list_limit = '20';
 	public $access = '1';
-	public $debug = '1';
+	public $debug = '0';
 	public $debug_lang = '0';
 	public $dbtype = 'mysqli';
 	public $host = 'localhost';
@@ -55,7 +55,7 @@ class JConfig {
 	public $feed_limit = '10';
 	public $log_path = 'E:\\xampp\\htdocs\\joomla25/logs';
 	public $tmp_path = 'E:\\xampp\\htdocs\\joomla25/tmp';
-	public $lifetime = '15';
+	public $lifetime = '60';
 	public $session_handler = 'database';
 	public $MetaRights = '';
 	public $sitename_pagetitles = '0';
