@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 
-<?php if ($module->showtitle) :?>
+<?php if ($module->showtitle == 1) :?>
 <h5 class="rs title"><?php echo $module->title; ?></h5>
 <?php endif; ?>
 

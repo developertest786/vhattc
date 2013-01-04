@@ -8,7 +8,11 @@
 
 defined('_JEXEC') or die;
 ?>
-<ul class="weblinks<?php echo $moduleclass_sfx; ?>">
+<?php if ($module->showtitle == 1) :?>
+<h5 class="rs title"><?php echo $module->title; ?></h5>
+<?php endif; ?>
+
+<ul class="weblinks rs">
 <?php foreach ($list as $item) :	?>
 <li>
 	<?php
@@ -34,13 +38,13 @@ defined('_JEXEC') or die;
 			break;
 	}
 	?>
-	<?php if ($params->get('description', 0)) : ?>
+	<!--<?php if ($params->get('description', 0)) : ?>
 		<?php echo nl2br($item->description); ?>
-	<?php endif; ?>
+	<?php endif; ?>-->
 
-	<?php if ($params->get('hits', 0)) : ?>
+	<!--<?php if ($params->get('hits', 0)) : ?>
 		<?php echo '(' . $item->hits . ' ' . JText::_('MOD_WEBLINKS_HITS') . ')'; ?>
-	<?php endif; ?>
+	<?php endif; ?>-->
 </li>
 <?php endforeach; ?>
 </ul>
