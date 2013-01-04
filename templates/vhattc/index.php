@@ -21,264 +21,354 @@ if ($showRightColumn==0 and $showleft==0) {
 JHtml::_('behavior.framework', true);
 
 // get params
-$color			= $this->params->get('templatecolor');
-$logo			= $this->params->get('logo');
-$navposition	= $this->params->get('navposition');
+#$color			= $this->params->get('templatecolor');
+#$logo			= $this->params->get('logo');
+#$navposition	= $this->params->get('navposition');
 $app			= JFactory::getApplication();
 $doc			= JFactory::getDocument();
 $templateparams	= $app->getTemplate(true)->params;
 
 $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_stylechanger.js', 'text/javascript', true);
 ?>
-<?php if(!$templateparams->get('html5', 0)): ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<?php else: ?>
-	<?php echo '<!DOCTYPE html>'; ?>
-<?php endif; ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>" >
 	<head>
 		<jdoc:include type="head" />
 		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/position.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/layout.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/print.css" type="text/css" media="Print" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/beez5.css" type="text/css" />
-<?php
-	$files = JHtml::_('stylesheet', 'templates/'.$this->template.'/css/general.css', null, false, true);
-	if ($files):
-		if (!is_array($files)):
-			$files = array($files);
-		endif;
-		foreach($files as $file):
-?>
-		<link rel="stylesheet" href="<?php echo $file;?>" type="text/css" />
-<?php
-	 	endforeach;
-	endif;
-?>
-		<?php if ($this->direction == 'rtl') : ?>
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/template_rtl.css" type="text/css" />
-		<?php endif; ?>
-		<!--[if lte IE 6]>
-			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ieonly.css" rel="stylesheet" type="text/css" />
-		<![endif]-->
-		<!--[if IE 7]>
-			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ie7only.css" rel="stylesheet" type="text/css" />
-		<![endif]-->
-<?php if($templateparams->get('html5', 0)) { ?>
-		<!--[if lt IE 9]>
-			<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/javascript/html5.js"></script>
-		<![endif]-->
-<?php } ?>
-		<script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/javascript/hide.js"></script>
-
-		<script type="text/javascript">
-			var big ='<?php echo (int)$this->params->get('wrapperLarge');?>%';
-			var small='<?php echo (int)$this->params->get('wrapperSmall'); ?>%';
-			var altopen='<?php echo JText::_('TPL_BEEZ5_ALTOPEN', true); ?>';
-			var altclose='<?php echo JText::_('TPL_BEEZ5_ALTCLOSE', true); ?>';
-			var bildauf='<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/plus.png';
-			var bildzu='<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/minus.png';
-			var rightopen='<?php echo JText::_('TPL_BEEZ5_TEXTRIGHTOPEN', true); ?>';
-			var rightclose='<?php echo JText::_('TPL_BEEZ5_TEXTRIGHTCLOSE', true); ?>';
-			var fontSizeTitle='<?php echo JText::_('TPL_BEEZ5_FONTSIZE', true); ?>';
-            var bigger='<?php echo JText::_('TPL_BEEZ5_BIGGER', true); ?>';
-            var reset='<?php echo JText::_('TPL_BEEZ5_RESET', true); ?>';
-            var smaller='<?php echo JText::_('TPL_BEEZ5_SMALLER', true); ?>';
-            var biggerTitle='<?php echo JText::_('TPL_BEEZ5_INCREASE_SIZE', true); ?>';
-            var resetTitle='<?php echo JText::_('TPL_BEEZ5_REVERT_STYLES_TO_DEFAULT', true); ?>';
-            var smallerTitle='<?php echo JText::_('TPL_BEEZ5_DECREASE_SIZE', true); ?>';
-		</script>
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/style.css" type="text/css">
+        <!--[if lte IE 7]>
+            <link rel="stylesheet" type="text/css" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ie7.css">
+        <![endif]-->
+        <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/jquery.tinycarousel.js"></script>
+        <script type="text/javascript" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/js/script.js"></script>
 
 	</head>
 
 	<body>
 
-<div id="all">
-	<div id="back">
-	<?php if(!$templateparams->get('html5', 0)): ?>
-		<div id="header">
-			<?php else: ?>
-		<header id="header">
-			<?php endif; ?>
-				<div class="logoheader">
-					<h1 id="logo">
+<div id="all" class="main-layout">
+    <!-- header -->
+    <div id="header" class="clearfix">
+        <h1 class="rs">
+            <a href="<?php echo $this->baseurl ?>">
+                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/logo.png" alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>">
+            </a>
+        </h1>
+        <div class="right-panel">
+            <div class="clearfix">
+                <jdoc:include type="modules" name="position-0" />
+                <!-- <div class="language">
+                    <div class="current-lang">
+                        <img src="images/en.png" alt="$LANG_NAME">
+                        <span>English</span>
+                        <i class="icon iPickDownW"></i>
+                    </div>
+                    <ul id="sys-lst-language" class="rs">
+                        <li>
+                            <img src="images/en.png" alt="$LANG_NAME">
+                            <span>English</span>
+                        </li>
+                        <li>
+                            <img src="images/en.png" alt="$LANG_NAME">
+                            <span>Vietnamese</span>
+                        </li>
+                    </ul>
+                    <form id="sys_choose_lang" style="display: none">
+                        <select name="lang" id="sys_language_select">
+                            <option value="1">Eng</option>
+                            <option value="2">Vie</option>
+                        </select>
+                    </form>
 
-					<?php if ($logo != null ): ?>
-					<img src="<?php echo $this->baseurl ?>/<?php echo htmlspecialchars($logo); ?>" alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>" />
-					<?php else: ?>
-					<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>
-					<?php endif; ?>
-					<span class="header1">
-					<?php echo htmlspecialchars($templateparams->get('sitedescription'));?>
-					</span></h1>
-				</div><!-- end logoheader -->
+                </div>
+                <!--
+                <div class="sign-in">
+                    <a href="#">Sign in</a>
+                    <span class="sep">|</span>
+                    <a href="#">Sign out</a>
+                </div>
+                -->
+            </div>
+            <h3 class="rs small-logo">
+                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/logo-small.png" alt="Đại Học Y Hà Nội">
+            </h3>
+        </div>
+    </div>
 
-					<ul class="skiplinks">
-						<li><a href="#main" class="u2"><?php echo JText::_('TPL_BEEZ5_SKIP_TO_CONTENT'); ?></a></li>
-						<li><a href="#nav" class="u2"><?php echo JText::_('TPL_BEEZ5_JUMP_TO_NAV'); ?></a></li>
-						<?php if($showRightColumn ):?>
-						<li><a href="#additional" class="u2"><?php echo JText::_('TPL_BEEZ5_JUMP_TO_INFO'); ?></a></li>
-						<?php endif; ?>
-					</ul>
-					<h2 class="unseen"><?php echo JText::_('TPL_BEEZ5_NAV_VIEW_SEARCH'); ?></h2>
-					<h3 class="unseen"><?php echo JText::_('TPL_BEEZ5_NAVIGATION'); ?></h3>
-					<jdoc:include type="modules" name="position-1" />
-					<div id="line">
-					<div id="fontsize"></div>
-					<h3 class="unseen"><?php echo JText::_('TPL_BEEZ5_SEARCH'); ?></h3>
-					<jdoc:include type="modules" name="position-0" />
-					</div> <!-- end line -->
-		<div id="header-image">
-			<jdoc:include type="modules" name="position-15" />
-			<?php if ($this->countModules('position-15')==0): ?>
-				<img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/fruits.jpg"  alt="<?php echo JText::_('TPL_BEEZ5_LOGO'); ?>" />
-			<?php endif; ?>
-		</div>
-		<?php if (!$templateparams->get('html5', 0)): ?>
-			</div><!-- end header -->
-		<?php else: ?>
-			</header><!-- end header -->
-		<?php endif; ?>
-		<div id="<?php echo $showRightColumn ? 'contentarea2' : 'contentarea'; ?>">
-					<div id="breadcrumbs">
+    <div id="main-menu">
+        <?php if ($this->countModules('main-menu')): ?>
+        <div class="fixCenter1K clearfix">
+            <jdoc:include type="modules" name="main-menu" />
+        </div>
+        <?php endif; ?>
+    </div>
 
-							<jdoc:include type="modules" name="position-2" />
+    <?php if ($this->countModules('main-slideshow')) :?>
+    <div id="main-slide">
+        <div class="fixCenter1K">
+            <jdoc:include type="modules" name="main-slideshow" />
+            <!-- begin slide here here
+            <div id="main-slider-code">
+                <a href="#" class="buttons prev">left</a>
+                <div class="viewport">
+                    <ul class="overview rs">
+                        <li><img src="images/ex/th-1000x370.png"/></li>
+                        <li><img src="images/ex/th-1000x370-1.png" /></li>
+                        <li><img src="images/ex/th-1000x370-2.png" /></li>
+                        <li><img src="images/ex/th-1000x370-3.png" /></li>
+                        <li><img src="images/ex/th-1000x370-4.png" /></li>
+                    </ul>
+                </div>
+                <a href="#" class="buttons next">right</a>
 
-					</div>
+                <div class="wrap-pager">
+                    <span class="mack"></span>
+                    <ul class="pager rs">
+                        <li><a rel="0" class="pagenum" href="#">1</a></li>
+                        <li><a rel="1" class="pagenum" href="#">2</a></li>
+                        <li><a rel="2" class="pagenum" href="#">3</a></li>
+                        <li><a rel="3" class="pagenum" href="#">4</a></li>
+                        <li><a rel="4" class="pagenum" href="#">5</a></li>
+                    </ul>
+                </div>
+            </div>
+            end slide here -->
+        </div>
+    </div>
+    <?php endif; ?>
 
-					<?php if ($navposition=='left' and $showleft) : ?>
+    <jdoc:include type="message" />
+    <jdoc:include type="component" />
 
-						<?php if(!$this->params->get('html5', 0)): ?>
-							<div class="left1 <?php if ($showRightColumn==NULL){ echo 'leftbigger';} ?>" id="nav">
-						<?php else: ?>
-							<nav class="left1 <?php if ($showRightColumn==NULL){ echo 'leftbigger';} ?>" id="nav">
-						<?php endif; ?>
+    <!-- BEGIN SLIDE PARTNERS -->
+    <?php if ($this->countModules('partners-list')) : ?>
+    <jdoc:include type="modules" name="partners-list" />
+    <div id="slide-partner-org">
+        <div class="fixCenter1K">
+            <div class="block">
+                <h3 class="title">Partner organizations</h3>
+                <div class="block-content">
+                    <div id="slider_partner">
+                        <a class="buttons prev" href="#">
+                            <i class="iconB iPrev"></i>
+                        </a>
+                        <a class="buttons next" href="#">
+                            <i class="iconB iNext"></i>
+                        </a>
+                        <div class="viewport">
+                            <ul class="rs overview clearfix">
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-226x122.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">VAAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">DWAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">DWAC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">AXSC</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="partner-item">
+                                        <div class="center-thumb">
+                                            <span class="vertical-hold"><!--for IE6,7--></span>
+                                            <a href="#" class="thumb">
+                                                <img src="images/ex/th-logo.png" alt="$PARTNER_NAME">
+                                            </a>
+                                        </div>
+                                        <p class="rs name">CLGT</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><!--end: ...-->
+            </div>
 
-								<jdoc:include type="modules" name="position-7" style="beezDivision" headerLevel="3" />
-								<jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />
-								<jdoc:include type="modules" name="position-5" style="beezTabs" headerLevel="2"  id="3" />
+        </div>
+    </div>
+    <?php endif; ?>
+    <!-- END SLIDE PARTNERS -->
 
-						<?php if(!$this->params->get('html5', 0)): ?>
-							</div><!-- end navi -->
-						<?php else: ?>
-							</nav>
-						<?php endif; ?>
+    <!-- BEGIN FOOTER -->
+    <div id="footer">
+        <div class="fixCenter1K">
+            <div class="top-thumb">
+                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50.png" alt="">
+                <a href="http://www.samhsa.gov/index.aspx" target="_blank">
+                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-1.png" alt="">
+                </a>
+                <a href="http://uclaisap.org" target="_blank">
+                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-2.png" alt="">
+                </a>
+            </div>
+            <div class="clearfix">
+                <div class="col-type1">
+                    <?php if ($this->countModules('user-17')) :?>
+                    <div class="wrap-foot-item">
+                        <jdoc:include type="modules" name="user-17" />
+                    </div>
+                    <?php endif; ?>
+                </div><!--end: col-type1 -->
+                <div class="col-type1">
+                    <?php if ($this->countModules('user-18')) :?>
+                    <div class="wrap-foot-item">
+                        <jdoc:include type="modules" name="user-18" />
+                        <!-- <h5 class="rs title">Quick Links</h5>
+                        <ul class="rs">
+                            <li>
 
-					<?php endif; ?>
+                                <a href="#">NIDA/SAMHSA Blending Initiative</a>
+                            </li>
+                            <li>
+                                <a href="#">Leadership Initiative</a>
+                            </li>
+                            <li>
+                                <a href="#">Directory of Addiction Study Programs (DASP)</a>
+                            </li>
+                            <li>
+                                <a href="#">Certification Information</a>
+                            </li>
+                            <li>
+                                <a href="#">Featured Topics Library</a>
+                            </li>
+                            <li>
+                                <a href="#">Addiction Messenger</a>
+                            </li>
+                            <li>
+                                <a href="#">AddictionCarreers.org</a>
+                            </li>
+                        </ul>-->
+                    </div>
+                    <?php endif; ?>
+                </div><!--end: col-type1 -->
+                <div class="col-type1">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">Contact Us</h5>
+                        <p class="rs desc-contact">
+                            <!-- Vietnam HIV Addiction Technology Transfer Center
+                            Center for Research and Training on HIV/AIDS -->
+                            Room 522, A1 Building, Hanoi Medical University, No. 1A Ton That Tung Street, Dong Da Dist, Hanoi, Vietnam
+                        </p>
 
-					<div id="<?php echo $showRightColumn ? 'wrapper' : 'wrapper2'; ?>" <?php if (isset($showno)){echo 'class="shownocolumns"';}?>>
+                        <p class="rs item-info">
+                            <span class="lbl">TEL:</span>
+                            <span class="val">(+844)35741596</span>
+                        </p>
 
-						<div id="main">
-
-						<?php if ($this->countModules('position-12')): ?>
-							<div id="top"><jdoc:include type="modules" name="position-12"   />
-							</div>
-						<?php endif; ?>
-
-							<jdoc:include type="message" />
-							<jdoc:include type="component" />
-
-						</div><!-- end main -->
-
-					</div><!-- end wrapper -->
-
-				<?php if ($showRightColumn) : ?>
-					<h2 class="unseen">
-						<?php echo JText::_('TPL_BEEZ5_ADDITIONAL_INFORMATION'); ?>
-					</h2>
-					<div id="close">
-						<a href="#" onclick="auf('right')">
-							<span id="bild">
-								<?php echo JText::_('TPL_BEEZ5_TEXTRIGHTCLOSE'); ?></span></a>
-					</div>
-
-				<?php if (!$templateparams->get('html5', 0)): ?>
-					<div id="right">
-				<?php else: ?>
-					<aside id="right">
-				<?php endif; ?>
-
-						<a id="additional"></a>
-						<jdoc:include type="modules" name="position-6" style="beezDivision" headerLevel="3"/>
-						<jdoc:include type="modules" name="position-8" style="beezDivision" headerLevel="3"  />
-						<jdoc:include type="modules" name="position-3" style="beezDivision" headerLevel="3"  />
-
-				<?php if(!$templateparams->get('html5', 0)): ?>
-					</div><!-- end right -->
-				<?php else: ?>
-					</aside>
-				<?php endif; ?>
-			<?php endif; ?>
-
-			<?php if ($navposition=='center' and $showleft) : ?>
-
-				<?php if (!$this->params->get('html5', 0)): ?>
-					<div class="left <?php if ($showRightColumn==NULL){ echo 'leftbigger';} ?>" id="nav" >
-				<?php else: ?>
-					<nav class="left <?php if ($showRightColumn==NULL){ echo 'leftbigger';} ?>" id="nav">
-				<?php endif; ?>
-
-						<jdoc:include type="modules" name="position-7"  style="beezDivision" headerLevel="3" />
-						<jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />
-						<jdoc:include type="modules" name="position-5" style="beezTabs" headerLevel="2"  id="3" />
-
-				<?php if (!$templateparams->get('html5', 0)): ?>
-					</div><!-- end navi -->
-				<?php else: ?>
-					</nav>
-				<?php endif; ?>
-			<?php endif; ?>
-
-					<div class="wrap"></div>
-
-				</div> <!-- end contentarea -->
-
-			</div><!-- back -->
-
-		</div><!-- all -->
-
-		<div id="footer-outer">
-
-		<?php if ($showbottom) : ?>
-			<div id="footer-inner">
-
-				<div id="bottom">
-					<?php if ($this->countModules('position-9')): ?>
-					<div class="box box1"> <jdoc:include type="modules" name="position-9" style="beezDivision" headerlevel="3" /></div>
-					<?php endif; ?>
-					   <?php if ($this->countModules('position-10')): ?>
-					<div class="box box2"> <jdoc:include type="modules" name="position-10" style="beezDivision" headerlevel="3" /></div>
-					<?php endif; ?>
-					<?php if ($this->countModules('position-11')): ?>
-					<div class="box box3"> <jdoc:include type="modules" name="position-11" style="beezDivision" headerlevel="3" /></div>
-					<?php endif ; ?>
-				</div>
-			</div>
-		<?php endif ; ?>
-
-			<div id="footer-sub">
-
-			<?php if (!$templateparams->get('html5', 0)): ?>
-				<div id="footer">
-			<?php else: ?>
-				<footer id="footer">
-			<?php endif; ?>
-
-					<jdoc:include type="modules" name="position-14" />
-					<p>
-						<?php echo JText::_('TPL_BEEZ5_POWERED_BY');?> <a href="http://www.joomla.org/">Joomla!&#174;</a>
-					</p>
-
-			<?php if (!$templateparams->get('html5', 0)): ?>
-				</div><!-- end footer -->
-			<?php else: ?>
-				</footer>
-			<?php endif; ?>
-
-			</div>
-
-		</div>
-		<jdoc:include type="modules" name="debug" />
+                        <p class="rs item-info">
+                            <span class="lbl">FAX:</span>
+                            <span class="val">(+844)35741596</span>
+                        </p>
+                        <p class="rs item-info">
+                            <span class="lbl">Email:</span>
+                            <a href="mailto:creata@hmu.edu.vn" class="val fc-w">creata@hmu.edu.vn</a>
+                        </p>
+                    </div>
+                </div><!--end: col-type1 -->
+                <div class="col-type2">
+                    <div class="wrap-foot-item">
+                        <h5 class="rs title">Connect with us</h5>
+                        <div class="social-contact">
+                            <a href="#">
+                                <i class="icon iFb"></i>
+                            </a>
+                            <a href="#">
+                                <i class="icon iTw"></i>
+                            </a>
+                        </div>
+                        <h5 class="rs title">Email to Subcrible</h5>
+                        <form class="email-subcrible clearfix" name="email">
+                            <label for="email-subcrible">
+                                <input type="text" id="email-subcrible" placeholder="Your email">
+                                <i class="icon iPickRightW"></i>
+                            </label>
+                            <input type="submit" value="Send">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <jdoc:include type="modules" name="debug" />
 	</body>
 </html>
