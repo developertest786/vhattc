@@ -10,6 +10,10 @@
 defined('_JEXEC') or die;
 
 // check modules
+if ($this->countModules('user1')) {
+    $mainContentId = 'contact-us';
+}
+
 $showRightColumn	= ($this->countModules('position-3') or $this->countModules('position-6') or $this->countModules('position-8'));
 $showbottom			= ($this->countModules('position-9') or $this->countModules('position-10') or $this->countModules('position-11'));
 $showleft			= ($this->countModules('position-4') or $this->countModules('position-7') or $this->countModules('position-5'));
@@ -55,7 +59,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                 <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/logo.png" alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>">
             </a>
         </h1>
-        <div class="right-panel">
+        <div class="right-panel">&nbsp;
             <div class="clearfix">
                 <jdoc:include type="modules" name="position-0" />
                 <!-- <div class="language">
@@ -138,9 +142,13 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     </div>
     <?php endif; ?>
 
-    <div class="fixCenter1K">
+    <div id="<?php echo $mainContentId ?>" class="fixCenter1K">
         <?php if ($this->countModules('about-us')): ?>
         <jdoc:include type="modules" name="about-us" />
+        <?php endif; ?>
+
+        <?php if ($this->countModules('user1')): ?>
+        <jdoc:include type="modules" name="user1" />
         <?php endif; ?>
 
         <jdoc:include type="message" />

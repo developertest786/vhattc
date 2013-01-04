@@ -12,6 +12,13 @@ nav,
 section {
   display: block;
 }
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 5px 0;
+}
+
 audio,
 canvas,
 video {
@@ -165,7 +172,7 @@ textarea {
 .fc-w {
   color: #ffffff;
 }
-.fc-r {
+.fc-r, .star {
   color: #f00000;
 }
 .fw-b {
