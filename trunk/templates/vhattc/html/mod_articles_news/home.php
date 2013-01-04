@@ -8,6 +8,7 @@
 
 // no direct access
 defined('_JEXEC') or die;
+var_dump($list); die;
 ?>
 <div class="lst-top-about">
     <div class="row c3">
