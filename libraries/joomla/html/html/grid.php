@@ -195,7 +195,8 @@ abstract class JHtmlGrid
 		}
 		else
 		{
-			$result = JTable::isCheckedOut($userid, $row->checked_out);
+//			$result = JTable::isCheckedOut($userid, $row->checked_out);
+            $result = false;
 		}
 
 		$checked = '';

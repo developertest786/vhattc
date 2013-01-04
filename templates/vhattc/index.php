@@ -125,36 +125,10 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
         <?php endif; ?>
     </div>
 
-    <?php if ($this->countModules('main-slideshow')) :?>
+    <?php if ($this->countModules('slideshow')) :?>
     <div id="main-slide">
         <div class="fixCenter1K">
-            <jdoc:include type="modules" name="main-slideshow" />
-            <!-- begin slide here here
-            <div id="main-slider-code">
-                <a href="#" class="buttons prev">left</a>
-                <div class="viewport">
-                    <ul class="overview rs">
-                        <li><img src="images/ex/th-1000x370.png"/></li>
-                        <li><img src="images/ex/th-1000x370-1.png" /></li>
-                        <li><img src="images/ex/th-1000x370-2.png" /></li>
-                        <li><img src="images/ex/th-1000x370-3.png" /></li>
-                        <li><img src="images/ex/th-1000x370-4.png" /></li>
-                    </ul>
-                </div>
-                <a href="#" class="buttons next">right</a>
-
-                <div class="wrap-pager">
-                    <span class="mack"></span>
-                    <ul class="pager rs">
-                        <li><a rel="0" class="pagenum" href="#">1</a></li>
-                        <li><a rel="1" class="pagenum" href="#">2</a></li>
-                        <li><a rel="2" class="pagenum" href="#">3</a></li>
-                        <li><a rel="3" class="pagenum" href="#">4</a></li>
-                        <li><a rel="4" class="pagenum" href="#">5</a></li>
-                    </ul>
-                </div>
-            </div>
-            end slide here -->
+            <jdoc:include type="modules" name="slideshow" />
         </div>
     </div>
     <?php endif; ?>
