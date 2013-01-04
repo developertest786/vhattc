@@ -1,0 +1,88 @@
+<div class="title"><h5>QUẢN TRỊ NGƯỜI DÙNG</h5></div>
+
+<!-- Statistics -->
+<div class="stats">
+    <ul>
+        <li><a href="#" class="count grey" title="">52</a><span>new pending tasks</span></li>
+
+        <li><a href="#" class="count grey" title="">520</a><span>pending orders</span></li>
+        <li><a href="#" class="count grey" title="">14</a><span>new opened tickets</span></li>
+        <li class="last"><a href="#" class="count grey" title="">48</a><span>new user registrations</span></li>
+    </ul>
+    <div class="fix"></div>
+</div>
+
+<form class="mainForm" action="">
+    <fieldset>
+        <div class="widget">
+            <div class="head"><h5 class="iList">QUẢN TRỊ NGƯỜI DÙNG</h5></div>
+            <div class="floatleft twoOne">
+                <div class="rowElem noborder pb0"><label style="width: 120px;" class="topLabel">User name:</label><input type="text" style="width: auto;" name="inputtext" /><div class="fix"></div></div>
+                <div class="rowElem noborder pb0"><label style="width: 120px;" class="topLabel">Email:</label><input type="text" style="width: auto;" name="inputtext" /><div class="fix"></div></div>
+
+                </div>
+                <div class="floatright twoOne">
+                    <div class="rowElem noborder pb0"><label style="width: 120px;" class="topLabel">Số điện thoại:</label><input type="text" style="width: auto;" name="phone" /><div class="fix"></div></div>
+                    <div class="rowElem noborder pb0"><label style="width: 120px;" class="topLabel">Trạng thái:</label>
+                        <select name="status">
+                            <option value="0">Tất cả</option>
+                            <?php $arrStatus = array(1 => 'Ban mãi mãi', 2 => 'Block', 3 => 'Active');
+                            $status = Ming_Factory::getRequest()->post('status','int',0);
+                            foreach($arrStatus as $key => $value)
+                            {
+                                $selected = ($key == $status) ? 'selected="selected"' : '';
+                                echo '<option '.$selected.' value="'.$key.'">'.$value.'</option>';
+                            }
+                            ?>
+                        </select>
+                        <div class="fix"></div>
+                    </div>
+
+                </div>
+                <div class="fix"></div>
+                <div class="floatleft"><input type="submit" class="greyishBtn submitForm" value="Tìm kiếm"></div>
+            <div class="fix"></div>
+        </div>
+    </fieldset>
+</form>
+<!-- Dynamic table -->
+<div class="table">
+<div class="head"><h5 class="iFrames">Danh sách người dùng</h5></div>
+<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+<thead>
+<tr>
+    <th>STT</th>
+    <th>Tên đăng nhập</th>
+    <th>Email</th>
+    <th>Số điện thoại</th>
+    <th>Trạng thái</th>
+    <th>Thao tác</th>
+</tr>
+</thead>
+<tbody>
+<?php
+
+$count_row = 0;
+if(isset($datas))
+foreach($datas as $row) {?>
+    <tr class="gradeX">
+        <td><?php echo (++$count_row); ?></td>
+        <td>
+            <?php echo $row->username.'<br />('.$row->full_name.')';
+            ?>
+        </td>
+        <td><?php echo $row->email; ?></td>
+        <td class="center">
+            <?php echo $row->phone;
+            if($row->mobile) echo '<br />('.$row->mobile.')'; ?>
+        </td>
+        <td class="center"><?php echo $arrStatus[$row->status+2]; ?></td>
+        <td class="center">
+            <a href="<?php echo Ming_Factory::getRouter()->getBaseUrl().'user/edit?id='.$row->id; ?>">Sửa</a>
+            <?php  ?>
+        </td>
+    </tr>
+<?php } ?>
+</tbody>
+</table>
+</div>

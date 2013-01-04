@@ -1,0 +1,35 @@
+<div class="title"><h5>FORM SỬA PHÂN LOẠI</h5></div>
+
+
+<div class="pt20">
+    <?php if(@$title_err) { ?>
+    <div class="nNote nWarning hideit">
+        <p><strong>WARNING: </strong><?php echo @$title_err;?></p>
+    </div>
+    <?php } ?>
+
+</div>
+<form class="mainForm" action="" method="post">
+
+<!-- Input text fields -->
+<fieldset>
+    <div class="widget first">
+        <div class="head"><h5 class="iList">SỬA</h5></div>
+        <div class="rowElem noborder">
+            <label>Title:</label>
+            <div><input type="text" name="title" value="<?php echo $taxo['title'];?>" style="width: 150px" /></div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <label>Description:</label><textarea name="description" style="width: 200px"><?php echo $taxo['description'];?></textarea>
+        </div>
+        <div class="fix"></div>
+        </div>
+        <div class="rowElem">
+            <input type="submit" class="rowElem greyishBtn submitForm" name="add" value="Cập nhật" />
+        </div>
+
+        <div class="fix"></div>
+    </div>
+</fieldset>
+</form>

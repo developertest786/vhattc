@@ -1,0 +1,450 @@
+<?php $doc = PiCms::getDocument(); ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title><?php echo $doc->title ?></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $doc->getBaseUrl() ?>assets/css/style.css">
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="<?php echo $doc->getBaseUrl() ?>assets/css/ie7.css">
+    <![endif]-->
+    <script type="text/javascript" src="<?php echo $doc->getBaseUrl() ?>assets/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="<?php echo $doc->getBaseUrl() ?>assets/js/jquery.tinycarousel.js"></script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-6749980-5']);
+        _gaq.push(['_setDomainName', 'vhattc.org.vn']);
+        _gaq.push(['_setAllowLinker', true]);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</head>
+<body>
+
+<div class="main-layout">
+<div id="header" class="clearfix">
+    <h1 class="rs">
+        <a href="<?php echo $doc->getBaseUrl() ?>">
+            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/logo.png" alt="<?php echo Setting::get('SITE_NAME') ?>">
+        </a>
+    </h1>
+    <div class="right-panel">
+        <div class="clearfix">
+            <?php \Flywheel\Loader::import('app.module.language_switcher.language_switcher', true, '.php') ?>
+            <!--<div class="sign-in">
+                <a href="#">Sign in</a>
+                <span class="sep">|</span>
+                <a href="#">Sign out</a>
+            </div>-->
+        </div>
+        <h3 class="rs small-logo">
+            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/logo-small.png" alt="<?php echo Setting::get('SITE_NAME') ?>">
+        </h3>
+    </div>
+</div>
+<?php \Flywheel\Loader::import('app.module.main_menu.main_menu', true, '.php') ?>
+<div id="main-slide">
+    <div class="fixCenter1K">
+        <div id="main-slider-code">
+            <a href="#" class="buttons prev">left</a>
+            <div class="viewport">
+                <ul class="overview rs">
+                    <li><img src="images/ex/th-1000x370.png"/></li>
+                    <li><img src="images/ex/th-1000x370-1.png" /></li>
+                    <li><img src="images/ex/th-1000x370-2.png" /></li>
+                    <li><img src="images/ex/th-1000x370-3.png" /></li>
+                    <li><img src="images/ex/th-1000x370-4.png" /></li>
+                </ul>
+            </div>
+            <a href="#" class="buttons next">right</a>
+
+            <div class="wrap-pager">
+                <span class="mack"></span>
+                <ul class="pager rs">
+                    <li><a rel="0" class="pagenum" href="#">1</a></li>
+                    <li><a rel="1" class="pagenum" href="#">2</a></li>
+                    <li><a rel="2" class="pagenum" href="#">3</a></li>
+                    <li><a rel="3" class="pagenum" href="#">4</a></li>
+                    <li><a rel="4" class="pagenum" href="#">5</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixCenter1K">
+    <div class="lst-top-about">
+        <div class="row c3">
+            <div class="col">
+                <div class="artcle-about">
+                    <h2 class="rs title">Who we are</h2>
+                    <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttitor consectetur. In facilisis gravida ipsum vel convallis. Nullam nisl lectus, bibendum id consectetur ac, molestie ut est. Praesent at dolor ac magna tempus porta. Fusce rhoncus metus vitae odio laoreet vitae mattis ante bibendum. Nullam vel mi in dolor mattis facilisis.</p>
+                    <p class="rs viewmore">
+                        <a href="#">View more</a>
+                        <i class="icon iPickReadR"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="artcle-about">
+                    <h2 class="rs title">What we do</h2>
+                    <p class="rs desc">Morbi a nisl velit, nec egestas erat. Morbi sodales vulputate erat ac laoreet. Etiam egestas, est vel gravida aliquet, enim purus suscipit nunc, sit amet mattis nisl enim eget diam. Sed vestibulum scelerisque eros, non imperdiet lectus sagittis sed. Maecenas ullamcorper tellus a elit sagittis mattis ac ac augue. Praesent varius erat vitae diam rhoncus consequat. Maecenas luctus commodo sus</p>
+                    <p class="rs viewmore">
+                        <a href="#">View more</a>
+                        <i class="icon iPickReadR"></i>
+                    </p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="artcle-about">
+                    <h2 class="rs title">Who we serve</h2>
+                    <p class="rs desc">Phasellus nisl quam, semper ac vulputate eget, molestie viverra quam. Aliquam varius neque sed purus tempus lacinia vitae a elit. Duis sit amet diam quam. Nulla ut quam orci, eget laoreet nunc. Sed fermentum luctus sodales. Donec malesuada, dui id dictum aliquet, leo felis tristique metus, eget lobortis lectus tortor eget nunc. Sed dolor metus, commodo et consequat id, congue nec lacus.</p>
+                    <p class="rs viewmore">
+                        <a href="#">View more</a>
+                        <i class="icon iPickReadR"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row c2 l656">
+        <div class="col">
+            <div class="block lst-training">
+                <h3 class="title rs">
+                    Upcomming training programs
+                    <a href="#" class="more">
+                        View more
+                        <i class="icon iPickReadR"></i>
+                    </a>
+                </h3>
+                <div class="block-content">
+                    <div class="train-item">
+                        <h4 class="rs">Training the Trainers</h4>
+                        <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                        <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                        <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                        </div>
+                    </div><!--end: train-item-->
+                    <div class="train-item">
+                        <h4 class="rs">Training the Trainers</h4>
+                        <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                        <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                        <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                        </div>
+                    </div><!--end: train-item-->
+                    <div class="train-item">
+                        <h4 class="rs">Training the Trainers</h4>
+                        <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                        <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                        <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                            <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                        </div>
+                    </div><!--end: train-item-->
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="block lst-resources">
+                <h3 class="title rs">
+                    Resources
+                    <a href="#" class="more">
+                        View more
+                        <i class="icon iPickReadR"></i>
+                    </a>
+                </h3>
+                <div class="block-content">
+                    <div class="wrap-lst-resource">
+                        <div class="resource-item">
+                            <h4 class="rs">Webinar</h4>
+                            <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                        </div>
+                        <div class="resource-item">
+                            <h4 class="rs">Webinar</h4>
+                            <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                        </div>
+                    </div>
+                    <form class="search-resource clearfix">
+                        <label for="keyword">
+                            <input id="keyword" type="text" placeholder="search resource">
+                        </label>
+                        <input type="submit" value="find">
+                    </form>
+                </div>
+            </div><!-- end: lst-resources-->
+            <div class="block lst-partner-trained">
+                <h3 class="title rs">
+                    training by our partners
+                </h3>
+                <div class="block-content">
+                    <ul class="wrap-lst rs">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li>Cras eu felis in lorem interdum lobortis</li>
+                        <li>Duis sagittis ipsum vel lacus facilisis et cursus ipsum fermentum</li>
+                    </ul>
+                </div>
+            </div><!-- end: lst-partner-trained-->
+        </div>
+    </div>
+</div>
+<div id="slide-partner-org">
+    <div class="fixCenter1K">
+        <div class="block">
+            <h3 class="title">Partner organizations</h3>
+            <div class="block-content">
+                <div id="slider_partner">
+                    <a class="buttons prev" href="#">
+                        <i class="iconB iPrev"></i>
+                    </a>
+                    <a class="buttons next" href="#">
+                        <i class="iconB iNext"></i>
+                    </a>
+                    <div class="viewport">
+                        <ul class="rs overview clearfix">
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-226x122.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">VAAC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">AXSC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">DWAC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">AXSC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">AXSC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">DWAC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">AXSC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">AXSC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="partner-item">
+                                    <div class="center-thumb">
+                                        <span class="vertical-hold"><!--for IE6,7--></span>
+                                        <a href="#" class="thumb">
+                                            <img src="images/ex/th-logo.png" alt="$PARTNER_NAME">
+                                        </a>
+                                    </div>
+                                    <p class="rs name">CLGT</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--end: ...-->
+        </div>
+
+    </div>
+</div>
+<div id="footer">
+    <div class="fixCenter1K">
+        <div class="top-thumb">
+            <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50.png" alt="#NAME">
+            <a href="http://www.samhsa.gov/index.aspx" target="_blank">
+                <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50-1.png" alt="SAMHSA Logo">
+            </a>
+            <a href="http://uclaisap.org" target="_blank">
+                <img src="<?php echo $doc->getBaseUrl() ?>assets/images/ex/th-227x50-2.png" alt="UCLA">
+            </a>
+        </div>
+        <div class="clearfix">
+            <div class="col-type1">
+                <div class="wrap-foot-item">
+                    <h5 class="rs title">VN - ATTC</h5>
+                    <?php \Flywheel\Loader::import('app.module.bottom_menu.bottom_menu', true, '.php') ?>
+                </div>
+            </div><!--end: col-type1 -->
+            <div class="col-type1">
+                <div class="wrap-foot-item">
+                    <?php \Flywheel\Loader::import('app.module.quick_link.quick_link', true, '.php') ?>
+                    <!--
+                    <h5 class="rs title">Quick Links</h5>
+                    <ul class="rs">
+                        <li>
+                            <a href="#">NIDA/SAMHSA Blending Initiative</a>
+                        </li>
+                        <li>
+                            <a href="#">Leadership Initiative</a>
+                        </li>
+                        <li>
+                            <a href="#">Directory of Addiction Study Programs (DASP)</a>
+                        </li>
+                        <li>
+                            <a href="#">Certification Information</a>
+                        </li>
+                        <li>
+                            <a href="#">Featured Topics Library</a>
+                        </li>
+                        <li>
+                            <a href="#">Addiction Messenger</a>
+                        </li>
+                        <li>
+                            <a href="#">AddictionCarreers.org</a>
+                        </li>
+                    </ul>
+                    -->
+                </div>
+            </div><!--end: col-type1 -->
+            <div class="col-type1">
+                <div class="wrap-foot-item">
+                    <h5 class="rs title">Contact Us</h5>
+                    <p class="rs desc-contact"><?php echo Setting::get('CONTACT_DESC') ?></p>
+
+                    <p class="rs item-info">
+                        <span class="lbl">Hotline:</span>
+                        <span class="val"><?php echo Setting::get('CONTACT_HOTLINE') ?></span>
+                    </p>
+                    <p class="rs item-info">
+                        <span class="lbl">Email:</span>
+                        <a href="mailto:<?php echo Setting::get('CONTACT_EMAIL') ?>" class="val fc-w"><?php echo Setting::get('CONTACT_EMAIL') ?></a>
+                    </p>
+                </div>
+            </div><!--end: col-type1 -->
+            <div class="col-type2">
+                <div class="wrap-foot-item">
+                    <!--
+                    <h5 class="rs title">Connect with us</h5>
+                    <div class="social-contact">
+                        <a href="#">
+                            <i class="icon iFb"></i>
+                        </a>
+                        <a href="#">
+                            <i class="icon iTw"></i>
+                        </a>
+                    </div>
+                    <h5 class="rs title">Email to Subcrible</h5>
+                    <form class="email-subcrible clearfix" name="email">
+                        <label for="email-subcrible">
+                            <input type="text" id="email-subcrible" placeholder="Your email">
+                            <i class="icon iPickRightW"></i>
+                        </label>
+                        <input type="submit" value="Send">
+                    </form>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+    var base_url = "<?php echo $doc->getBaseUrl()?>";
+</script>
+<script type="text/javascript" src="<?php echo $doc->getBaseUrl() ?>assets/js/script.js"></script>
+</html>

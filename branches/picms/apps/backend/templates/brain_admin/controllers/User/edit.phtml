@@ -1,0 +1,66 @@
+<div class="title"><h5>QUẢN TRỊ NGƯỜI DÙNG</h5></div>
+
+<!-- Statistics -->
+<div class="stats">
+    <ul>
+        <li><a href="#" class="count grey" title="">52</a><span>new pending tasks</span></li>
+
+        <li><a href="#" class="count grey" title="">520</a><span>pending orders</span></li>
+        <li><a href="#" class="count grey" title="">14</a><span>new opened tickets</span></li>
+        <li class="last"><a href="#" class="count grey" title="">48</a><span>new user registrations</span></li>
+    </ul>
+    <div class="fix"></div>
+</div>
+<div class="pt20">
+    <?php if(isset($mess) && $mess == 'WARNING') { ?>
+    <div class="nNote nWarning hideit">
+        <p><strong>WARNING: </strong>This is a warning message. You can use this to warn users on any events</p>
+    </div>
+    <?php } ?>
+    <?php if(isset($mess) && $mess == 'INFORMATION') { ?>
+    <div class="nNote nInformation hideit">
+        <p><strong>Thông báo: </strong><?php echo $mes; ?>!</p>
+    </div>
+    <?php } ?>
+    <?php if(isset($mess) && $mess == 'SUCCESS') { ?>
+    <div class="nNote nSuccess hideit">
+        <?php foreach($data_mess as $mes) { ?>
+        <p><strong>Thành công: </strong><?php echo $mes; ?>!</p>
+        <?php } ?>
+    </div>
+    <?php } ?>
+    <?php if(isset($mess) && $mess == 'FAILURE') { ?>
+    <div class="nNote nFailure hideit">
+        <?php foreach($data_mess as $mes) { ?>
+        <p><strong></strong><?php echo $mes; ?></p>
+        <?php } ?>
+    </div>
+    <?php } ?>
+</div>
+<form class="mainForm" action="">
+
+<!-- Input text fields -->
+<fieldset>
+    <div class="widget first">
+        <div class="head"><h5 class="iList">Thêm mới</h5></div>
+        <div class="rowElem noborder"><label>Tên đăng nhập:</label><div class="formRight"><input type="text" name="user_name" style="width: 150px" value="<?php echo $data->username; ?>" /></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Mật khẩu:</label><div class="formRight"><input type="password" name="password" style="width: 150px" value="<?php echo $data->password; ?>"></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Nhập lại mật khẩu:</label><div class="formRight"><input type="password" name="repassword" style="width: 150px" value="<?php echo $data->password; ?>" /></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Họ và tên:</label><div class="formRight"><input type="text" name="full_name"  style="width: 150px" value="<?php echo $data->full_name; ?>"></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Email:</label><div class="formRight"><input type="text" class="autoF" name="email" style="width: 150px" value="<?php echo $data->email; ?>"></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Số điện thoại:</label><div class="formRight"><input type="text" name="phone" style="width:100px;" value="<?php echo $data->phone; ?>"></div><div class="fix"></div></div>
+        <div class="rowElem"><label>Di động:</label><div class="formRight"><input type="text" name="mobile" style="width:100px;" value="<?php echo $data->mobile; ?>"></div><div class="fix"></div></div>
+        <div class="rowElem">
+            <label>Giới tính:</label>
+            <div class="formRight">
+                <input type="radio" name="gender" value="1" /><label>Nam</label>
+                <input type="radio" name="gender" value="2" /><label>Nữ</label></div><div class="fix">
+            </div>
+        </div>
+        <div class="rowElem"><label>Ngày sinh:</label><div class="formRight"><input type="text" name="birthday" class="datepicker" value="<?php echo $data->birthday; ?>"></div><div class="fix"></div></div>
+        <!-- <div class="rowElem"><label>Địa chỉ:</label><div class="formRight"><textarea name="address" cols="" rows="4"></textarea></div><div class="fix"></div></div> -->
+        <input type="submit" class="greyishBtn submitForm" name="update" value="Cập nhật" />
+        <div class="fix"></div>
+    </div>
+</fieldset>
+</form>
