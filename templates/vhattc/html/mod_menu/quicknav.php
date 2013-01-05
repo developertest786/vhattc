@@ -20,7 +20,7 @@ defined('_JEXEC') or die;
     ?>>
     <?php
     foreach ($list as $i => &$item) :
-        $class = 'grp-lst-nav';
+        $class = '';
         if ($item->id == $active_id) {
             $class .= ' current';
         }
@@ -39,7 +39,7 @@ defined('_JEXEC') or die;
         }
 
         if ($item->deeper) {
-            $class = '';
+            $class = ' deeper';
         }
 
         if ($item->parent) {
