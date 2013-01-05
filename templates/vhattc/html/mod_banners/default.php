@@ -16,8 +16,8 @@ $baseurl = JURI::base();
 <div id="slide-partner-org" class="<?php echo $moduleclass_sfx ?>">
     <div class="fixCenter1K">
         <div class="block">
-            <?php if ($headerText) : ?>
-                <h3 class="title"><?php echo $headerText; ?></h3>
+            <?php if ($module->showtitle) : ?>
+                <h3 class="title"><?php echo $module->title; ?></h3>
             <?php endif; ?>
 
             <div class="block-content">
