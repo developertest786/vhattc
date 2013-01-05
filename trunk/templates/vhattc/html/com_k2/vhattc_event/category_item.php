@@ -31,7 +31,9 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
     </div><!--end: left-->
     <div class="media-body">
         <h4 class="name-event rs"><?php echo $this->item->title; ?></h4>
-        <?php if(count($this->item->extra_fields)) : ?>
+        <?php
+        var_dump(count($this->item->extra_fields), $this->item->extra_fields); die;
+        if(count($this->item->extra_fields)): ?>
         <p class="desc-event rs">
             <?php foreach ($this->item->extra_fields as $key=>$extraField):
                 var_dump($extraField); exit; ?>
