@@ -14,8 +14,8 @@ class JConfig {
 	public $dbtype = 'mysqli';
 	public $host = 'localhost';
 	public $user = 'root';
-	public $password = 'abc@123';
-	public $db = 'joomla25';
+	public $password = '';
+	public $db = 'vhattc';
 	public $dbprefix = 'jos25_';
 	public $live_site = '';
 	public $secret = 'upfXxDKDEdKR7ZqT';

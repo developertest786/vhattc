@@ -78,7 +78,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
         </h1>
         <div class="right-panel">&nbsp;
             <div class="clearfix">
-                <jdoc:include type="modules" name="position-0" />
+                <jdoc:include type="modules" name="position-1" />
                 <!-- <div class="language">
                     <div class="current-lang">
                         <img src="images/en.png" alt="$LANG_NAME">
@@ -125,6 +125,13 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
         <?php endif; ?>
     </div>
 
+    <?php if ($this->countModules('breadcrumbs')): ?>
+    <div id="breadcrumb" class="fixCenter1K">
+        <jdoc:include type="modules" name="breadcrumbs" />
+    </div>
+    <?php endif; ?>
+
+
     <?php if ($this->countModules('slideshow')) :?>
     <div id="main-slide">
         <div class="fixCenter1K">
@@ -134,142 +141,142 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     <?php endif; ?>
 
     <div <?php if ($mainContentId) { ?> id="<?php echo $mainContentId ?>" <?php } ?> class="fixCenter1K">
-        <?php if ($this->countModules('about-us')): ?>
-        <jdoc:include type="modules" name="about-us" />
-        <?php endif; ?>
-
         <?php if ($this->countModules('user1')): ?>
         <jdoc:include type="modules" name="user1" />
         <?php endif; ?>
 
+        <?php if ($this->countModules('user2')): ?>
+        <jdoc:include type="modules" name="user2" />
+        <?php endif; ?>
+
         <jdoc:include type="message" />
         <jdoc:include type="component" />
+
+        <?php if ($this->countModules('user5') and $this->countModules('user6')) :?>
+        <div class="row c2 l656">
+            <div class="col">
+                <div class="block lst-training">
+                    <h3 class="title rs">
+                        Upcomming training programs
+                        <a href="#" class="more">
+                            View more
+                            <i class="icon iPickReadR"></i>
+                        </a>
+                    </h3>
+                    <div class="block-content">
+                        <div class="train-item">
+                            <h4 class="rs">Training the Trainers</h4>
+                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                            <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                            </div>
+                        </div><!--end: train-item-->
+                        <div class="train-item">
+                            <h4 class="rs">Training the Trainers</h4>
+                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                            <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                            </div>
+                        </div><!--end: train-item-->
+                        <div class="train-item">
+                            <h4 class="rs">Training the Trainers</h4>
+                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
+                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
+                            <div class="link-action">
+                                <span>
+                                    <a href="#">Read more</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iComment"></i>
+                                    <a href="#">6 Comments</a>
+                                </span>
+                                <span class="sep">|</span>
+                                <span>
+                                    <i class="icon iNote"></i>
+                                    <a href="#">Register</a>
+                                </span>
+                            </div>
+                        </div><!--end: train-item-->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="block lst-resources">
+                    <h3 class="title rs">
+                        Resources
+                        <a href="#" class="more">
+                            View more
+                            <i class="icon iPickReadR"></i>
+                        </a>
+                    </h3>
+                    <div class="block-content">
+                        <div class="wrap-lst-resource">
+                            <div class="resource-item">
+                                <h4 class="rs">Webinar</h4>
+                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                            </div>
+                            <div class="resource-item">
+                                <h4 class="rs">Webinar</h4>
+                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
+                            </div>
+                        </div>
+                        <form class="search-resource clearfix">
+                            <label for="keyword">
+                                <input id="keyword" type="text" placeholder="search resource">
+                            </label>
+                            <input type="submit" value="find">
+                        </form>
+                    </div>
+                </div><!-- end: lst-resources-->
+                <div class="block lst-partner-trained">
+                    <h3 class="title rs">
+                        training by our partners
+                    </h3>
+                    <div class="block-content">
+                        <ul class="wrap-lst rs">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                            <li>Cras eu felis in lorem interdum lobortis</li>
+                            <li>Duis sagittis ipsum vel lacus facilisis et cursus ipsum fermentum</li>
+                        </ul>
+                    </div>
+                </div><!-- end: lst-partner-trained-->
+            </div>
+        </div>
+        <?php endif; ?>
+
+
     </div>
 
     <!-- BEGIN SLIDE PARTNERS -->
-    <?php if ($this->countModules('partners-list')) : ?>
-    <jdoc:include type="modules" name="partners-list" />
-    <div id="slide-partner-org">
-        <div class="fixCenter1K">
-            <div class="block">
-                <h3 class="title">Partner organizations</h3>
-                <div class="block-content">
-                    <div id="slider_partner">
-                        <a class="buttons prev" href="#">
-                            <i class="iconB iPrev"></i>
-                        </a>
-                        <a class="buttons next" href="#">
-                            <i class="iconB iNext"></i>
-                        </a>
-                        <div class="viewport">
-                            <ul class="rs overview clearfix">
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-226x122.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">VAAC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">AXSC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">DWAC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">AXSC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">AXSC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">DWAC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo2.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">AXSC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo1.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">AXSC</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="partner-item">
-                                        <div class="center-thumb">
-                                            <span class="vertical-hold"><!--for IE6,7--></span>
-                                            <a href="#" class="thumb">
-                                                <img src="images/ex/th-logo.png" alt="$PARTNER_NAME">
-                                            </a>
-                                        </div>
-                                        <p class="rs name">CLGT</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div><!--end: ...-->
-            </div>
-
-        </div>
-    </div>
+    <?php if ($this->countModules('user7')) : ?>
+    <jdoc:include type="modules" name="user7" />
     <?php endif; ?>
     <!-- END SLIDE PARTNERS -->
 
@@ -277,7 +284,9 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     <div id="footer">
         <div class="fixCenter1K">
             <div class="top-thumb">
-                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-logo.png" alt="" height="50">
+                <a href="http://www.nimh.gov.vn/" target="_blank">
+                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-logo.png" alt="" height="50">
+                </a>
                 <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50.png" alt="">
                 <a href="http://www.samhsa.gov/index.aspx" target="_blank">
                     <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-1.png" alt="">
@@ -288,16 +297,16 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
             </div>
             <div class="clearfix">
                 <div class="col-type1">
-                    <?php if ($this->countModules('user-17')) :?>
+                    <?php if ($this->countModules('position-10')) :?>
                     <div class="wrap-foot-item">
-                        <jdoc:include type="modules" name="user-17" />
+                        <jdoc:include type="modules" name="position-10" />
                     </div>
                     <?php endif; ?>
                 </div><!--end: col-type1 -->
                 <div class="col-type1">
-                    <?php if ($this->countModules('user-18')) :?>
+                    <?php if ($this->countModules('position-11')) :?>
                     <div class="wrap-foot-item">
-                        <jdoc:include type="modules" name="user-18" />
+                        <jdoc:include type="modules" name="position-11" />
                     </div>
                     <?php endif; ?>
                 </div><!--end: col-type1 -->

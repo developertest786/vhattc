@@ -12,7 +12,11 @@ defined('_JEXEC') or die;
 
 // Define default image size (do not change)
 K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
-//var_dump($this->item); exit;
+$fields = array();
+foreach ($this->item->extra_fields as $key=>$extraField) {
+    $name = str_replace(' ', '_', strtolower($extraField->name));
+    $fields[$name] = $extraField->value;
+}
 ?>
 
 <!-- Plugins: BeforeDisplay -->
@@ -23,36 +27,31 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 
 <div class="event-item media">
     <div class="duration-time"><!--left-->
-        <div class="box-time">12 Dec 2012 - 15 Dec 2012</div>
+        <div class="box-time"><?php echo $fields['start_date'] ?><?php if ($fields['end_date']) : ?>
+            - <?php echo $fields['start_date'] ?>
+            <?php endif ?>
+        </div>
         <div class="time-left">
-            <span class="line-through"></span>
-            <!--<span class="val"><span class="fw-b">12</span> days left</span>-->
+            <!--<span class="line-through"></span>
+            <span class="val"><span class="fw-b">12</span> days left</span>-->
         </div>
     </div><!--end: left-->
     <div class="media-body">
         <h4 class="name-event rs"><?php echo $this->item->title; ?></h4>
         <?php if(count($this->item->extra_fields)): ?>
         <p class="desc-event rs">
-            <?php foreach ($this->item->extra_fields as $key=>$extraField) {
-                var_dump($extraField); exit; ?>
-            <?php if ($extraField->name == 'Venue') :?>
-            <strong><?php echo $extraField->value; ?></strong><br />
-            <?php endif; ?>
-            <?php if ($extraField->name == 'Type') :?>
-                <strong><?php echo $extraField->value; ?></strong><br />
-            <?php endif; ?>
-            <?php } ?>
+            <?php echo @$fields['type'] ?> - <?php echo @$fields['venue'] ?>
         </p>
         <?php endif; ?>
         <p class="desc-event rs">
             <?php echo $this->item->introtext; ?>
         </p>
-        <!--<p class="rs link-action">
-            <a href="<?php echo $this->item->link; ?>">Read more</a>
+        <p class="rs link-action">
+            <!-- <a href="<?php echo $this->item->link; ?>">Read more</a>
             <span class="sep">|</span>
             <a href="#">Comment</a>
             <span class="sep">|</span>
-            <a href="#"><i class="icon iNote"></i>Register Now</a>
-        </p>-->
+            <a href="#"><i class="icon iNote"></i>Register Now</a> -->
+        </p>
     </div>
 </div>
