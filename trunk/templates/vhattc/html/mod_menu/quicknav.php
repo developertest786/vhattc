@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 // Note. It is important to remove spaces between elements.
 ?>
 
-<div class="quick-nav<?php
+<ul class="quick-nav<?php
     $tag = '';
     if ($params->get('tag_id')!=NULL) {
     $tag = $params->get('tag_id').'';
@@ -51,7 +51,7 @@ defined('_JEXEC') or die;
             $class = ' class="'.trim($class) .'"';
         }
 
-        echo '<div class="grp-lst-nav">';
+        echo '<li class="grp-lst-nav">';
 
         // Render the menu item.
         switch ($item->type) :
@@ -68,7 +68,7 @@ defined('_JEXEC') or die;
 
         // The next item is deeper.
         if ($item->deeper) {
-            echo '<ul>';
+            echo '<ul class="rs lst-nav">';
         }
         // The next item is shallower.
         elseif ($item->shallower) {
@@ -77,11 +77,11 @@ defined('_JEXEC') or die;
         }
         // The next item is on the same level.
         else {
-            echo '</div>';
+            echo '</ul>';
         }
     endforeach;
     ?>
-</div>
+</ul>
 
 <div class="quick-nav">
 <div class="grp-lst-nav">
