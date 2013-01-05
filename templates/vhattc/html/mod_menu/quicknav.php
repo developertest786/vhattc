@@ -67,7 +67,7 @@ defined('_JEXEC') or die;
 
         // The next item is deeper.
         if ($item->deeper) {
-            echo '<ul>';
+            echo '<ul class="rs lst-nav">';
         }
         // The next item is shallower.
         elseif ($item->shallower) {
