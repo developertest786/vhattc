@@ -9,7 +9,6 @@
 
 // no direct access
 defined('_JEXEC') or die;
-
 ?>
 
 <!-- Start K2 Category Layout -->
