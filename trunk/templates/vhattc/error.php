@@ -73,8 +73,10 @@ defined('_JEXEC') or die;
 
 <div id="main-menu">
     <div class="fixCenter1K clearfix">
-        <?php $module = JModuleHelper::getModule( 'menu' );
-        echo JModuleHelper::renderModule( $module);	?>
+        <?php
+        $modules = JModuleHelper::getModules('main-menu');
+        echo JModuleHelper::renderModule($modules[0]);
+        ?>
     </div>
 </div>
 
