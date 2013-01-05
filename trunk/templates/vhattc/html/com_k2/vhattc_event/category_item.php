@@ -31,11 +31,9 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
     </div><!--end: left-->
     <div class="media-body">
         <h4 class="name-event rs"><?php echo $this->item->title; ?></h4>
-        <?php
-        var_dump(count($this->item->extra_fields), $this->item->extra_fields); die;
-        if(count($this->item->extra_fields)): ?>
+        <?php if(count($this->item->extra_fields)): ?>
         <p class="desc-event rs">
-            <?php foreach ($this->item->extra_fields as $key=>$extraField):
+            <?php foreach ($this->item->extra_fields as $key=>$extraField) {
                 var_dump($extraField); exit; ?>
             <?php if ($extraField->name == 'Venue') :?>
             <strong><?php echo $extraField->value; ?></strong><br />
@@ -43,7 +41,7 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
             <?php if ($extraField->name == 'Type') :?>
                 <strong><?php echo $extraField->value; ?></strong><br />
             <?php endif; ?>
-            <?php endforeach ?>
+            <?php } ?>
         </p>
         <?php endif; ?>
         <p class="desc-event rs">
