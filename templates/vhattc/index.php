@@ -277,6 +277,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     <div id="footer">
         <div class="fixCenter1K">
             <div class="top-thumb">
+                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-logo.png" alt="" height="50">
                 <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50.png" alt="">
                 <a href="http://www.samhsa.gov/index.aspx" target="_blank">
                     <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-1.png" alt="">
@@ -297,31 +298,6 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                     <?php if ($this->countModules('user-18')) :?>
                     <div class="wrap-foot-item">
                         <jdoc:include type="modules" name="user-18" />
-                        <!-- <h5 class="rs title">Quick Links</h5>
-                        <ul class="rs">
-                            <li>
-
-                                <a href="#">NIDA/SAMHSA Blending Initiative</a>
-                            </li>
-                            <li>
-                                <a href="#">Leadership Initiative</a>
-                            </li>
-                            <li>
-                                <a href="#">Directory of Addiction Study Programs (DASP)</a>
-                            </li>
-                            <li>
-                                <a href="#">Certification Information</a>
-                            </li>
-                            <li>
-                                <a href="#">Featured Topics Library</a>
-                            </li>
-                            <li>
-                                <a href="#">Addiction Messenger</a>
-                            </li>
-                            <li>
-                                <a href="#">AddictionCarreers.org</a>
-                            </li>
-                        </ul>-->
                     </div>
                     <?php endif; ?>
                 </div><!--end: col-type1 -->
