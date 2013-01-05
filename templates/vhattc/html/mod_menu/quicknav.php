@@ -11,17 +11,16 @@ defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
 ?>
-
-<ul class="quick-nav<?php
+<ul class="quick-nav menu <?php echo $class_sfx;?>"<?php
     $tag = '';
     if ($params->get('tag_id')!=NULL) {
-    $tag = $params->get('tag_id').'';
-    echo ' id="'.$tag.'"';
+        $tag = $params->get('tag_id').'';
+        echo ' id="'.$tag.'"';
     }
     ?>>
     <?php
     foreach ($list as $i => &$item) :
-        $class = 'item-'.$item->id;
+        $class = 'grp-lst-nav';
         if ($item->id == $active_id) {
             $class .= ' current';
         }
@@ -40,7 +39,7 @@ defined('_JEXEC') or die;
         }
 
         if ($item->deeper) {
-            $class .= ' deeper';
+            $class = '';
         }
 
         if ($item->parent) {
@@ -51,7 +50,7 @@ defined('_JEXEC') or die;
             $class = ' class="'.trim($class) .'"';
         }
 
-        echo '<li class="grp-lst-nav">';
+        echo '<li'.$class.'>';
 
         // Render the menu item.
         switch ($item->type) :
@@ -68,7 +67,7 @@ defined('_JEXEC') or die;
 
         // The next item is deeper.
         if ($item->deeper) {
-            echo '<ul class="rs lst-nav">';
+            echo '<ul>';
         }
         // The next item is shallower.
         elseif ($item->shallower) {
@@ -77,7 +76,7 @@ defined('_JEXEC') or die;
         }
         // The next item is on the same level.
         else {
-            echo '</ul>';
+            echo '</li>';
         }
     endforeach;
     ?>
