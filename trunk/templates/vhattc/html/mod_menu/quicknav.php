@@ -51,7 +51,7 @@ defined('_JEXEC') or die;
             $class = ' class="'.trim($class) .'"';
         }
 
-        echo '<li'.$class.'>';
+        echo '<div class="grp-lst-nav">';
 
         // Render the menu item.
         switch ($item->type) :
@@ -77,7 +77,7 @@ defined('_JEXEC') or die;
         }
         // The next item is on the same level.
         else {
-            echo '</li>';
+            echo '</div>';
         }
     endforeach;
     ?>
