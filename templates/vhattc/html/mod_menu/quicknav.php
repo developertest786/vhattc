@@ -51,7 +51,6 @@ defined('_JEXEC') or die;
             $class = ' class="'.trim($class) .'"';
         }
 
-        echo '<li class="sep"></li>';
         echo '<li'.$class.'>';
 
         // Render the menu item.
@@ -82,4 +81,32 @@ defined('_JEXEC') or die;
         }
     endforeach;
     ?>
+</div>
+
+<div class="quick-nav">
+<div class="grp-lst-nav">
+    <h4 class="rs title"><a href="#">Who we are</a></h4>
+</div><!--end: div.grp-lst-nav -->
+<div class="grp-lst-nav">
+    <h4 class="rs title"><a href="#">What we do</a></h4>
+    <ul class="rs lst-nav">
+        <li><a href="#">Technology tranfer</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+    </ul>
+</div><!--end: div.grp-lst-nav -->
+<div class="grp-lst-nav">
+    <h4 class="rs title"><a href="#">Who we service</a></h4>
+    <ul class="rs lst-nav">
+        <li><a href="#">Technology tranfer</a></li>
+        <li><a href="#">Training</a></li>
+        <li><a href="#">Lorem ipsum dolor</a></li>
+    </ul>
+</div><!--end: div.grp-lst-nav -->
+<div class="grp-lst-nav">
+    <h4 class="rs title"><a href="#">Partnered</a></h4>
+</div><!--end: div.grp-lst-nav -->
+<div class="grp-lst-nav">
+    <h4 class="rs title"><a href="#">Organizations</a></h4>
+</div><!--end: div.grp-lst-nav -->
 </div>
