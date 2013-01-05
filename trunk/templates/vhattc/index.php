@@ -152,121 +152,17 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
         <jdoc:include type="message" />
         <jdoc:include type="component" />
 
-        <?php if ($this->countModules('user5') and $this->countModules('user6')) :?>
+        <?php if ($this->countModules('user5 or user6 or user7 or user8')) :?>
         <div class="row c2 l656">
             <div class="col">
-                <div class="block lst-training">
-                    <h3 class="title rs">
-                        Upcomming training programs
-                        <a href="#" class="more">
-                            View more
-                            <i class="icon iPickReadR"></i>
-                        </a>
-                    </h3>
-                    <div class="block-content">
-                        <div class="train-item">
-                            <h4 class="rs">Training the Trainers</h4>
-                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
-                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
-                            <div class="link-action">
-                                <span>
-                                    <a href="#">Read more</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iComment"></i>
-                                    <a href="#">6 Comments</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iNote"></i>
-                                    <a href="#">Register</a>
-                                </span>
-                            </div>
-                        </div><!--end: train-item-->
-                        <div class="train-item">
-                            <h4 class="rs">Training the Trainers</h4>
-                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
-                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
-                            <div class="link-action">
-                                <span>
-                                    <a href="#">Read more</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iComment"></i>
-                                    <a href="#">6 Comments</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iNote"></i>
-                                    <a href="#">Register</a>
-                                </span>
-                            </div>
-                        </div><!--end: train-item-->
-                        <div class="train-item">
-                            <h4 class="rs">Training the Trainers</h4>
-                            <p class="rs date">From 10 Dec - 12 Dec 2012</p>
-                            <p class="rs desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tristique mauris ac lacus venenatis facilisis. Donec feugiat massa at massa porttito</p>
-                            <div class="link-action">
-                                <span>
-                                    <a href="#">Read more</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iComment"></i>
-                                    <a href="#">6 Comments</a>
-                                </span>
-                                <span class="sep">|</span>
-                                <span>
-                                    <i class="icon iNote"></i>
-                                    <a href="#">Register</a>
-                                </span>
-                            </div>
-                        </div><!--end: train-item-->
-                    </div>
-                </div>
+                <jdoc:include type="modules" name="user5" />
             </div>
+
+            <!---- -->
             <div class="col">
-                <div class="block lst-resources">
-                    <h3 class="title rs">
-                        Resources
-                        <a href="#" class="more">
-                            View more
-                            <i class="icon iPickReadR"></i>
-                        </a>
-                    </h3>
-                    <div class="block-content">
-                        <div class="wrap-lst-resource">
-                            <div class="resource-item">
-                                <h4 class="rs">Webinar</h4>
-                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
-                            </div>
-                            <div class="resource-item">
-                                <h4 class="rs">Webinar</h4>
-                                <p class="rs">Topics currently available in this online library explore issues such as prescription</p>
-                            </div>
-                        </div>
-                        <form class="search-resource clearfix">
-                            <label for="keyword">
-                                <input id="keyword" type="text" placeholder="search resource">
-                            </label>
-                            <input type="submit" value="find">
-                        </form>
-                    </div>
-                </div><!-- end: lst-resources-->
-                <div class="block lst-partner-trained">
-                    <h3 class="title rs">
-                        training by our partners
-                    </h3>
-                    <div class="block-content">
-                        <ul class="wrap-lst rs">
-                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                            <li>Cras eu felis in lorem interdum lobortis</li>
-                            <li>Duis sagittis ipsum vel lacus facilisis et cursus ipsum fermentum</li>
-                        </ul>
-                    </div>
-                </div><!-- end: lst-partner-trained-->
+                <jdoc:include type="modules" name="user6" />
+                <jdoc:include type="modules" name="user7" />
+                <jdoc:include type="modules" name="user8" />
             </div>
         </div>
         <?php endif; ?>
@@ -275,8 +171,8 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
     </div>
 
     <!-- BEGIN SLIDE PARTNERS -->
-    <?php if ($this->countModules('user7')) : ?>
-    <jdoc:include type="modules" name="user7" />
+    <?php if ($this->countModules('user9')) : ?>
+    <jdoc:include type="modules" name="user9" />
     <?php endif; ?>
     <!-- END SLIDE PARTNERS -->
 
