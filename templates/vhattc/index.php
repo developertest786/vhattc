@@ -144,35 +144,37 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
 
     <?php if ($isAboutPage) :?>
         <div id="about-page" class="row l260 faux-left-gray fixCenter1K">
-            <!-- quick nav -->
-            <div class="quick-nav">
-                <div class="grp-lst-nav">
-                    <h4 class="rs title"><a href="#">Who we are</a></h4>
-                </div><!--end: div.grp-lst-nav -->
-                <div class="grp-lst-nav">
-                    <h4 class="rs title"><a href="#">What we do</a></h4>
-                    <ul class="rs lst-nav">
-                        <li><a href="#">Technology tranfer</a></li>
-                        <li><a href="#">Training</a></li>
-                        <li><a href="#">Lorem ipsum dolor</a></li>
-                    </ul>
-                </div><!--end: div.grp-lst-nav -->
-                <div class="grp-lst-nav">
-                    <h4 class="rs title"><a href="#">Who we service</a></h4>
-                    <ul class="rs lst-nav">
-                        <li><a href="#">Technology tranfer</a></li>
-                        <li><a href="#">Training</a></li>
-                        <li><a href="#">Lorem ipsum dolor</a></li>
-                    </ul>
-                </div><!--end: div.grp-lst-nav -->
-                <div class="grp-lst-nav">
-                    <h4 class="rs title"><a href="#">Partnered</a></h4>
-                </div><!--end: div.grp-lst-nav -->
-                <div class="grp-lst-nav">
-                    <h4 class="rs title"><a href="#">Organizations</a></h4>
-                </div><!--end: div.grp-lst-nav -->
+                <div class="col col-type1">
+                <!-- quick nav -->
+                <div class="quick-nav">
+                    <div class="grp-lst-nav">
+                        <h4 class="rs title"><a href="#">Who we are</a></h4>
+                    </div><!--end: div.grp-lst-nav -->
+                    <div class="grp-lst-nav">
+                        <h4 class="rs title"><a href="#">What we do</a></h4>
+                        <ul class="rs lst-nav">
+                            <li><a href="#">Technology tranfer</a></li>
+                            <li><a href="#">Training</a></li>
+                            <li><a href="#">Lorem ipsum dolor</a></li>
+                        </ul>
+                    </div><!--end: div.grp-lst-nav -->
+                    <div class="grp-lst-nav">
+                        <h4 class="rs title"><a href="#">Who we service</a></h4>
+                        <ul class="rs lst-nav">
+                            <li><a href="#">Technology tranfer</a></li>
+                            <li><a href="#">Training</a></li>
+                            <li><a href="#">Lorem ipsum dolor</a></li>
+                        </ul>
+                    </div><!--end: div.grp-lst-nav -->
+                    <div class="grp-lst-nav">
+                        <h4 class="rs title"><a href="#">Partnered</a></h4>
+                    </div><!--end: div.grp-lst-nav -->
+                    <div class="grp-lst-nav">
+                        <h4 class="rs title"><a href="#">Organizations</a></h4>
+                    </div><!--end: div.grp-lst-nav -->
+                </div>
+                <!-- end quick nav -->
             </div>
-            <!-- end quick nav -->
             <div class="col col-type2">
                 <div class="text-content">
                     <jdoc:include type="component" />
