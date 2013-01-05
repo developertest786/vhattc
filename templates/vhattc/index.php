@@ -248,16 +248,16 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                 </div><!--end: col-type1 -->
                 <div class="col-type2">
                     <div class="wrap-foot-item">
-                        <h5 class="rs title">Connect with us</h5>
+                        <h5 class="rs title">Find us on Facebook</h5>
                         <div class="social-contact">
-                            <a href="#">
+                            <a href="https://www.facebook.com/vhattc" target="_blank">
                                 <i class="icon iFb"></i>
                             </a>
-                            <a href="#">
+                            <!--<a href="#">
                                 <i class="icon iTw"></i>
-                            </a>
+                            </a>-->
                         </div>
-                        <h5 class="rs title">Email to Subcrible</h5>
+                        <!--<h5 class="rs title">Email to Subcrible</h5>
                         <form class="email-subcrible clearfix" name="email">
                             <label for="email-subcrible">
                                 <input type="text" id="email-subcrible" placeholder="Your email">
@@ -265,6 +265,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                             </label>
                             <input type="submit" value="Send">
                         </form>
+                        -->
                     </div>
                 </div>
             </div>
