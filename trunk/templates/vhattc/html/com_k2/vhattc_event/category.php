@@ -24,25 +24,25 @@ defined('_JEXEC') or die;
                 <?php foreach ($this->leading as $leading) : ?>
                 <?php
                     $this->item=$leading;
+                    $this->item->extra_fields = K2ModelItem::getItemExtraFields($this->item->extra_fields);
                     echo $this->loadTemplate('item');
                 ?>
                 <!--END: event-item-->
                 <?php endforeach; ?>
             </div>
         </div>
+
+        <!-- Pagination -->
+        <?php if(count($this->pagination->getPagesLinks())): ?>
         <div class="news-paging">
             <div class="line-through"></div>
-                <span class="wrap-pager">
-                    <a href="#" class="nobor">Prev</a>
-                    <a href="#">1</a>
-                    <a href="#">...</a>
-                    <a href="#">3</a>
-                    <a href="#" class="active">4</a>
-                    <a href="#">5</a>
-                    <a href="#">...</a>
-                    <a href="#" class="nobor">Next</a>
-                </span>
+            <?php if($this->params->get('catPagination')) echo $this->pagination->getPagesLinks(); ?>
+            <!--<div class="clr"></div>
+            <?php if($this->params->get('catPaginationResults')) echo $this->pagination->getPagesCounter(); ?>
+            -->
         </div>
+        <?php endif; ?>
+
     </div>
     <div class="col">
         <div id="datepicker_custom"></div>
