@@ -1188,7 +1188,6 @@ class K2ModelItem extends K2Model
                         if ($rows[$i]->type == 'date' && $value)
                         {
                             $offset = (K2_JVERSION != '15') ? null : 0;
-                            var_dump(JText::_('K2_DATE_FORMAT_LC')); exit;
                             $value = JHTML::_('date', $value, JText::_('K2_DATE_FORMAT_LC'), $offset);
                         }
 
