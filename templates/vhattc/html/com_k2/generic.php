@@ -9,135 +9,93 @@
 
 // no direct access
 defined('_JEXEC') or die;
-
 ?>
 
-<!-- Start K2 Generic (search/date) Layout -->
-<div id="k2Container" class="genericView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
 
-    <?php if($this->params->get('show_page_title')): ?>
-    <!-- Page title -->
-    <div class="componentheading<?php echo $this->params->get('pageclass_sfx')?>">
-        <?php echo $this->escape($this->params->get('page_title')); ?>
-    </div>
-    <?php endif; ?>
-
-    <?php if($this->params->get('genericFeedIcon',1)): ?>
-    <!-- RSS feed icon -->
-    <div class="k2FeedIcon">
-        <a href="<?php echo $this->feed; ?>" title="<?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?>">
-            <span><?php echo JText::_('K2_SUBSCRIBE_TO_THIS_RSS_FEED'); ?></span>
-        </a>
-        <div class="clr"></div>
-    </div>
-    <?php endif; ?>
-
-    <?php if(count($this->items)): ?>
-    <div class="genericItemList">
-        <?php foreach($this->items as $item): ?>
-
-        <!-- Start K2 Item Layout -->
-        <div class="genericItemView">
-
-            <div class="genericItemHeader">
-                <?php if($this->params->get('genericItemDateCreated')): ?>
-                <!-- Date created -->
-                <span class="genericItemDateCreated">
-					<?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC2')); ?>
-				</span>
-                <?php endif; ?>
-
-                <?php if($this->params->get('genericItemTitle')): ?>
-                <!-- Item title -->
-                <h2 class="genericItemTitle">
-                    <?php if ($this->params->get('genericItemTitleLinked')): ?>
-                    <a href="<?php echo $item->link; ?>">
-                        <?php echo $item->title; ?>
-                    </a>
-                    <?php else: ?>
-                    <?php echo $item->title; ?>
-                    <?php endif; ?>
-                </h2>
-                <?php endif; ?>
-            </div>
-
-            <div class="genericItemBody">
-                <?php if($this->params->get('genericItemImage') && !empty($item->imageGeneric)): ?>
-                <!-- Item Image -->
-                <div class="genericItemImageBlock">
-				  <span class="genericItemImage">
-				    <a href="<?php echo $item->link; ?>" title="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>">
-                        <img src="<?php echo $item->imageGeneric; ?>" alt="<?php if(!empty($item->image_caption)) echo K2HelperUtilities::cleanHtml($item->image_caption); else echo K2HelperUtilities::cleanHtml($item->title); ?>" style="width:<?php echo $this->params->get('itemImageGeneric'); ?>px; height:auto;" />
-                    </a>
-				  </span>
-                    <div class="clr"></div>
+<!-- Start K2 Category Layout -->
+<div id="training-event" class="row l656 fixCenter1K itemListView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
+    <div class="col">
+        <?php if (empty($this->items)) :?>
+            <div style="margin:100px 0;"><p align="center"><?php JText::_('COM_CONTENT_NO_ARTICLES') ?></p></div>;
+            <?php else : ?>
+            <div class="all-event">
+                <?php if(isset($this->category) || ( $this->params->get('subCategories') && isset($this->subCategories) && count($this->subCategories) )): ?>
+                <div class="quick-filter">
+                    <!--<span class="fw-b">All:</span> <a href="#">Upcoming Events</a>  /  <a href="#">Past Events</a>-->
+                    <?php echo $this->category->name; ?>
                 </div>
                 <?php endif; ?>
+                <div class="lst-event">
+                    <?php foreach ($this->items as $item) : ?>
+                    <?php
+                    $this->item=$item;
+                    $this->item->extra_fields = K2ModelItem::getItemExtraFields($this->item->extra_fields);
+                    $fields = array();
+                    foreach ($this->item->extra_fields as $key=>$extraField) {
+                        $name = str_replace(' ', '_', strtolower($extraField->name));
+                        $fields[$name] = $extraField->value;
+                    }
+    //                echo $this->loadTemplate('item');
+                    ?>
+                    <div class="event-item media">
+                        <div class="duration-time"><!--left-->
+                            <div class="box-time"><?php echo $fields['start_date'] ?><?php if ($fields['end_date']) : ?>
+                                - <?php echo $fields['start_date'] ?>
+                                <?php endif ?>
+                            </div>
+                            <div class="time-left">
+                                <!--<span class="line-through"></span>
+                                <span class="val"><span class="fw-b">12</span> days left</span>-->
+                            </div>
+                        </div><!--end: left-->
+                        <div class="media-body">
+                            <h4 class="name-event rs"><?php echo $this->item->title; ?></h4>
+                            <?php if(count($this->item->extra_fields)): ?>
+                            <p class="desc-event rs">
+                                <?php echo @$fields['type'] ?> - <?php echo @$fields['venue'] ?>
+                            </p>
+                            <?php endif; ?>
+                            <p class="desc-event rs">
+                                <?php echo $this->item->introtext; ?>
+                            </p>
+                            <p class="rs link-action">
+                                <!-- <a href="<?php echo $this->item->link; ?>">Read more</a>
+                <span class="sep">|</span>
+                <a href="#">Comment</a>
+                <span class="sep">|</span>
+                <a href="#"><i class="icon iNote"></i>Register Now</a> -->
+                            </p>
+                        </div>
+                    </div>
 
-                <?php if($this->params->get('genericItemIntroText')): ?>
-                <!-- Item introtext -->
-                <div class="genericItemIntroText">
-                    <?php echo $item->introtext; ?>
-                </div>
-                <?php endif; ?>
-
-                <div class="clr"></div>
-            </div>
-
-            <div class="clr"></div>
-
-            <?php if($this->params->get('genericItemExtraFields') && count($item->extra_fields)): ?>
-            <!-- Item extra fields -->
-            <div class="genericItemExtraFields">
-                <h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
-                <ul>
-                    <?php foreach ($item->extra_fields as $key=>$extraField): ?>
-                    <?php if($extraField->value): ?>
-                        <li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?>">
-                            <span class="genericItemExtraFieldsLabel"><?php echo $extraField->name; ?></span>
-                            <span class="genericItemExtraFieldsValue"><?php echo $extraField->value; ?></span>
-                        </li>
-                        <?php endif; ?>
+                    <!--END: event-item-->
                     <?php endforeach; ?>
-                </ul>
-                <div class="clr"></div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <?php if(count($this->pagination->getPagesLinks())): ?>
+            <div class="news-paging">
+                <div class="line-through"></div>
+                <?php echo $this->pagination->getPagesLinks(); ?>
+                <!--<div class="clr"></div>
+                <?php echo $this->pagination->getPagesCounter(); ?>
+                -->
             </div>
             <?php endif; ?>
 
-            <?php if($this->params->get('genericItemCategory')): ?>
-            <!-- Item category name -->
-            <div class="genericItemCategory">
-                <span><?php echo JText::_('K2_PUBLISHED_IN'); ?></span>
-                <a href="<?php echo $item->category->link; ?>"><?php echo $item->category->name; ?></a>
-            </div>
-            <?php endif; ?>
-
-            <?php if ($this->params->get('genericItemReadMore')): ?>
-            <!-- Item "read more..." link -->
-            <div class="genericItemReadMore">
-                <a class="k2ReadMore" href="<?php echo $item->link; ?>">
-                    <?php echo JText::_('K2_READ_MORE'); ?>
-                </a>
-            </div>
-            <?php endif; ?>
-
-            <div class="clr"></div>
-        </div>
-        <!-- End K2 Item Layout -->
-
-        <?php endforeach; ?>
-    </div>
-
-    <!-- Pagination -->
-    <?php if($this->pagination->getPagesLinks()): ?>
-        <div class="k2Pagination">
-            <?php echo $this->pagination->getPagesLinks(); ?>
-            <div class="clr"></div>
-            <?php echo $this->pagination->getPagesCounter(); ?>
-        </div>
         <?php endif; ?>
 
-    <?php endif; ?>
-
+    </div>
+    <div class="col">
+        <div id="training-page">
+            <?php
+            $modules =  JModuleHelper::getModules('right');
+            foreach ($modules as $module) {
+                echo JModuleHelper::renderModule($module);
+            }
+            ?>
+        </div>
+    </div>
 </div>
-<!-- End K2 Generic (search/date) Layout -->
+<!-- End K2 Category Layout -->
