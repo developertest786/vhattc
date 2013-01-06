@@ -6,7 +6,9 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$(function () {
+$j = jQuery.noConflict();
+
+$j(function () {
     /*--language--*/
     $("#sys-lst-language").on("click", "li", function () {
         var lang = $(this).data('lang');
@@ -34,4 +36,20 @@ $(function () {
     if($("#slider_partner").length>0) {
         $("#slider_partner").tinycarousel();
     }
+
+    $(".my-calendar-click").live('click', function (event) {
+        alert('ha ha ha'); return;
+        event.preventDefault();
+        //var parentElement = $K2(this).parent().parent().parent().parent();
+        var url = $K2(this).attr('href');
+        parentElement.empty().addClass('k2CalendarLoader');
+        $.ajax({
+            url: url,
+            type: 'post',
+            success: function(response){
+                $("#datepicker_custom").html(response);
+                parentElement.removeClass('k2CalendarLoader');
+            }
+        });
+    });
 });
