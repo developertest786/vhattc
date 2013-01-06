@@ -45,14 +45,23 @@ defined('_JEXEC') or die;
 
     </div>
     <div class="col">
-        <div id="datepicker_custom"></div>
+        <div id="training-page">
+        <?php
+            $modules =  JModuleHelper::getModules('right');
+            foreach ($modules as $module) {
+                echo JModuleHelper::renderModule($module);
+            }
+        ?>
+        </div>
 
+        <!--
         <form class="search-box-common clearfix">
             <label for="keyword">
                 <input id="keyword" type="text" placeholder="Search article...">
             </label>
             <input type="submit" value="find">
         </form>
+        -->
 
         <div class="block articles-archive">
             <h3 class="title">Archive</h3>

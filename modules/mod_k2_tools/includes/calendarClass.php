@@ -260,16 +260,16 @@ class Calendar
     	    $prevMonth = "";
     	    $nextMonth = "";
     	}
-    	
+
     	$header = $monthName . (($showYear > 0) ? " " . $year : "");
-    	
+
     	$s .= "<table class=\"calendar\">\n";
-    	$s .= "<tr>\n";
-    	$s .= "<td class=\"calendarNavMonthPrev\">" . (($prevMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$prevMonth\">&laquo;</a>")  . "</td>\n";
-    	$s .= "<td class=\"calendarCurrentMonth\" colspan=\"5\">$header</td>\n"; 
-    	$s .= "<td class=\"calendarNavMonthNext\">" . (($nextMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$nextMonth\">&raquo;</a>")  . "</td>\n";
-    	$s .= "</tr>\n";
-    	
+    	$s .= "<thead class=\"switch_mouth\">\n";
+    	$s .= "<td class=\"calendarNavMonthPrev\">" . (($prevMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$prevMonth\"><span class=\"ui-icon ui-icon-circle-triangle-w\">&nbsp;</span></a>")  . "</td>\n";
+    	$s .= "<td class=\"calendarCurrentMonth\" colspan=\"5\">$header</td>\n";
+    	$s .= "<td class=\"calendarNavMonthNext\">" . (($nextMonth == "") ? "&nbsp;" : "<a class=\"calendarNavLink\" href=\"$nextMonth\"><span class=\"ui-icon ui-icon-circle-triangle-e\">&nbsp;</span></a>")  . "</td>\n";
+    	$s .= "</thead>\n";
+
     	$s .= "<tr>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay)%7] . "</td>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+1)%7] . "</td>\n";
@@ -279,6 +279,48 @@ class Calendar
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+5)%7] . "</td>\n";
     	$s .= "<td class=\"calendarDayName\" style=\"width:".round(100/7)."%\">" . $this->dayNames[($this->startDay+6)%7] . "</td>\n";
     	$s .= "</tr>\n";
+
+        ////
+        $s = '<div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
+                <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
+                    <a href="' .$prevMonth .'" class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="Prev">
+                        <span class="ui-icon ui-icon-circle-triangle-w">Prev</span>
+                    </a>
+                    <a href="' .$nextMonth .'" class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next">
+                        <span class="ui-icon ui-icon-circle-triangle-e">Next</span>
+                    </a>
+                    <div class="ui-datepicker-title"><span class="ui-datepicker-month">' .$monthName .'</span>&nbsp;<span class="ui-datepicker-year">' .$year .'</span>
+                    </div>
+                </div>';
+        $s .= '<table class="ui-datepicker-calendar">
+                <thead>
+                    <tr>
+                        <th class="ui-datepicker-week-end">
+                            <span title="Monday">' .$this->dayNames[($this->startDay)%7] .'</span>
+                        </th>
+                        <th>
+                            <span title="Tuesday">'. $this->dayNames[($this->startDay+1)%7] .'</span>
+                        </th>
+                        <th>
+                            <span title="Wednesday">'. $this->dayNames[($this->startDay+2)%7] .'</span>
+                        </th>
+                        <th>
+                            <span title="Thursday">'. $this->dayNames[($this->startDay+3)%7] .'</span>
+                        </th>
+                        <th>
+                            <span title="Friday">'. $this->dayNames[($this->startDay+4)%7] .'</span>
+                        </th>
+                        <th>
+                            <span title="Saturday">'. $this->dayNames[($this->startDay+5)%7] .'</span>
+                        </th>
+                        <th class="ui-datepicker-week-end">
+                            <span title="Sunday">'. $this->dayNames[($this->startDay+6)%7] .'</span>
+                        </th>
+                    </tr>
+                </thead>';
+
+        $s .= '<tbody>';
+
     	
     	// We need to work out what date to start at so that the first appears in the correct column
     	$d = $this->startDay + 1 - $first;
@@ -314,7 +356,7 @@ class Calendar
     	    $s .= "</tr>\n";    
     	}
     	
-    	$s .= "</table>\n";
+    	$s .= "</tbody></table></div>\n";
     	
     	return $s;  	
     }

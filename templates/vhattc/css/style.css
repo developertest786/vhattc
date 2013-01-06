@@ -1263,7 +1263,7 @@ textarea {
     left: auto;
     right: 7px;
 }
-#datepicker_custom .ui-icon-circle-triangle-w {
+#datepicker_custom .ui-icon-circle-triangle-w, .calendar .ui-icon-circle-triangle-w {
     background: transparent url("../images/sprites.png?v=1.12") no-repeat;
     border: none;
     display: inline-block;
@@ -1276,7 +1276,7 @@ textarea {
     background-position: -79px 0;
     text-indent: -9999px;
 }
-#datepicker_custom .ui-icon-circle-triangle-e {
+#datepicker_custom .ui-icon-circle-triangle-e, .calendar .ui-icon-circle-triangle-e {
     background: transparent url("../images/sprites.png?v=1.12") no-repeat;
     border: none;
     display: inline-block;
@@ -1315,18 +1315,23 @@ textarea {
 #datepicker_custom table td.ui-datepicker-other-month {
     background: #e2e1e1;
 }
-#datepicker_custom table td.ui-datepicker-today {
-    background: #bfbebe;
+#datepicker_custom table td.ui-datepicker-today, td.calendarToday {
+    background: #bfbebe !important;
 }
-#datepicker_custom table td.ui-datepicker-today a {
-    color: #666;
+#datepicker_custom table td.ui-datepicker-today a, td.calendarToday {
+    color: #666 !important;
 }
-#datepicker_custom table td.ui-datepicker-current-day {
-    background: #004781;
+#datepicker_custom table td.ui-datepicker-current-day, td.calendarToday {
+    background: #004781 !important;
 }
-#datepicker_custom table td.ui-datepicker-current-day a {
-    color: #FFF;
+#datepicker_custom table td.ui-datepicker-current-day a, td.calendarToday {
+    color: #FFF !important;
 }
+
+.calendarDateLinked a {
+    color: #004781 !important;
+}
+
 /* -------------  Articles Archive ------------- */
 .articles-archive {
     margin-bottom: 10px;
@@ -1594,4 +1599,24 @@ textarea {
 #training-event .link-action .iNote {
     vertical-align: -2px;
     margin-right: 5px;
+}
+
+#training-page table.calendar {
+    width: 100%;
+}
+
+#training-page table.calendar tr{
+    width: 100%;
+}
+
+#training-page table.calendar .switch_mouth {
+    width: 100%;
+    border-bottom: 1px solid white;
+    line-height: 40px;
+    font-size: 1.167em;
+}
+
+#training-page table.calendar .switch_mouth a {
+    display: block;
+    text-align: center;
 }
