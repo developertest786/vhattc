@@ -1123,8 +1123,25 @@ class MyCalendar extends Calendar
             $accessCheck = " access <= {$aid}";
         }
 
-        //$query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE (extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%' OR YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day}) AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+        $query = "SELECT COUNT(*)
+                    FROM #__k2_items AS i
+//                        WHERE ((YEAR(i.created)={$year} AND MONTH(i.created)={$month} AND DAY(i.created)={$day}))
+                            AND i.published=1
+                            AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
+                            AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                            AND i.trash=0 AND {$accessCheck} {$languageCheck}
+                            AND EXISTS(SELECT * FROM #__k2_categories
+                                WHERE i.id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+        $query = "SELECT COUNT(*) FROM #__k2_items AS i
+                    WHERE i.id IN (SELECT item_id FROM #__k2_item_ef_value WHERE item_id = i.id
+                                    AND YEAR(date_value) = {$year}
+                                    AND MONTH(date_value) = {$month}
+                                    AND DAY(date_value) = {$day})
+                        AND i.published=1
+                        AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
+                        AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                        AND i.trash=0 AND {$accessCheck} {$languageCheck}
+                        AND EXISTS(SELECT * FROM #__k2_categories WHERE id= i.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
         $catid = $this->category;
         if ($catid > 0)
