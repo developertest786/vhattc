@@ -34,7 +34,6 @@ class K2ControllerItemlist extends K2Controller
         }
         parent::display($cache);
     }
-
     function calendar()
     {
         require_once (JPATH_SITE.DS.'modules'.DS.'mod_k2_tools'.DS.'includes'.DS.'calendarClass.php');

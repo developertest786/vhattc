@@ -161,7 +161,7 @@ class K2ModelItemlist extends K2Model
                     $t .= ' AND (';
                     $month = JRequest::getInt('month');
                     $year = JRequest::getInt('year');
-                    $t .= "(MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
+                    $t .= "MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
                     if (JRequest::getInt('day'))
                     {
                         $day = JRequest::getInt('day');
@@ -171,11 +171,15 @@ class K2ModelItemlist extends K2Model
                     $t .=')';
 
                     if ($day) {
-                        $t .= " OR (i.extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%'))";
+                        $t .= " OR (i.id IN (SELECT item_id FROM #__k2_item_ef_value
+                                WHERE item_id = i.id AND MONTH(date_value) = {$month}
+                                    AND YEAR(date_value)= {$year}
+                                    AND DAY(date_value) = {$day}))";
                     } else {
-                        $t .= " OR (i.extra_fields LIKE '%\"value\":\"{$year}-{$month}%'))";
+                        $t .= " OR (i.id IN (SELECT item_id FROM #__k2_item_ef_value
+                                WHERE item_id = i.id AND MONTH(date_value) = {$month}
+                                    AND YEAR(date_value)= {$year}))";
                     }
-
 
                     $query .= $t;
                 }
