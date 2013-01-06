@@ -156,6 +156,75 @@ class modK2ToolsHelper
 
     public static function getArchive(&$params)
     {
+        $mainframe = JFactory::getApplication();
+        $user = JFactory::getUser();
+        $aid = (int)$user->get('aid');
+        $db = JFactory::getDBO();
+
+        $jnow = JFactory::getDate();
+        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+
+        $nullDate = $db->getNullDate();
+
+        $query = "SELECT * FROM #__k2_items WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
+        if (K2_JVERSION != '15')
+        {
+            $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+            if ($mainframe->getLanguageFilter())
+            {
+                $languageTag = JFactory::getLanguage()->getTag();
+                $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
+            }
+        }
+        else
+        {
+            $query .= " AND access<={$aid} ";
+        }
+        $catid = $params->get('archiveCategory', 0);
+        if ($catid > 0)
+            $query .= " AND catid=".(int)$catid;
+
+        $query .= " ORDER BY created DESC";
+        $db->setQuery($query);
+        $rows = $db->loadObjectList();
+
+        $archives = array();
+        if (count($rows))
+        {
+            foreach ($rows as $row)
+            {
+
+                $extra_fields = K2ModelItem::getItemExtraFields($row->extra_fields);
+                foreach ($extra_fields as $extra_field) {
+                    $name = str_replace(' ', '_', strtolower($extra_field->name));
+//                    var_dump($row->extra_fields, $extra_field->id);
+                    if ($name == 'start_date') {
+                        $date = new DateTime($extra_field->value);
+                        $month = $date->format('m-Y');
+                        if (isset($archives[$month])) {
+                            $t = $archives[$month];
+                        } else {
+                            $t = new stdClass();
+                            $t->total = 0;
+                        }
+                        $t->name = $date->format('m');
+                        $t->m = $date->format('m');
+                        $t->y = $date->format('Y');
+                        $t->total++;
+
+                        $archives[$month] = $t;
+                        if (sizeof($archives) == 12) {
+                            break;
+                        }
+                    }
+                }
+
+            }
+//            var_dump($archives); exit;
+            return $archives;
+        }
+
+        return null;
 
         $mainframe = JFactory::getApplication();
         $user = JFactory::getUser();

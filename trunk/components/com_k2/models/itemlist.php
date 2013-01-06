@@ -150,15 +150,7 @@ class K2ModelItemlist extends K2Model
             case 'date' :
                 if ((JRequest::getInt('month')) && (JRequest::getInt('year')))
                 {
-                    $t = '(';
-                    $month = JRequest::getInt('month');
-                    $year = JRequest::getInt('year');
-                    $t .= " MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
-                    if (JRequest::getInt('day'))
-                    {
-                        $day = JRequest::getInt('day');
-                        $t .= " AND DAY(i.created) = {$day}";
-                    }
+                    $t = '';
 
                     if (JRequest::getInt('catid'))
                     {
@@ -166,7 +158,26 @@ class K2ModelItemlist extends K2Model
                         $t .= " AND i.catid={$catid}";
                     }
 
-                    $query .= " AND " .$t ." OR extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%')";
+                    $t .= ' AND (';
+                    $month = JRequest::getInt('month');
+                    $year = JRequest::getInt('year');
+                    $t .= "(MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
+                    if (JRequest::getInt('day'))
+                    {
+                        $day = JRequest::getInt('day');
+                        $t .= " AND DAY(i.created) = {$day}";
+                    }
+
+                    $t .=')';
+
+                    if ($day) {
+                        $t .= " OR (i.extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%'))";
+                    } else {
+                        $t .= " OR (i.extra_fields LIKE '%\"value\":\"{$year}-{$month}%'))";
+                    }
+
+
+                    $query .= $t;
                 }
                 break;
 
