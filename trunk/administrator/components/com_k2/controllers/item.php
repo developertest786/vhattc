@@ -25,6 +25,7 @@ class K2ControllerItem extends K2Controller
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('item');
+//        var_dump($model); exit;
         $model->save();
     }
 

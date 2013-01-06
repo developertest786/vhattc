@@ -664,6 +664,7 @@ class K2ModelItem extends K2Model
         //Extra fields
         $objects = array();
         $variables = JRequest::get('post', 2);
+
         foreach ($variables as $key => $value)
         {
             if (( bool )JString::stristr($key, 'K2ExtraField_'))
@@ -813,6 +814,8 @@ class K2ModelItem extends K2Model
         {
             $mainframe->redirect('index.php?option=com_k2&view=items', $db->getErrorMsg(), 'error');
         }
+
+        $this->indexExtraFields($row);
 
         $row->checkin();
 
@@ -1203,6 +1206,63 @@ class K2ModelItem extends K2Model
 
         return $text;
 
+    }
+
+    function indexExtraFields($row) {
+        $db = JFactory::getDBO();
+        $objs = json_decode($row->extra_fields);
+//        var_dump($objs);
+        $mainframe = JFactory::getApplication();
+
+        $query = "DELETE FROM #__k2_item_ef_value WHERE item_id = " .$row->id;
+        $db->setQuery($query);
+        $db->query();
+        foreach ($objs as $obj) {
+            $query = "SELECT * FROM #__k2_extra_fields WHERE id = " .$obj->id;
+            $db->setQuery($query);
+            $ef = $db->loadObject();
+            $ef->value = json_decode($ef->value);
+            $select_value = null;
+            if ($ef->type == 'select' || 'radio' == $ef->type) {
+                foreach ($ef->value as $v) {
+                    if ($v->value == $obj->value) {
+                        $select_value = $v->name;
+                    }
+                }
+            } else if ($ef->type == 'multipleSelect' ) {
+                $select_value = array();
+                foreach ($ef->value as $v) {
+                    foreach ($obj->value as $obv) {
+                        if ($v->value == $obv) {
+                            $select_value[] = $v->name;
+                        }
+                    }
+                }
+                $select_value = '{' .implode('},{', $select_value) .'}';
+            }
+            /*
+            var_dump($select_value);
+            var_dump($ef);*/
+
+            $data = new stdClass();
+            $data->item_id = $row->id;
+            $data->extra_id = $ef->id;
+            $data->extra_key = str_replace(' ', '_', strtolower($ef->name));
+            switch ($ef->type) {
+                case "date":
+                    $data->date_value = $obj->value;
+                    break;
+                case "select":
+                case "radio":
+                case "multipleSelect":
+                    $data->text_value = $select_value;
+                    break;
+                default:
+                    $data->text_value = $obj->value;
+            }
+
+            $db->insertObject('#__k2_item_ef_value', $data);
+        }
     }
 
 }
