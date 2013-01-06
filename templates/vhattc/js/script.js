@@ -6,49 +6,49 @@
  * To change this template use File | Settings | File Templates.
  */
 
-$j = jQuery.noConflict();
+var $j = jQuery.noConflict();
 
 $j(function () {
     /*--language--*/
-    $("#sys-lst-language").on("click", "li", function () {
-        var lang = $(this).data('lang');
+    $j("#sys-lst-language").on("click", "li", function () {
+        var lang = $j(this).data('lang');
         window.location = base_url +'/' +lang;
-        //$("#sys_language_select").children(":eq(" + $(this).index() + ")").attr("selected","true");
-        //$("#sys_choose_lang").submit();
+        //$j("#sys_language_select").children(":eq(" + $j(this).index() + ")").attr("selected","true");
+        //$j("#sys_choose_lang").submit();
     });
 
-    if($("#all-news").find(".news-item").length>3) {
-        $("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
+    if($j("#all-news").find(".news-item").length>3) {
+        $j("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
     }
 
-    if($("#datepicker_custom").length>0) {
-        $("#datepicker_custom").datepicker({
+    /*if($j("#datepicker_custom").length>0) {
+        $j("#datepicker_custom").datepicker({
             showOtherMonths: true,
             selectOtherMonths: true
         });
-    }
-    if($("#main-slider-code").length>0) {
-        $("#main-slider-code").tinycarousel({
+    }*/
+    if($j("#main-slider-code").length>0) {
+        $j("#main-slider-code").tinycarousel({
             pager:true,
             interval:true
         });
     }
-    if($("#slider_partner").length>0) {
-        $("#slider_partner").tinycarousel();
+    if($j("#slider_partner").length>0) {
+        $j("#slider_partner").tinycarousel();
     }
 
-    $(".my-calendar-click").live('click', function (event) {
-        alert('ha ha ha'); return;
+    $j("a.my-calendar-click").live('click', function (event) {
+        //alert('ha ha ha'); return;
         event.preventDefault();
-        //var parentElement = $K2(this).parent().parent().parent().parent();
-        var url = $K2(this).attr('href');
-        parentElement.empty().addClass('k2CalendarLoader');
-        $.ajax({
+        //var parentElement = $jK2(this).parent().parent().parent().parent();
+        var url = $j(this).data('handler');
+        //parentElement.empty().addClass('k2CalendarLoader');
+        $j.ajax({
             url: url,
             type: 'post',
             success: function(response){
-                $("#datepicker_custom").html(response);
-                parentElement.removeClass('k2CalendarLoader');
+                $j("#datepicker_custom").html(response);
+                //parentElement.removeClass('k2CalendarLoader');
             }
         });
     });

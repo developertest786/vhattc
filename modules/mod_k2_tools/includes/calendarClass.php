@@ -283,10 +283,10 @@ class Calendar
         ////
         $s = '<div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;">
                 <div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all">
-                    <a href="' .$prevMonth .'" class="my-calendar-click ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="Prev">
+                    <a href="javasript:void(0)" class="my-calendar-click ui-datepicker-prev ui-corner-all" data-handler="' .$prevMonth .'" data-event="click" title="Prev">
                         <span class="ui-icon ui-icon-circle-triangle-w">Prev</span>
                     </a>
-                    <a href="' .$nextMonth .'" class="my-calendar-click ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next">
+                    <a href="javasript:void(0)" class="my-calendar-click ui-datepicker-next ui-corner-all" data-handler="' .$nextMonth .'" data-event="click" title="Next">
                         <span class=" ui-icon ui-icon-circle-triangle-e">Next</span>
                     </a>
                     <div class="ui-datepicker-title"><span class="ui-datepicker-month">' .$monthName .'</span>&nbsp;<span class="ui-datepicker-year">' .$year .'</span>
