@@ -11,11 +11,6 @@ defined('_JEXEC') or die;
 $app = JFactory::getApplication();
 $templateparams =$app->getTemplate(true)->params;
 
-if (!$templateparams->get('html5', 0))
-{
-	require JPATH_BASE.'/components/com_content/views/category/tmpl/default.php';
-	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
-} else {
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 $pageClass = $this->params->get('pageclass_sfx');
@@ -47,9 +42,9 @@ $pageClass = $this->params->get('pageclass_sfx');
 
 <?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
 	<div class="category-desc">
-	<?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
+	<?php /*if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
 		<img src="<?php echo $this->category->getParams()->get('image'); ?>"/>
-	<?php endif; ?>
+	<?php endif;*/ ?>
 	<?php if ($this->params->get('show_description') && $this->category->description) : ?>
 		<?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
 	<?php endif; ?>
@@ -82,4 +77,4 @@ $pageClass = $this->params->get('pageclass_sfx');
 	</div>
 
 </section>
-<?php } ?>
+
