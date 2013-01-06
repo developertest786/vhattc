@@ -1315,16 +1315,16 @@ textarea {
 #datepicker_custom table td.ui-datepicker-other-month {
     background: #e2e1e1;
 }
-#datepicker_custom table td.ui-datepicker-today, td.calendarToday {
+#datepicker_custom table td.ui-datepicker-today, .calendarTodayLinked, td.calendarToday {
     background: #bfbebe !important;
 }
-#datepicker_custom table td.ui-datepicker-today a, td.calendarToday {
+#datepicker_custom table td.ui-datepicker-today a, .calendarTodayLinked, td.calendarToday {
     color: #666 !important;
 }
-#datepicker_custom table td.ui-datepicker-current-day, td.calendarToday {
+#datepicker_custom table td.ui-datepicker-current-day, .calendarTodayLinked, td.calendarToday {
     background: #004781 !important;
 }
-#datepicker_custom table td.ui-datepicker-current-day a, td.calendarToday {
+#datepicker_custom table td.ui-datepicker-current-day a, .calendarTodayLinked a , td.calendarToday {
     color: #FFF !important;
 }
 
