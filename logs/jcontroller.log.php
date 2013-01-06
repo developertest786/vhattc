@@ -125,3 +125,5 @@
 2013-01-04T07:00:07+00:00	INFO	controller	Checking edit ID com_content.edit.article.2: 1 Array (     [0] => 2 ) 
 2013-01-04T07:00:08+00:00	INFO	controller	Holding edit ID com_content.edit.article.2 Array (     [0] => 2 ) 
 2013-01-04T07:00:09+00:00	INFO	controller	Checking edit ID com_content.edit.article.2: 1 Array (     [0] => 2 ) 
+2013-01-06T14:33:09+00:00	INFO	controller	Holding edit ID com_modules.edit.module.114 Array (     [0] => 114 ) 
+2013-01-06T14:33:10+00:00	INFO	controller	Checking edit ID com_modules.edit.module.114: 1 Array (     [0] => 114 ) 
