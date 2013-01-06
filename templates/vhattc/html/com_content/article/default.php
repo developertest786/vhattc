@@ -15,6 +15,13 @@ $images = json_decode($this->item->images);
 $urls = json_decode($this->item->urls);
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
+require_once JPATH_BASE .'/myLib/helpers/HtmlUtil.php';
+//var_dump($this->item); exit;
+//print_r($this->item->fulltext);
+//$this->item->fulltext = str_replace('font-size: 12pt', '', $this->item->fulltext );
+//print_r($this->item->fulltext);
+//exit;
+
 // Create shortcut to parameters.
 $params = $this->item->params;
 
