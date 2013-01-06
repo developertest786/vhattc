@@ -1054,7 +1054,8 @@ class MyCalendar extends Calendar
             $accessCheck = " access <= {$aid}";
         }
 
-        $query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+        //$query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE (extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%') AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
         $catid = $this->category;
         if ($catid > 0)
