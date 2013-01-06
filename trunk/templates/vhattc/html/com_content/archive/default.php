@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 $templateparams = $app->getTemplate(true)->params;
-
 if (!$templateparams->get('html5', 0))
 {
 	require JPATH_BASE.'/components/com_content/views/archive/tmpl/default.php';

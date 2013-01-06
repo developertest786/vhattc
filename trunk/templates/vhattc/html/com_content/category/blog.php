@@ -97,6 +97,7 @@ $cparams = JComponentHelper::getParams('com_media');
 
 <?php endif; ?>
 
+
 <?php if (!empty($this->link_items)) : ?>
 
 	<?php echo $this->loadTemplate('links'); ?>
@@ -128,3 +129,4 @@ $cparams = JComponentHelper::getParams('com_media');
 </section>
 
 <?php } ?>
+

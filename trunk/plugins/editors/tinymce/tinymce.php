@@ -539,6 +539,7 @@ class plgEditorTinymce extends JPlugin
 					mode : \"specific_textareas\",
 					$skin
 					theme : \"$theme[$mode]\",
+					valid_styles : { '*' : 'color,font-weight,font-style,text-decoration' },
 					// Cleanup/Output
 					inline_styles : true,
 					gecko_spellcheck : true,
@@ -579,6 +580,7 @@ class plgEditorTinymce extends JPlugin
 					language : \"". $langPrefix . "\",
 					mode : \"specific_textareas\",
 					plugins : \"$plugins\",
+					valid_styles : { '*' : 'color,font-weight,font-style,text-decoration' },
 					$skin
 					theme : \"$theme[$mode]\",
 					// Cleanup/Output
