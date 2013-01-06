@@ -150,21 +150,23 @@ class K2ModelItemlist extends K2Model
             case 'date' :
                 if ((JRequest::getInt('month')) && (JRequest::getInt('year')))
                 {
+                    $t = '(';
                     $month = JRequest::getInt('month');
                     $year = JRequest::getInt('year');
-                    $query .= " AND MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
+                    $t .= " MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
                     if (JRequest::getInt('day'))
                     {
                         $day = JRequest::getInt('day');
-                        $query .= " AND DAY(i.created) = {$day}";
+                        $t .= " AND DAY(i.created) = {$day}";
                     }
 
                     if (JRequest::getInt('catid'))
                     {
                         $catid = JRequest::getInt('catid');
-                        $query .= " AND i.catid={$catid}";
+                        $t .= " AND i.catid={$catid}";
                     }
 
+                    $query .= " AND " .$t ." OR extra_fields LIKE '%\"value\":\"{$year}-{$month}-{$day}\"%')";
                 }
                 break;
 
