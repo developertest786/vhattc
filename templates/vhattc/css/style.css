@@ -1131,6 +1131,21 @@ textarea {
 #all-news .wrap-content .thumb img {
     width: 100%;
 }
+
+#about-page .wrap-content a.thumb {
+
+}
+
+#about-page .wrap-content img.article-img {
+    display: block;
+    text-align: center;
+    width: 128px;
+    /*margin-left: auto;   margin-right: auto;*/
+    margin-bottom: 20px;
+}
+
+
+
 #all-news .wrap-content .date {
     padding: 8px 0 3px;
 }
