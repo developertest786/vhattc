@@ -9,16 +9,17 @@
 
 // no direct access
 defined('_JEXEC') or die;
+//var_dump($params); exit;
 ?>
 
 <div class="block lst-training<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>" id="<?php echo $module->id; ?>">
     <h3 class="title rs">
         <?php echo $module->title; ?>
 
-        <a href="#" class="more">
+        <!--<a href="<?php echo JRoute::_(K2HelperRoute::getCategoryRoute($params->category_id[0])) ?>" class="more">
             View more
             <i class="icon iPickReadR"></i>
-        </a>
+        </a>-->
     </h3>
     <div class="block-content">
         <?php if(count($items)) :?>
