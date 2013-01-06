@@ -13,7 +13,7 @@ $templateparams =$app->getTemplate(true)->params;
 
 if (empty($this->items)) {
     if ($this->params->get('show_no_articles', 1)) {
-        echo '<div style="margin:100px 0;"><p align="center">' .JText::_('K2_CATEGORY_EMPTY') .'</p></div>';
+        echo '<div style="margin:100px 0;"><p align="center">' .JText::_('COM_CONTENT_NO_ARTICLES') .'</p></div>';
     }
 } else {
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
