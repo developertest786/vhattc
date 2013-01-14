@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.6.0" client="site" method="install">
+    <name>VHATTC TOOLS</name>
+    <author>LUU TRONG HIEU</author>
+    <creationDate>Dec 2012</creationDate>
+    <copyright>All rights reserved by Flywheel Team.</copyright>
+    <license>GPL 2.0</license>
+    <authorEmail>tronghieu.luu@gmail.com</authorEmail>
+    <authorUrl>www.luutronghieu.com</authorUrl>
+    <version>1.0.0</version>
+    <description></description>
+    <!-- Listing of all files that should be installed for the module to function -->
+    <files>
+        <!-- The "module" attribute signifies that this is the main controller file -->
+        <filename module="mod_vhattc_tool">mod_vhattc_tool.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+    </files>
+
+    <!--<languages>-->
+    <!-- Any language files included with the module -->
+    <!--<language tag="en-GB">en-GB.mod_siteusers.ini</language>-->
+    <!--</languages>-->
+
+    <!-- Optional parameters -->
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/administrator/components/com_k2/elements/">
+                <field name="moduleclass_sfx" type="text" default="" label="Module class suffix" description="A suffix to be applied to the CSS class of the Module. This allows for individual Module styling."/>
+                <field name="module_usage" type="list" default="0" label="Select module functionality" description="">
+                    <option value="0">Archive</option>
+                    <!--<option value="1">K2_AUTHORS_LIST</option>-->
+                    <option value="2">Calendar (for extra field)</option>
+                    <!--<option value="3">K2_BREADCRUMBS</option>-->
+                    <!--<option value="4">K2_CATEGORIES_LIST_MENU</option>-->
+                    <!--<option value="5">K2_CATEGORY_SELECT_BOX</option>-->
+                    <!--<option value="6">K2_SEARCH_BOX</option>-->
+                    <!--<option value="7">K2_TAG_CLOUD</option>-->
+                    <!--<option value="8">K2_CUSTOM_CODE</option>-->
+                    <option value="9">Filter extra fields (for select and mutil choise)</option>
+                </field>
+                <!--  ARCHIVE SETTINGS -->
+                <field name="" type="header" default="Archive Settings" label="" description=""/>
+                <field name="archiveItemsCounter" type="radio" default="1" label="Items counter" description="">
+                    <option value="0">Hide</option>
+                    <option value="1">Show</option>
+                </field>
+                <field name="archiveCategory" type="categories" label="Category filter" description="" default=""/>
+                <!-- Calendar Settings -->
+                <field name="" type="header" default="Calendar Settings" label="" description=""/>
+                <field name="calendarCategory" type="categoriesmultiple" label="Category filter" description="" default=""/>
+                <field name="calendarExtraField" type="dateextrafieldsmultiple" label="Date Extra Fields" description="" default=""/>
+                <!-- Category Select Box Settings -->
+                <field name="" type="header" default="Extra Field Filter" label="" description=""/>
+                <field name="extraFieldsFilter" type="extrafieldsmultiple" default="" label="Extra Fields" description="Select the extra field make filter option"/>
+            </fieldset>
+
+            <fieldset name="advanced">
+                <field name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+                    <option value="1">Use Global</option>
+                    <option value="0">No Caching</option>
+                </field>
+                <field name="cache_time" type="text" default="900" label="Cache Time" description="The time (in seconds) before the module is recached."/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
