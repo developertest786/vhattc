@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1730 2012-10-09 21:01:52Z juliopfneto@gmail.com $
+ * @version		$Id: default.php 1780 2012-11-22 17:55:47Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -25,8 +25,11 @@ $document->addScriptDeclaration("
 		}
 		else {
 			syncExtraFieldsEditor();
-			\$K2('#selectedTags option').attr('selected', 'selected');
-			submitform( pressbutton );
+			var validation = validateExtraFields();
+			if(validation === true) {
+				\$K2('#selectedTags option').attr('selected', 'selected');
+				submitform( pressbutton );
+			}
 		}
 	}
 ");
@@ -40,7 +43,7 @@ $document->addScriptDeclaration("
 			<table class="k2FrontendToolbar" cellpadding="2" cellspacing="4">
 				<tr>
 					<td id="toolbar-save" class="button">
-						<a class="toolbar" href="#" onclick="javascript: submitbutton('save'); return false;"> <span title="<?php echo JText::_('K2_SAVE'); ?>" class="icon-32-save icon-save"></span> <?php echo JText::_('K2_SAVE'); ?> </a>
+						<a class="toolbar" href="#" onclick="Joomla.submitbutton('save'); return false;"> <span title="<?php echo JText::_('K2_SAVE'); ?>" class="icon-32-save icon-save"></span> <?php echo JText::_('K2_SAVE'); ?> </a>
 					</td>
 					<td id="toolbar-cancel" class="button">
 						<a class="toolbar" href="#"> <span title="<?php echo JText::_('K2_CANCEL'); ?>" class="icon-32-cancel icon-cancel"></span> <?php echo JText::_('K2_CLOSE'); ?> </a>
@@ -162,7 +165,7 @@ $document->addScriptDeclaration("
 								</tr>
 								<?php endif; ?>
 							</table>
-							
+							<ul id="k2ExtraFieldsValidationResults"></ul>
 							<!-- Tabs start here -->
 							<div class="simpleTabs" id="k2Tabs">
 								<ul class="simpleTabsNavigation">
@@ -323,14 +326,21 @@ $document->addScriptDeclaration("
 												</ul>
 											</dd>
 										</dl>
+										<?php elseif(K2_JVERSION == '25'): ?>
+										<div id="system-message-container">
+											<dl id="system-message">
+												<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+												<dd class="notice message">
+													<ul>
+														<li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></li>
+													</ul>
+												</dd>
+											</dl>
+										</div>
 										<?php else: ?>
-										<div id="system-message">
-											<div class="alert alert-message">
-												<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-												<div>
-														<p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></p>
-												</div>
-											</div>
+										<div class="alert">
+											<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
+											<div><p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_SIMPLE_IMAGE_GALLERY_PRO_PLUGIN_IF_YOU_WANT_TO_USE_THE_IMAGE_GALLERY_FEATURES_OF_K2'); ?></p></div>
 										</div>
 										<?php endif; ?>
 									<?php endif; ?>
@@ -434,12 +444,21 @@ $document->addScriptDeclaration("
 												</ul>
 											</dd>
 										</dl>
+										<?php elseif(K2_JVERSION == '25'): ?>
+										<div id="system-message-container">
+											<dl id="system-message">
+												<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+												<dd class="notice message">
+													<ul>
+														<li><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></li>
+													</ul>
+												</dd>
+											</dl>
+										</div>
 										<?php else: ?>
-										<div id="system-message" class="alert alert-message">
+										<div class="alert">
 											<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
-											<div>
-													<p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p>
-											</div>
+											<div><p><?php echo JText::_('K2_NOTICE_PLEASE_INSTALL_JOOMLAWORKS_ALLVIDEOS_PLUGIN_IF_YOU_WANT_TO_USE_THE_FULL_VIDEO_FEATURES_OF_K2'); ?></p></div>
 										</div>
 										<?php endif; ?>
 									<table class="admintable table" id="item_video_content">
@@ -515,12 +534,16 @@ $document->addScriptDeclaration("
 										<table class="admintable table" id="extraFields">
 											<?php foreach($this->extraFields as $extraField): ?>
 											<tr>
+												<?php if($extraField->type == 'header'): ?>
+												<td colspan="2" ><h4 class="k2ExtraFieldHeader"><?php echo $extraField->name; ?></h4></td>
+												<?php else: ?>
 												<td align="right" class="key">
-													<?php echo $extraField->name; ?>
+													<label for="K2ExtraField_<?php echo $extraField->id; ?>"><?php echo $extraField->name; ?></label>
 												</td>
 												<td>
 													<?php echo $extraField->element; ?>
 												</td>
+												<?php endif; ?>
 											</tr>
 											<?php endforeach; ?>
 										</table>
@@ -534,11 +557,22 @@ $document->addScriptDeclaration("
 														</ul>
 													</dd>
 												</dl>
+											<?php elseif (K2_JVERSION == '25'): ?>
+											<div id="system-message-container">
+												<dl id="system-message">
+													<dt class="notice"><?php echo JText::_('K2_NOTICE'); ?></dt>
+													<dd class="notice message">
+														<ul>
+															<li><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></li>
+														</ul>
+													</dd>
+												</dl>
+											</div>
 											<?php else: ?>
-											<div id="system-message" class="alert alert-message">
+											<div class="alert">
 												<h4 class="alert-heading"><?php echo JText::_('K2_NOTICE'); ?></h4>
 												<div>
-														<p><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></p>
+													<p><?php echo JText::_('K2_PLEASE_SELECT_A_CATEGORY_FIRST_TO_RETRIEVE_ITS_RELATED_EXTRA_FIELDS'); ?></p>
 												</div>
 											</div>
 											<?php endif; ?>

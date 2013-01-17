@@ -1,5 +1,5 @@
 /**
- * @version 	$Id: k2.js 1723 2012-10-08 16:29:05Z lefteris.kavadas $
+ * @version 	$Id: k2.js 1766 2012-11-22 14:10:24Z lefteris.kavadas $
  * @package 	K2
  * @author 		JoomlaWorks http://www.joomlaworks.net
  * @copyright 	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -163,12 +163,25 @@ $K2(document).ready(function() {
             renderExtraFields($K2('#type').val(), values, newField);
             selectsInstance('#type').change(function() {
                 var selectedType = selectsInstance(this).val();
+                $K2('#k2ExtraFieldsShowNullFlag').fadeOut('slow');
+                $K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeOut('slow');
+                $K2('#k2ExtraFieldsRequiredFlag').fadeOut('slow');
                 $K2('#exFieldsTypesDiv').fadeOut('slow', function() {
                     $K2('#exFieldsTypesDiv').empty();
                     renderExtraFields(selectedType, values, newField);
                     $K2('#exFieldsTypesDiv').fadeIn('slow');
+                    if(selectedType === 'select' || selectedType === 'multipleSelect') {
+                    	$K2('#k2ExtraFieldsShowNullFlag').fadeIn('slow');
+                    }
+                    if(selectedType !== 'header') {
+                    	$K2('#k2ExtraFieldsRequiredFlag').fadeIn('slow');
+                    }
+                    if(selectedType === 'header') {
+                    	$K2('#k2ExtraFieldsDisplayInFrontEndFlag').fadeIn('slow');
+                    }
                 });
             });
+            extraFieldsImage();
             break;
 
         case 'usergroup':
@@ -469,9 +482,64 @@ $K2(document).ready(function() {
                     });
                 });
             }
+            extraFieldsImage();
             break;
     }
 });
+
+// Extra fields validation
+function validateExtraFields() {
+	$K2('#k2ExtraFieldsValidationResults').empty();
+	$K2('.k2Required').removeClass('k2Invalid');
+	$K2('#tabExtraFields a').removeClass('k2Invalid');
+	var response = new Object();
+	response.isValid = true;
+	response.errorFields = new Array();
+	$K2('.k2Required').each(function() {
+		var id = $K2(this).attr('id');
+		var value;
+		if ($K2(this).hasClass('k2ExtraFieldEditor')) {
+			if ( typeof tinymce != 'undefined') {
+				var value = tinyMCE.get(id).getContent()
+			}
+		} else {
+			var value = $K2(this).val();
+		}
+		if (($K2.trim(value) === '') || ($K2(this).hasClass('k2ExtraFieldEditor') && $K2.trim(value) === '<p></p>')) {
+			$K2(this).addClass('k2Invalid');
+			response.isValid = false;
+			var label = $K2('label[for="' + id + '"]').text();
+			response.errorFields.push(label);
+		}
+	});
+	$K2.each(response.errorFields, function(key, value) {
+		if(key === 0) {
+			$K2('#k2ExtraFieldsValidationResults').append('<li class="k2ValidationTitle">' + K2Language[6] + '</li>');
+		}
+		$K2('#k2ExtraFieldsValidationResults').append('<li>' + value + '</li>');
+	});
+	if(response.isValid === false) {
+		$K2('#tabExtraFields a').addClass('k2Invalid');
+	}
+	return response.isValid;
+}
+
+// Extra Fields image field
+function extraFieldsImage() {
+	$K2('.k2ExtraFieldImageButton').live('click', function(event) {
+    	event.preventDefault();
+    	var href = $K2(this).attr('href');
+    	SqueezeBox.initialize();
+        SqueezeBox.fromElement(this, {
+            handler : 'iframe',
+            url : K2BasePath + href,
+            size : {
+                x : 800,
+                y : 434
+            }
+        });
+    });
+}
 
 // If we are in Joomla! 1.5 define the functions for validation
 if ( typeof (Joomla) === 'undefined') {
@@ -713,6 +781,34 @@ function renderExtraFields(fieldType, fieldValues, isNewField) {
                 singleClick : true
             });
             var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
+            break;
+            
+        case 'image':
+        	var id = 'K2ExtraFieldImage_'+new Date().getTime();
+            var input = $K2('<input/>', {
+                name : 'option_value[]',
+                type : 'text',
+                id: id,
+            }).appendTo(target);
+            var a = $K2('<a/>', {
+                href : 'index.php?option=com_k2&view=media&type=image&tmpl=component&fieldID='+id,
+                class : 'k2ExtraFieldImageButton',
+            }).html('Select').appendTo(target);
+            var notice = $K2('<span/>').html('(' + K2Language[1] + ')').appendTo(target);
+            if (!isNewField && currentType == fieldType) {
+                input.val(fieldValues[0].value);
+            }
+            break;
+            
+        case 'header':
+        	target.html(' - ');
+            var input = $K2('<input/>', {
+                name : 'option_value[]',
+                type : 'hidden'
+            }).appendTo(target);
+            if (!isNewField && currentType == fieldType) {
+                input.val(fieldValues[0].value);
+            }
             break;
 
         default:

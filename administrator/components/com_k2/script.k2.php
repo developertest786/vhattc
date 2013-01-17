@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: script.k2.php 1716 2012-10-08 11:24:26Z lefteris.kavadas $
+ * @version		$Id: script.k2.php 1778 2012-11-22 17:00:40Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -21,29 +21,6 @@ class Com_K2InstallerScript
         $status->plugins = array();
         $src = $parent->getParent()->getPath('source');
         $manifest = $parent->getParent()->manifest;
-        $modules = $manifest->xpath('modules/module');
-        foreach ($modules as $module)
-        {
-            $name = (string)$module->attributes()->module;
-            $client = (string)$module->attributes()->client;
-            if (is_null($client))
-            {
-                $client = 'site';
-            }
-            ($client == 'administrator') ? $path = $src.'/administrator/modules/'.$name : $path = $src.'/modules/'.$name;
-            $installer = new JInstaller;
-            $result = $installer->install($path);
-            if ($result)
-            {
-                $root = $client == 'administrator' ? JPATH_ADMINISTRATOR : JPATH_SITE;
-                if (JFile::exists($root.'/modules/'.$name.'/'.$name.'.xml'))
-                {
-                    JFile::delete($root.'/modules/'.$name.'/'.$name.'.xml');
-                }
-                JFile::move($root.'/modules/'.$name.'/'.$name.'.j25.xml', $root.'/modules/'.$name.'/'.$name.'.xml');
-            }
-            $status->modules[] = array('name' => $name, 'client' => $client, 'result' => $result);
-        }
         $plugins = $manifest->xpath('plugins/plugin');
         foreach ($plugins as $plugin)
         {
@@ -68,7 +45,50 @@ class Com_K2InstallerScript
             $db->setQuery($query);
             $db->query();
             $status->plugins[] = array('name' => $name, 'group' => $group, 'result' => $result);
+        }		
+        $modules = $manifest->xpath('modules/module');
+        foreach ($modules as $module)
+        {
+            $name = (string)$module->attributes()->module;
+            $client = (string)$module->attributes()->client;
+            if (is_null($client))
+            {
+                $client = 'site';
+            }
+            ($client == 'administrator') ? $path = $src.'/administrator/modules/'.$name : $path = $src.'/modules/'.$name;
+			
+			if($client == 'administrator')
+			{
+				$db->setQuery("SELECT id FROM #__modules WHERE `module` = ".$db->quote($name));
+				$isUpdate = (int)$db->loadResult();
+			}
+			
+            $installer = new JInstaller;
+            $result = $installer->install($path);
+            if ($result)
+            {
+                $root = $client == 'administrator' ? JPATH_ADMINISTRATOR : JPATH_SITE;
+                if (JFile::exists($root.'/modules/'.$name.'/'.$name.'.xml'))
+                {
+                    JFile::delete($root.'/modules/'.$name.'/'.$name.'.xml');
+                }
+                JFile::move($root.'/modules/'.$name.'/'.$name.'.j25.xml', $root.'/modules/'.$name.'/'.$name.'.xml');
+            }
+            $status->modules[] = array('name' => $name, 'client' => $client, 'result' => $result);
+			if($client == 'administrator' && !$isUpdate)
+			{
+				$position = version_compare(JVERSION, '3.0', '<') && $name == 'mod_k2_quickicons'? 'icon' : 'cpanel';
+				$db->setQuery("UPDATE #__modules SET `position`=".$db->quote($position).",`published`='1' WHERE `module`=".$db->quote($name));
+				$db->query();
+
+				$db->setQuery("SELECT id FROM #__modules WHERE `module` = ".$db->quote($name));
+				$id = (int)$db->loadResult();
+
+				$db->setQuery("INSERT IGNORE INTO #__modules_menu (`moduleid`,`menuid`) VALUES (".$id.", 0)");
+				$db->query();
+			}
         }
+
         if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php'))
         {
             JFile::delete(JPATH_ADMINISTRATOR.'/components/com_k2/admin.k2.php');
@@ -255,7 +275,7 @@ class Com_K2InstallerScript
         $language = JFactory::getLanguage();
         $language->load('com_k2');
         $rows = 0; ?>
-        <img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/k2.gif" width="109" height="48" alt="K2 Component" align="right" />
+        <img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/K2_Logo_126x48_24.png" alt="K2" align="right" />
         <h2><?php echo JText::_('K2_INSTALLATION_STATUS'); ?></h2>
         <table class="adminlist table table-striped">
             <thead>
@@ -313,7 +333,7 @@ class Com_K2InstallerScript
     $rows = 0;
  ?>
         <h2><?php echo JText::_('K2_REMOVAL_STATUS'); ?></h2>
-        <table class="adminlist">
+        <table class="adminlist table table-striped">
             <thead>
                 <tr>
                     <th class="title" colspan="2"><?php echo JText::_('K2_EXTENSION'); ?></th>

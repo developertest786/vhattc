@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: k2tag.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: k2tag.php 1770 2012-11-22 15:23:53Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -25,8 +25,8 @@ class TableK2Tag extends K2Table
 
     function check()
     {
-
-        if (JString::trim($this->name) == '')
+		$this->name = JString::trim($this->name);
+        if ($this->name == '')
         {
             $this->setError(JText::_('K2_TAG_CANNOT_BE_EMPTY'));
             return false;

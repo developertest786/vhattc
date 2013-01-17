@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: item.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: item.php 1762 2012-11-21 16:28:59Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -25,7 +25,6 @@ class K2ControllerItem extends K2Controller
     {
         JRequest::checkToken() or jexit('Invalid Token');
         $model = $this->getModel('item');
-//        var_dump($model); exit;
         $model->save();
     }
 
@@ -74,7 +73,7 @@ class K2ControllerItem extends K2Controller
         {
             foreach ($extraFields as $extraField)
             {
-                $output .= '<tr><td align="right" class="key">'.$extraField->name.'</td>';
+                $output .= '<tr><td align="right" class="key"><label for="K2ExtraField_'.$extraField->id.'">'.$extraField->name.'</label></td>';
                 $output .= '<td>'.$extraFieldModel->renderExtraField($extraField, $itemID).'</td></tr>';
                 $counter++;
             }

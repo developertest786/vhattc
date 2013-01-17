@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: k2category.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: k2category.php 1770 2012-11-22 15:23:53Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -79,7 +79,8 @@ class TableK2Category extends K2Table
     {
 
         jimport('joomla.filter.output');
-        if (JString::trim($this->name) == '')
+		$this->name = JString::trim($this->name);
+        if ($this->name == '')
         {
             $this->setError(JText::_('K2_CATEGORY_MUST_HAVE_A_NAME'));
             return false;

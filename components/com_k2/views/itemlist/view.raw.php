@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.raw.php 1728 2012-10-09 10:32:46Z lefteris.kavadas $
+ * @version		$Id: view.raw.php 1735 2012-10-12 13:18:12Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -208,6 +208,7 @@ class K2ViewItemlist extends K2View
                     JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                     $userObject->event->K2UserDisplay = trim(implode("\n", $results));
+                    $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
 
                 }
 

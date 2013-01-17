@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: install.k2.php 1716 2012-10-08 11:24:26Z lefteris.kavadas $
+ * @version		$Id: install.k2.php 1778 2012-11-22 17:00:40Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -9,6 +9,7 @@
 
 // no direct access
 defined('_JEXEC') or die ;
+
 
 if (version_compare(JVERSION, '1.6.0', '<'))
 {
@@ -225,7 +226,7 @@ if (version_compare(JVERSION, '1.6.0', '<'))
 ?>
 <?php if (version_compare(JVERSION, '1.6.0', '<')): ?>
 <?php $rows = 0; ?>
-<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/k2.gif" width="109" height="48" alt="K2 Component" align="right" />
+<img src="<?php echo JURI::root(true); ?>/media/k2/assets/images/system/K2_Logo_126x48_24.png" alt="K2" align="right" />
 <h2><?php echo JText::_('K2_INSTALLATION_STATUS'); ?></h2>
 <table class="adminlist">
 	<thead>

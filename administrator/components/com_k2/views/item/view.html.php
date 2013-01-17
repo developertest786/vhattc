@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1679 2012-10-03 13:04:52Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1762 2012-11-21 16:28:59Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -37,6 +37,7 @@ class K2ViewItem extends K2View
 		'".JText::_('K2_ARE_YOU_SURE', true)."',
 		'".JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY', true)."',
 		'".JText::_('K2_OR_SELECT_A_FILE_ON_THE_SERVER', true)."',
+		'".JText::_('K2_THE_FOLLOWING_FIELDS_ARE_REQUIRED', true)."',
 		]
 		";
         $document->addScriptDeclaration($js);

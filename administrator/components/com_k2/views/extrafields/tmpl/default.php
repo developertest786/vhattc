@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1725 2012-10-08 17:22:08Z lefteris.kavadas $
+ * @version		$Id: default.php 1772 2012-11-22 15:31:48Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -60,7 +60,7 @@ defined('_JEXEC') or die;
         <td><?php echo $key+1; ?></td>
         <?php endif; ?>
         <td class="k2Center center"><?php $row->checked_out = 0; echo JHTML::_('grid.checkedout', $row, $key ); ?></td>
-        <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafield&cid='.$row->id); ?>"><?php echo $row->name; ?></a></td>
+        <td><a href="<?php echo JRoute::_('index.php?option=com_k2&view=extrafield&cid='.$row->id); ?>"><?php echo $row->name; ?></a> <br /> (<?php echo $row->alias; ?>)</td>
         <td class="k2Center center hidden-phone"><?php echo $row->groupname; ?></td>
         <?php if(K2_JVERSION != '30'): ?>
         <td class="order">

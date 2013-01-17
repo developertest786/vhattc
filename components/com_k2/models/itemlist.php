@@ -150,38 +150,21 @@ class K2ModelItemlist extends K2Model
             case 'date' :
                 if ((JRequest::getInt('month')) && (JRequest::getInt('year')))
                 {
-                    $t = '';
+                    $month = JRequest::getInt('month');
+                    $year = JRequest::getInt('year');
+                    $query .= " AND MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
+                    if (JRequest::getInt('day'))
+                    {
+                        $day = JRequest::getInt('day');
+                        $query .= " AND DAY(i.created) = {$day}";
+                    }
 
                     if (JRequest::getInt('catid'))
                     {
                         $catid = JRequest::getInt('catid');
-                        $t .= " AND i.catid={$catid}";
+                        $query .= " AND i.catid={$catid}";
                     }
 
-                    $t .= ' AND (';
-                    $month = JRequest::getInt('month');
-                    $year = JRequest::getInt('year');
-                    $t .= "MONTH(i.created) = {$month} AND YEAR(i.created)={$year} ";
-                    if (JRequest::getInt('day'))
-                    {
-                        $day = JRequest::getInt('day');
-                        $t .= " AND DAY(i.created) = {$day}";
-                    }
-
-                    $t .=')';
-
-                    if ($day) {
-                        $t .= " OR (i.id IN (SELECT item_id FROM #__k2_item_ef_value
-                                WHERE item_id = i.id AND MONTH(date_value) = {$month}
-                                    AND YEAR(date_value)= {$year}
-                                    AND DAY(date_value) = {$day}))";
-                    } else {
-                        $t .= " OR (i.id IN (SELECT item_id FROM #__k2_item_ef_value
-                                WHERE item_id = i.id AND MONTH(date_value) = {$month}
-                                    AND YEAR(date_value)= {$year}))";
-                    }
-
-                    $query .= $t;
                 }
                 break;
 

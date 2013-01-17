@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: k2extrafield.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: k2extrafield.php 1770 2012-11-22 15:23:53Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -25,5 +25,15 @@ class TableK2ExtraField extends K2Table
     {
         parent::__construct('#__k2_extra_fields', 'id', $db);
     }
-
+	
+    function check()
+    {
+    	$this->name = JString::trim($this->name);
+        if ($this->name == '')
+        {
+            $this->setError(JText::_('K2_NAME_CANNOT_BE_EMPTY'));
+            return false;
+        }
+        return true;
+    }
 }

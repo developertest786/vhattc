@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1725 2012-10-08 17:22:08Z lefteris.kavadas $
+ * @version		$Id: default.php 1768 2012-11-22 15:10:16Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -75,6 +75,9 @@ $document->addScriptDeclaration("
 				<th class="center hidden-phone">
 					<?php echo JHTML::_('grid.sort', 'K2_ASSOCIATED_EXTRA_FIELD_GROUPS', 'extra_fields_group', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				</th>
+				<th class="center hidden-phone">
+					<?php echo JText::_('K2_TEMPLATE'); ?>
+				</th>
 				<th class="hidden-phone center">
 					<?php echo JHTML::_('grid.sort', 'K2_ACCESS_LEVEL', 'c.access', @$this->lists['order_Dir'], @$this->lists['order'] ); ?>
 				</th>
@@ -143,6 +146,9 @@ $document->addScriptDeclaration("
 				</td>
 				<td class="k2Center center hidden-phone">
 					<?php echo $row->extra_fields_group; ?>
+				</td>
+				<td class="k2Center center hidden-phone">
+					<?php echo $row->template; ?>
 				</td>
 				<td class="k2Center hidden-phone center">
 					<?php echo ($this->filter_trash || K2_JVERSION != '15')? $row->groupname:JHTML::_('grid.access', $row, $key ); ?>

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1664 2012-09-28 16:37:57Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1738 2012-10-12 14:24:11Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -61,6 +61,7 @@ class K2ViewItem extends K2View
             JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2UserDisplay', array(&$item->author->profile, &$params, $limitstart));
             $item->event->K2UserDisplay = trim(implode("\n", $results));
+            $item->author->profile->url = htmlspecialchars($item->author->profile->url, ENT_QUOTES, 'UTF-8');
         }
 
         // Access check
@@ -371,6 +372,7 @@ class K2ViewItem extends K2View
         else
         {
             $metaDescItem = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $item->introtext.' '.$item->fulltext);
+            $metaDescItem = strip_tags($metaDescItem);
             $metaDescItem = htmlspecialchars($metaDescItem, ENT_QUOTES, 'UTF-8');
             $metaDescItem = K2HelperUtilities::characterLimit($metaDescItem, $params->get('metaDescLimit', 150));
             $document->setDescription($metaDescItem);

@@ -9,11 +9,9 @@
 
 // no direct access
 defined('_JEXEC') or die;
+
 ?>
 
-<?php if (empty($this->leading) && empty($this->primary) && empty($this->secondary) && empty($this->links)) : ?>
-    <div style="margin:100px 0;"><p align="center"><?php echo JText::_('K2_CATEGORY_EMPTY')?></p></div>
-<?php else :?>
 <!-- Start K2 Category Layout -->
 <div id="k2Container" class="itemListView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
 
@@ -264,4 +262,3 @@ defined('_JEXEC') or die;
 	<?php endif; ?>
 </div>
 <!-- End K2 Category Layout -->
-<?php endif; ?>

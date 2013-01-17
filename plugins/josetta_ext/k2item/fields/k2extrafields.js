@@ -1,5 +1,5 @@
 /**
- * @version		$Id: k2extrafields.js 1595 2012-06-07 11:57:51Z lefteris.kavadas $
+ * @version		$Id: k2extrafields.js 1743 2012-10-24 15:48:18Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -12,7 +12,7 @@ $K2(document).ready(function() {
 		initExtraFieldsEditor();
 	}, 1000);
 
-	$K2('#jform_catid').change(function() {
+	$K2('[id$=josetta_form_catid]').change(function() {
 		if ($K2(this).find('option:selected').attr('disabled')) {
 			alert(K2Language[4]);
 			$K2(this).val('0');
@@ -23,8 +23,8 @@ $K2(document).ready(function() {
 });
 
 function extraFields() {
-	var selectedValue = $K2('#jform_catid').val();
-	var url = K2BasePath + '/index.php?option=com_k2&view=item&task=extraFields&cid=' + selectedValue + '&id=' + $K2('#jform_id').val();
+	var selectedValue = $K2('[id$=josetta_form_catid]').val();
+	var url = K2BasePath + '/index.php?option=com_k2&view=item&task=extraFields&cid=' + selectedValue + '&id=' + Josetta.josettaItemid;
 	$K2('#extraFieldsContainer').fadeOut('slow', function() {
 		$K2.ajax({
 			url : url,

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: helper.php 1652 2012-09-27 11:12:15Z lefteris.kavadas $
+ * @version		$Id: helper.php 1751 2012-10-31 16:15:00Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -361,7 +361,7 @@ class modK2ContentHelper
 				//Extra fields
 				if ($params->get('itemExtraFields'))
 				{
-					$item->extra_fields = $model->getItemExtraFields($item->extra_fields);
+					$item->extra_fields = $model->getItemExtraFields($item->extra_fields, $item);
 				}
 
 				//Comments counter

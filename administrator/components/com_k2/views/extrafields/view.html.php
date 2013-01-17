@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1638 2012-09-25 16:30:37Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1772 2012-11-22 15:31:48Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -40,9 +40,21 @@ class K2ViewExtraFields extends K2View
             JRequest::setVar('limitstart', $limitstart);
         }
         $extraFields = $model->getData();
+		require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
+		$json = new Services_JSON;
         foreach ($extraFields as $key => $extraField)
         {
             $extraField->status = K2_JVERSION == '15' ? JHTML::_('grid.published', $extraField, $key) : JHtml::_('jgrid.published', $extraField->published, $key);
+			$values = $json->decode($extraField->value);
+			if (isset($values[0]->alias) && !empty($values[0]->alias))
+			{
+				$extraField->alias = $values[0]->alias;
+			}
+			else
+			{
+				$filter = JFilterInput::getInstance();
+				$extraField->alias = $filter->clean($extraField->name, 'WORD');
+			}
         }
         $this->assignRef('rows', $extraFields);
 
@@ -78,6 +90,8 @@ class K2ViewExtraFields extends K2View
         $typeOptions[] = JHTML::_('select.option', 'csv', JText::_('K2_CSV_DATA'));
         $typeOptions[] = JHTML::_('select.option', 'labels', JText::_('K2_SEARCHABLE_LABELS'));
         $typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
+		$typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
+		$typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
         $lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'filter_type', '', 'value', 'text', $filter_type);
 
         $this->assignRef('lists', $lists);
