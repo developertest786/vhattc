@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: users.php 1692 2012-10-05 16:10:02Z lefteris.kavadas $
+ * @version		$Id: users.php 1760 2012-11-16 11:48:51Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -246,7 +246,7 @@ class K2ModelUsers extends K2Model
                     $group->lft = (int)$group->lft - 10;
                 if (K2_JVERSION != '15')
                 {
-                    $group->text = $this->indent($group->lft, '- ').$group->text;
+                    $group->text = $this->indent($group->level, '- ').$group->text;
                 }
                 else
                 {

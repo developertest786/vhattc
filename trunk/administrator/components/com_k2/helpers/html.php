@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: html.php 1731 2012-10-10 23:02:03Z joomlaworks $
+ * @version		$Id: html.php 1747 2012-10-29 17:25:18Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -113,7 +113,7 @@ class K2HelperHTML
             }
             if ($mediaManager)
             {
-                $document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.6.1');
+                $document->addScript(JURI::root(true).'/media/k2/assets/js/elfinder.min.js?v=2.6.2');
             }
         }
     }

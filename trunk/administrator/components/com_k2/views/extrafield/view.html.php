@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1653 2012-09-27 11:17:31Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1766 2012-11-22 14:10:24Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -8,60 +8,107 @@
  */
 
 // no direct access
-defined('_JEXEC') or die;
+defined('_JEXEC') or die ;
 
 jimport('joomla.application.component.view');
 
 class K2ViewExtraField extends K2View
 {
 
-    function display($tpl = null)
-    {
-        JRequest::setVar('hidemainmenu', 1);
-        $model = $this->getModel();
-        $extraField = $model->getData();
-        if (!$extraField->id)
-        {
-            $extraField->published = 1;
-        }
-        $this->assignRef('row', $extraField);
+	function display($tpl = null)
+	{
+		JRequest::setVar('hidemainmenu', 1);
+		$model = $this->getModel();
+		$extraField = $model->getData();
+		if (!$extraField->id)
+		{
+			$extraField->published = 1;
+			$extraField->alias = '';
+			$extraField->required = 1;
+			$extraField->showNull = 0;
+			$extraField->displayInFrontEnd = 1;
+		}
+		else
+		{
+			require_once (JPATH_COMPONENT.DS.'lib'.DS.'JSON.php');
+			$json = new Services_JSON;
+			$values = $json->decode($extraField->value);
+			if (isset($values[0]->alias) && !empty($values[0]->alias))
+			{
+				$extraField->alias = $values[0]->alias;
+			}
+			else
+			{
+				$filter = JFilterInput::getInstance();
+				$extraField->alias = $filter->clean($extraField->name, 'WORD');
+			}
+			if (isset($values[0]->required))
+			{
+				$extraField->required = $values[0]->required;
+			}
+			else
+			{
+				$extraField->required = 0;
+			}
+			if (isset($values[0]->showNull))
+			{
+				$extraField->showNull = $values[0]->showNull;
+			}
+			else
+			{
+				$extraField->showNull = 0;
+			}
+			if (isset($values[0]->displayInFrontEnd))
+			{
+				$extraField->displayInFrontEnd = $values[0]->displayInFrontEnd;
+			}
+			else
+			{
+				$extraField->displayInFrontEnd = 0;
+			}
+		}
+		$extraField->name = htmlspecialchars($extraField->name, ENT_QUOTES, 'UTF-8');
+		$this->assignRef('row', $extraField);
 
-        $lists = array();
-        $lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $extraField->published);
+		$lists = array();
+		$lists['published'] = JHTML::_('select.booleanlist', 'published', 'class="inputbox"', $extraField->published);
 
-        $groups[] = JHTML::_('select.option', 0, JText::_('K2_CREATE_NEW_GROUP'));
+		$groups[] = JHTML::_('select.option', 0, JText::_('K2_CREATE_NEW_GROUP'));
 
-        $extraFieldModel = K2Model::getInstance('ExtraFields', 'K2Model');
-        $uniqueGroups = $extraFieldModel->getGroups(true);
-        foreach ($uniqueGroups as $group)
-        {
-            $groups[] = JHTML::_('select.option', $group->id, $group->name);
-        }
+		$extraFieldModel = K2Model::getInstance('ExtraFields', 'K2Model');
+		$uniqueGroups = $extraFieldModel->getGroups(true);
+		foreach ($uniqueGroups as $group)
+		{
+			$groups[] = JHTML::_('select.option', $group->id, $group->name);
+		}
 
-        $lists['group'] = JHTML::_('select.genericlist', $groups, 'groups', '', 'value', 'text', $extraField->group);
+		$lists['group'] = JHTML::_('select.genericlist', $groups, 'groups', '', 'value', 'text', $extraField->group);
 
-        $typeOptions[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_TYPE'));
-        $typeOptions[] = JHTML::_('select.option', 'textfield', JText::_('K2_TEXT_FIELD'));
-        $typeOptions[] = JHTML::_('select.option', 'textarea', JText::_('K2_TEXTAREA'));
-        $typeOptions[] = JHTML::_('select.option', 'select', JText::_('K2_DROPDOWN_SELECTION'));
-        $typeOptions[] = JHTML::_('select.option', 'multipleSelect', JText::_('K2_MULTISELECT_LIST'));
-        $typeOptions[] = JHTML::_('select.option', 'radio', JText::_('K2_RADIO_BUTTONS'));
-        $typeOptions[] = JHTML::_('select.option', 'link', JText::_('K2_LINK'));
-        $typeOptions[] = JHTML::_('select.option', 'csv', JText::_('K2_CSV_DATA'));
-        $typeOptions[] = JHTML::_('select.option', 'labels', JText::_('K2_SEARCHABLE_LABELS'));
-        $typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
-        $lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'type', '', 'value', 'text', $extraField->type);
+		$typeOptions[] = JHTML::_('select.option', 0, JText::_('K2_SELECT_TYPE'));
+		$typeOptions[] = JHTML::_('select.option', 'textfield', JText::_('K2_TEXT_FIELD'));
+		$typeOptions[] = JHTML::_('select.option', 'textarea', JText::_('K2_TEXTAREA'));
+		$typeOptions[] = JHTML::_('select.option', 'select', JText::_('K2_DROPDOWN_SELECTION'));
+		$typeOptions[] = JHTML::_('select.option', 'multipleSelect', JText::_('K2_MULTISELECT_LIST'));
+		$typeOptions[] = JHTML::_('select.option', 'radio', JText::_('K2_RADIO_BUTTONS'));
+		$typeOptions[] = JHTML::_('select.option', 'link', JText::_('K2_LINK'));
+		$typeOptions[] = JHTML::_('select.option', 'csv', JText::_('K2_CSV_DATA'));
+		$typeOptions[] = JHTML::_('select.option', 'labels', JText::_('K2_SEARCHABLE_LABELS'));
+		$typeOptions[] = JHTML::_('select.option', 'date', JText::_('K2_DATE'));
+		$typeOptions[] = JHTML::_('select.option', 'image', JText::_('K2_IMAGE'));
+		$typeOptions[] = JHTML::_('select.option', 'header', JText::_('K2_HEADER'));
+		$lists['type'] = JHTML::_('select.genericlist', $typeOptions, 'type', '', 'value', 'text', $extraField->type);
 
-        $this->assignRef('lists', $lists);
-        (JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_EXTRA_FIELD') : $title = JText::_('K2_ADD_EXTRA_FIELD');
-        JToolBarHelper::title($title, 'k2.png');
-        JToolBarHelper::save();
-        JToolBarHelper::apply();
-        JToolBarHelper::cancel();
-        JHTML::_('behavior.calendar');
+		$this->assignRef('lists', $lists);
+		(JRequest::getInt('cid')) ? $title = JText::_('K2_EDIT_EXTRA_FIELD') : $title = JText::_('K2_ADD_EXTRA_FIELD');
+		JToolBarHelper::title($title, 'k2.png');
+		JToolBarHelper::save();
+		JToolBarHelper::apply();
+		JToolBarHelper::cancel();
+		JHTML::_('behavior.calendar');
 
-        $document = JFactory::getDocument();
-        $document->addScriptDeclaration('
+		$document = JFactory::getDocument();
+		$document->addScriptDeclaration('
+		var K2BasePath = "'.JURI::base(true).'/";
 		var K2Language = [
 		"'.JText::_('K2_REMOVE', true).'", 
 		"'.JText::_('K2_OPTIONAL', true).'",
@@ -80,8 +127,8 @@ class K2ViewExtraField extends K2View
 		"'.JText::_('K2_CALENDAR', true).'",
 		"'.JText::_('K2_PLEASE_SELECT_A_FIELD_TYPE_FROM_THE_LIST_ABOVE', true).'",
 		];');
-
-        parent::display($tpl);
-    }
+		JHTML::_('behavior.modal');
+		parent::display($tpl);
+	}
 
 }

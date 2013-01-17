@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1731 2012-10-10 23:02:03Z joomlaworks $
+ * @version		$Id: view.html.php 1747 2012-10-29 17:25:18Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -172,7 +172,7 @@ class K2ViewComments extends K2View
         if ($mainframe->isSite())
         {
             // CSS
-            $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.6.1');
+            $document->addStyleSheet(JURI::root(true).'/media/k2/assets/css/k2.frontend.css?v=2.6.2');
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/general.css');
             $document->addStyleSheet(JURI::root(true).'/templates/system/css/system.css');
             if (K2_JVERSION != '15')

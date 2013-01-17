@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: k2item.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: k2item.php 1770 2012-11-22 15:23:53Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -60,8 +60,8 @@ class TableK2Item extends K2Table
     {
 
         jimport('joomla.filter.output');
-
-        if (JString::trim($this->title) == '')
+		$this->title = JString::trim($this->title);
+        if ($this->title == '')
         {
             $this->setError(JText::_('K2_ITEM_MUST_HAVE_A_TITLE'));
             return false;

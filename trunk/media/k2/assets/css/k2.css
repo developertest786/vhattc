@@ -1,5 +1,5 @@
 /**
- * @version		$Id: k2.css 1734 2012-10-11 01:50:28Z joomlaworks $
+ * @version		$Id: k2.css 1781 2012-11-23 17:06:15Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -84,8 +84,12 @@ table.adminFormK2Container tr td {vertical-align:top;}
 	.K2AdminViewExtraField label {float:none!important; display:inline!important; vertical-align:inherit !important;}
 
 /* Header */
-.icon-48-k2 {background:url(../images/system/k2.gif) no-repeat 0 50%;color:#222!important; padding-left:120px!important; font-size:24px!important;}
+.icon-48-k2 {background:url(../images/system/K2_Logo_105x40_24.png) no-repeat 0 50%;color:#222!important; padding-left:120px!important; font-size:24px!important;}
 .icon-48-k2 h2 {color:#222!important; font-size:24px!important; margin-left:10px!important;}
+
+/* Joomla! 3.0 header */
+body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat 0 50%;padding-left:100px;}
+@media (max-width: 767px) { body.com_k2 .page-title {background:url(../images/system/K2_Logo_85x36_24.png) no-repeat center center;padding-left:0; text-indent: -800px} }
 
 /* Footer */
 #k2AdminFooter {text-align:center;margin:20px auto 4px auto;}
@@ -194,8 +198,17 @@ h3.ui-accordion-header span.ui-icon {display:block;width:16px;height:16px;float:
 h3.ui-state-active span.ui-icon {display:block;width:16px;height:16px;float:left;background:#F6F6F6 url(../images/system/ui-icons_228ef1_256x240.png) no-repeat -64px -16px;}
 .ui-accordion-content {background-color:#fff; border:1px solid #ccc; border-top:none;}
 
+/* Admin - Item Extra Fields Validation */
+#k2ExtraFieldsValidationResults {list-style: none;}
+#k2ExtraFieldsValidationResults li { list-style:inside; font-weight: normal; font-style: italic;}
+#k2ExtraFieldsValidationResults li.k2ValidationTitle { font-weight: bold; list-style: none; font-style:normal;}
+.k2Invalid {border-color:red;}
+
 /* Extra Fields - Textarea with WYSIWYG - Remove outline */
 .nicEdit-main {outline:0;}
+
+/* Extra Fields - Textarea with WYSIWYG - Remove outline */
+.k2ExtraFieldHeader {display:block; color: #336699; font-size: 12px; font-weight: bold; background: none repeat scroll 0 0 #D5E7FA; border-bottom: 2px solid #96B0CB; padding: 6px 8px; margin:0;}
 
 table#item_video_content tr td div.panel {width:480px;}
 dl.tabs dt.closed {border:1px solid #ccc;}

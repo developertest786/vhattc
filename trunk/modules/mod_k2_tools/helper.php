@@ -156,75 +156,6 @@ class modK2ToolsHelper
 
     public static function getArchive(&$params)
     {
-        $mainframe = JFactory::getApplication();
-        $user = JFactory::getUser();
-        $aid = (int)$user->get('aid');
-        $db = JFactory::getDBO();
-
-        $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
-
-        $nullDate = $db->getNullDate();
-
-        $query = "SELECT * FROM #__k2_items WHERE published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0";
-        if (K2_JVERSION != '15')
-        {
-            $query .= " AND access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($mainframe->getLanguageFilter())
-            {
-                $languageTag = JFactory::getLanguage()->getTag();
-                $query .= " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
-            }
-        }
-        else
-        {
-            $query .= " AND access<={$aid} ";
-        }
-        $catid = $params->get('archiveCategory', 0);
-        if ($catid > 0)
-            $query .= " AND catid=".(int)$catid;
-
-        $query .= " ORDER BY created DESC";
-        $db->setQuery($query);
-        $rows = $db->loadObjectList();
-
-        $archives = array();
-        if (count($rows))
-        {
-            foreach ($rows as $row)
-            {
-
-                $extra_fields = K2ModelItem::getItemExtraFields($row->extra_fields);
-                foreach ($extra_fields as $extra_field) {
-                    $name = str_replace(' ', '_', strtolower($extra_field->name));
-//                    var_dump($row->extra_fields, $extra_field->id);
-                    if ($name == 'start_date') {
-                        $date = new DateTime($extra_field->value);
-                        $month = $date->format('m-Y');
-                        if (isset($archives[$month])) {
-                            $t = $archives[$month];
-                        } else {
-                            $t = new stdClass();
-                            $t->total = 0;
-                        }
-                        $t->name = $date->format('m');
-                        $t->m = $date->format('m');
-                        $t->y = $date->format('Y');
-                        $t->total++;
-
-                        $archives[$month] = $t;
-                        if (sizeof($archives) == 12) {
-                            break;
-                        }
-                    }
-                }
-
-            }
-//            var_dump($archives); exit;
-            return $archives;
-        }
-
-        return null;
 
         $mainframe = JFactory::getApplication();
         $user = JFactory::getUser();
@@ -1123,25 +1054,7 @@ class MyCalendar extends Calendar
             $accessCheck = " access <= {$aid}";
         }
 
-        $query = "SELECT COUNT(*)
-                    FROM #__k2_items AS i
-//                        WHERE ((YEAR(i.created)={$year} AND MONTH(i.created)={$month} AND DAY(i.created)={$day}))
-                            AND i.published=1
-                            AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-                            AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-                            AND i.trash=0 AND {$accessCheck} {$languageCheck}
-                            AND EXISTS(SELECT * FROM #__k2_categories
-                                WHERE i.id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
-        $query = "SELECT COUNT(*) FROM #__k2_items AS i
-                    WHERE i.id IN (SELECT item_id FROM #__k2_item_ef_value WHERE item_id = i.id
-                                    AND YEAR(date_value) = {$year}
-                                    AND MONTH(date_value) = {$month}
-                                    AND DAY(date_value) = {$day})
-                        AND i.published=1
-                        AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
-                        AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-                        AND i.trash=0 AND {$accessCheck} {$languageCheck}
-                        AND EXISTS(SELECT * FROM #__k2_categories WHERE id= i.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
+        $query = "SELECT COUNT(*) FROM #__k2_items WHERE YEAR(created)={$year} AND MONTH(created)={$month} AND DAY(created)={$day} AND published=1 AND ( publish_up = ".$db->Quote($nullDate)." OR publish_up <= ".$db->Quote($now)." ) AND ( publish_down = ".$db->Quote($nullDate)." OR publish_down >= ".$db->Quote($now)." ) AND trash=0 AND {$accessCheck} {$languageCheck} AND EXISTS(SELECT * FROM #__k2_categories WHERE id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
         $catid = $this->category;
         if ($catid > 0)

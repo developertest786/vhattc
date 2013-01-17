@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: route.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: route.php 1740 2012-10-22 15:27:52Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -91,7 +91,7 @@ class K2HelperRoute
             if (trim(str_replace('-', '', $alias)) == '')
             {
                 $datenow = JFactory::getDate();
-                $alias = $datenow->toFormat("%Y-%m-%d-%H-%M-%S");
+                $alias = K2_JVERSION == '15' ? $datenow->toFormat("%Y-%m-%d-%H-%M-%S") : $datenow->format("Y-m-d-H-i-s");
             }
         }
         $link = 'index.php?option=com_k2&view=itemlist&task=user&id='.$userID.':'.$alias;

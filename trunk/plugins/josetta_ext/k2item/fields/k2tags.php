@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     $Id: k2tags.php 1595 2012-06-07 11:57:51Z lefteris.kavadas $
+ * @version     $Id: k2tags.php 1743 2012-10-24 15:48:18Z lefteris.kavadas $
  * @package     K2
  * @author      JoomlaWorks http://www.joomlaworks.net
  * @copyright   Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -28,11 +28,11 @@ class JFormFieldK2Tags extends JFormField
             foreach ($tags as $tag)
             {
                 $tag = JString::trim($tag);
-                $html .= '<li class="tagAdded">'.$tag.'<span title="'.JText::_('K2_CLICK_TO_REMOVE_TAG').'" class="tagRemove">x</span><input type="hidden" name="tags[]" value="'.$tag.'" /></li>';
+                $html .= '<li id="'.$this->formControl.'_tagAdd" class="tagAdded">'.$tag.'<span title="'.JText::_('K2_CLICK_TO_REMOVE_TAG').'" onclick="Josetta.itemChanged(\'' . $this->id . '\');" class="tagRemove">x</span><input type="hidden" name="'.$this->name.'[]" value="'.$tag.'" /></li>';
             }
 
         }
-        $html .= '<li class="tagAdd"><input type="text" id="search-field" /></li>
+        $html .= '<li id="'.$this->formControl.'_tagAdd" class="tagAdd"><input type="text" id="' . $this->id . '" rel="' . $this->formControl . '" class="k2-search-field" /></li>
         <li class="clr"></li>
         </ul>
         <span class="k2Note"> '.JText::_('K2_WRITE_A_TAG_AND_PRESS_RETURN_OR_COMMA_TO_ADD_IT').' </span>';

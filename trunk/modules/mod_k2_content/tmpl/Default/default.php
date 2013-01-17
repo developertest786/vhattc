@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: default.php 1766 2012-11-22 14:10:24Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -86,10 +86,14 @@ defined('_JEXEC') or die;
 	      <b><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></b>
 	      <ul>
 	        <?php foreach ($item->extra_fields as $extraField): ?>
-					<?php if($extraField->value): ?>
+					<?php if($extraField->value != ''): ?>
 					<li class="type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?>">
+						<?php if($extraField->type == 'header'): ?>
+						<h4 class="moduleItemExtraFieldsHeader"><?php echo $extraField->name; ?></h4>
+						<?php else: ?>
 						<span class="moduleItemExtraFieldsLabel"><?php echo $extraField->name; ?></span>
 						<span class="moduleItemExtraFieldsValue"><?php echo $extraField->value; ?></span>
+						<?php endif; ?>
 						<div class="clr"></div>
 					</li>
 					<?php endif; ?>

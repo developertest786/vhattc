@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1728 2012-10-09 10:32:46Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1767 2012-11-22 14:55:46Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -221,6 +221,7 @@ class K2ViewItemlist extends K2View
                     JPluginHelper::importPlugin('k2');
                     $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                     $userObject->event->K2UserDisplay = trim(implode("\n", $results));
+                    $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
                 }
                 $this->assignRef('user', $userObject);
 
@@ -251,7 +252,7 @@ class K2ViewItemlist extends K2View
 
                 // Set limit
                 $limit = $params->get('tagItemCount');
-
+				
                 // Set title
                 $title = JText::_('K2_DISPLAYING_ITEMS_BY_TAG').' '.JRequest::getVar('tag');
 
@@ -445,6 +446,7 @@ class K2ViewItemlist extends K2View
             else
             {
                 $metaDescItem = preg_replace("#{(.*?)}(.*?){/(.*?)}#s", '', $this->category->description);
+                $metaDescItem = strip_tags($metaDescItem);
                 $metaDescItem = K2HelperUtilities::characterLimit($metaDescItem, $params->get('metaDescLimit', 150));
                 $metaDescItem = htmlspecialchars($metaDescItem, ENT_QUOTES, 'UTF-8');
                 $document->setDescription($metaDescItem);

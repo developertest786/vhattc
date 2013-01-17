@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: default.php 1635 2012-09-25 12:29:13Z lefteris.kavadas $
+ * @version		$Id: default.php 1771 2012-11-22 15:25:58Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -38,6 +38,10 @@ $document->addScriptDeclaration("
       <td><input class="text_area k2TitleBox" type="text" name="name" id="name" value="<?php echo $this->row->name; ?>" size="50" maxlength="250" /></td>
     </tr>
     <tr>
+      <td class="key"><?php echo JText::_('K2_ALIAS'); ?></td>
+      <td><input id="alias" type="text" name="alias" value="<?php echo $this->row->alias; ?>" /></td>
+    </tr>
+    <tr>
       <td class="key"><?php echo JText::_('K2_PUBLISHED'); ?></td>
       <td><?php echo $this->lists['published']; ?></td>
     </tr>
@@ -54,6 +58,27 @@ $document->addScriptDeclaration("
     <tr>
       <td class="key"><?php echo JText::_('K2_TYPE'); ?></td>
       <td><?php echo $this->lists['type']; ?></td>
+    </tr>
+    <tr id="k2ExtraFieldsRequiredFlag" <?php if($this->row->type == 'header') { echo 'style="display: none;"'; } ?>>
+      <td class="key"><?php echo JText::_('K2_REQUIRED'); ?></td>
+      <td>
+      	 <input id="required-yes" type="radio" name="required" value="1" <?php if($this->row->required) { echo 'checked="checked"';} ?>/><label for="required-yes"><?php echo JText::_('K2_YES'); ?></label>
+      	 <input id="required-no" type="radio" name="required" value="0"<?php if(!$this->row->required) { echo 'checked="checked"';} ?>/><label for="required-no"><?php echo JText::_('K2_NO'); ?></label>
+      </td>
+    </tr>
+    <tr id="k2ExtraFieldsShowNullFlag" <?php if($this->row->type != 'select' && $this->row->type != 'multipleSelect') { echo 'style="display: none;"'; } ?>>
+      <td class="key"><?php echo JText::_('K2_SHOW_NULL'); ?></td>
+      <td>
+      	 <input id="showNull-yes" type="radio" name="showNull" value="1" <?php if($this->row->showNull) { echo 'checked="checked"';} ?>/><label for="showNull-yes"><?php echo JText::_('K2_YES'); ?></label>
+      	 <input id="showNull-no" type="radio" name="showNull" value="0"<?php if(!$this->row->showNull) { echo 'checked="checked"';} ?>/><label for="showNull-no"><?php echo JText::_('K2_NO'); ?></label>
+      </td>
+    </tr>
+    <tr id="k2ExtraFieldsDisplayInFrontEndFlag" <?php if($this->row->type != 'header') { echo 'style="display: none;"'; } ?>>
+      <td class="key"><?php echo JText::_('K2_DISPLAY_IN_THE_FRONTEND'); ?></td>
+      <td>
+      	 <input id="displayInFrontEnd-yes" type="radio" name="displayInFrontEnd" value="1" <?php if($this->row->displayInFrontEnd) { echo 'checked="checked"';} ?>/><label for="displayInFrontEnd-yes"><?php echo JText::_('K2_YES'); ?></label>
+      	 <input id="displayInFrontEnd-no" type="radio" name="displayInFrontEnd" value="0"<?php if(!$this->row->displayInFrontEnd) { echo 'checked="checked"';} ?>/><label for="displayInFrontEnd-no"><?php echo JText::_('K2_NO'); ?></label>
+      </td>
     </tr>
     <tr>
       <td class="key"><?php echo JText::_('K2_DEFAULT_VALUES'); ?></td>

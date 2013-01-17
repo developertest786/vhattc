@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.raw.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: view.raw.php 1735 2012-10-12 13:18:12Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -62,6 +62,7 @@ class K2ViewItem extends K2View
             JPluginHelper::importPlugin('k2');
             $results = $dispatcher->trigger('onK2UserDisplay', array(&$item->author->profile, &$params, $limitstart));
             $item->event->K2UserDisplay = trim(implode("\n", $results));
+            $item->author->profile->url = htmlspecialchars($item->author->profile->url, ENT_QUOTES, 'UTF-8');
         }
 
         // Access check

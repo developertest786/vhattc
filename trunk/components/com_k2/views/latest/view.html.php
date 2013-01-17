@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 1646 2012-09-26 15:33:13Z lefteris.kavadas $
+ * @version		$Id: view.html.php 1735 2012-10-12 13:18:12Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -185,6 +185,7 @@ class K2ViewLatest extends K2View
                             JPluginHelper::importPlugin('k2');
                             $results = $dispatcher->trigger('onK2UserDisplay', array(&$userObject->profile, &$params, $limitstart));
                             $userObject->event->K2UserDisplay = trim(implode("\n", $results));
+                            $userObject->profile->url = htmlspecialchars($userObject->profile->url, ENT_QUOTES, 'UTF-8');
                         }
 
                         $link = K2HelperRoute::getUserRoute($userObject->id);

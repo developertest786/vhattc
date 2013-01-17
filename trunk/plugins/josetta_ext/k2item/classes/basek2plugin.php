@@ -1,6 +1,6 @@
 <?php
 /**
- * @version     $Id: basek2plugin.php 1596 2012-06-07 12:04:45Z lefteris.kavadas $
+ * @version     $Id: basek2plugin.php 1743 2012-10-24 15:48:18Z lefteris.kavadas $
  * @package     K2
  * @author      JoomlaWorks http://www.joomlaworks.net
  * @copyright   Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -12,7 +12,7 @@ defined('_JEXEC') or die ;
 // include base class of josetta plugins
 require_once JPATH_ADMINISTRATOR.DS.'components/com_josetta/classes/extensionplugin.php';
 
-class plgJosetta_extBaseK2Plugin extends JosettaClassesExtensionplugin
+class plgJosetta_extBaseK2Plugin extends JosettaadminClass_Extensionplugin
 {
 
     protected $_context = 'com_k2';

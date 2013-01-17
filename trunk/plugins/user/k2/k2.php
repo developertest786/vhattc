@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: k2.php 1661 2012-09-27 16:38:39Z lefteris.kavadas $
+ * @version		$Id: k2.php 1736 2012-10-12 13:58:40Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -84,10 +84,18 @@ class plgUserK2 extends JPlugin
             {
                 $row->set('group', NULL);
                 $row->set('gender', JRequest::getVar('gender'));
-                $row->set('url', JRequest::getVar('url'));
+                $row->set('url', JRequest::getString('url'));
             }
-
-            $row->set('description', JRequest::getVar('description', '', 'post', 'string', 2));
+            if ($row->gender != 'm' && $row->gender != 'f')
+            {
+                $row->gender = 'm';
+            }
+            $row->url = JString::str_ireplace(' ', '', $row->url);
+            $row->url = JString::str_ireplace('"', '', $row->url);
+            $row->url = JString::str_ireplace('<', '', $row->url);
+            $row->url = JString::str_ireplace('>', '', $row->url);
+            $row->url = JString::str_ireplace('\'', '', $row->url);
+            $row->set('description', JRequest::getVar('description', '', 'post', 'string', 4));
             if ($params->get('xssFiltering'))
             {
                 $filter = new JFilterInput( array(), array(), 1, 1, 0);

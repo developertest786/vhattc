@@ -1,6 +1,6 @@
 <?php
 /**
-* @version		$Id: default.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+* @version		$Id: default.php 1746 2012-10-24 16:51:40Z lefteris.kavadas $
 * @package		K2
 * @author		JoomlaWorks http://www.joomlaworks.net
 * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -24,7 +24,7 @@ jimport('joomla.html.pane');
 <!--[if lte IE 7]>
 <br class="ie7fix" />
 <![endif]-->
-<table class="adminlist">
+<table class="adminlist table table-striped">
 	<thead>
 		<tr>
 			<td class="title"><?php echo JText::_('K2_TITLE'); ?></td>
@@ -50,7 +50,7 @@ jimport('joomla.html.pane');
 <!--[if lte IE 7]>
 <br class="ie7fix" />
 <![endif]-->
-<table class="adminlist">
+<table class="adminlist table table-striped">
 	<thead>
 		<tr>
 			<td class="title"><?php echo JText::_('K2_TITLE'); ?></td>
@@ -78,7 +78,7 @@ jimport('joomla.html.pane');
 <!--[if lte IE 7]>
 <br class="ie7fix" />
 <![endif]-->
-<table class="adminlist">
+<table class="adminlist table table-striped">
 	<thead>
 		<tr>
 			<td class="title"><?php echo JText::_('K2_TITLE'); ?></td>
@@ -106,7 +106,7 @@ jimport('joomla.html.pane');
 <!--[if lte IE 7]>
 <br class="ie7fix" />
 <![endif]-->
-<table class="adminlist">
+<table class="adminlist table table-striped">
 	<thead>
 		<tr>
 			<td class="title"><?php echo JText::_('K2_COMMENT'); ?></td>
@@ -132,7 +132,7 @@ jimport('joomla.html.pane');
 <!--[if lte IE 7]>
 <br class="ie7fix" />
 <![endif]-->
-<table class="adminlist">
+<table class="adminlist table table-striped">
 	<thead>
 		<tr>
 			<td class="title"><?php echo JText::_('K2_TYPE'); ?></td>

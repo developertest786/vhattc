@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: item.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: item.php 1743 2012-10-24 15:48:18Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -39,7 +39,7 @@ class JosettaK2ModelItem extends JModel
 
         if ($front && $row->id == NULL)
         {
-            JLoader::register('K2HelperPermissions', JPATH_SITE.DS.'components'.DS.'com_k2'.DS.'helpers'.DS.'permissions.php');
+            JLoader::register('K2HelperPermissions', JPATH_SITE.'/components/com_k2/helpers/permissions.php');
             if (!K2HelperPermissions::canAddItem($row->catid))
             {
                 $this->setError(JText::_('K2_YOU_ARE_NOT_ALLOWED_TO_POST_TO_THIS_CATEGORY_SAVE_FAILED'));
@@ -158,7 +158,7 @@ class JosettaK2ModelItem extends JModel
         }
 
         // Image copy
-        $src = md5("Image".$item['ref_id']);        
+        $src = md5("Image".$item['ref_id']);
         $target = md5("Image".$row->id);
         $sizes = array('XL', 'L', 'M', 'S', 'XS');
         $savepath = JPATH_SITE.DS.'media'.DS.'k2'.DS.'items'.DS.'cache';
@@ -185,7 +185,7 @@ class JosettaK2ModelItem extends JModel
             }
         }
 
-        $csvFiles = JRequest::get('files');
+        $csvFiles = empty($item['files']) ? array() : $item['files'];
         foreach ($csvFiles as $key => $file)
         {
             if (( bool )JString::stristr($key, 'K2ExtraField_'))
@@ -206,18 +206,19 @@ class JosettaK2ModelItem extends JModel
                 }
                 else
                 {
-                    require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
+                    require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/JSON.php');
                     $json = new Services_JSON;
-                    $object->set('value', $json->decode(JRequest::getVar('K2CSV_'.$object->id)));
-                    if (JRequest::getBool('K2ResetCSV_'.$object->id))
+                    $object->set('value', $json->decode($item['K2CSV_'.$object->id]));
+                    if (!empty($item['K2ResetCSV_'.$object->id])) {
                         $object->set('value', null);
+                    }
                 }
                 unset($object->_errors);
                 $objects[] = $object;
             }
         }
 
-        require_once (JPATH_ADMINISTRATOR.DS.'components'.DS.'com_k2'.DS.'lib'.DS.'JSON.php');
+        require_once (JPATH_ADMINISTRATOR.'/components/com_k2/lib/JSON.php');
         $json = new Services_JSON;
         $row->extra_fields = $json->encode($objects);
 
@@ -233,10 +234,9 @@ class JosettaK2ModelItem extends JModel
         $db->setQuery($query);
         $db->query();
 
-        $tags = JRequest::getVar('tags', NULL, 'POST', 'array');
-        if (count($tags))
+        if (!empty($item['tags']))
         {
-            $tags = array_unique($tags);
+            $tags = array_unique($item['tags']);
             foreach ($tags as $tag)
             {
                 $tag = JString::str_ireplace('-', '', $tag);
@@ -262,8 +262,6 @@ class JosettaK2ModelItem extends JModel
                 }
             }
         }
-
-        $files = JRequest::get('files');
 
         //Image
         if ((int)$params->get('imageMemoryLimit'))

@@ -10,6 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 $categoriesId = $params->get('category_id');
+//var_dump($items);
 ?>
 
 <div class="block lst-training<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>" id="<?php echo $module->id; ?>">
@@ -30,7 +31,7 @@ $categoriesId = $params->get('category_id');
             <!-- K2 Plugins: K2BeforeDisplay -->
             <?php echo $item->event->K2BeforeDisplay; ?>
 
-            <?php $item->extra_fields = K2ModelItem::getItemExtraFields($item->extra_fields);
+            <?php if(is_scalar($item->extra_fields)) $item->extra_fields = K2Model::getInstance('Item', 'K2Model')->getItemExtraFields($item->extra_fields);
 
                 $fields = array();
                 foreach ($item->extra_fields as $key=>$extraField) {

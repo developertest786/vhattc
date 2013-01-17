@@ -963,7 +963,7 @@ class ModJASlideshowLite
 		}
         foreach ($imgFiles as $file) {
             $i_f = $imagePath . '/' . $file;
-            if (preg_match("/bmp|gif|jpg|png|jpeg/", $file) && is_file($i_f)) {
+            if (preg_match("/bmp|gif|jpg|png|jpeg|BMP|GIF|JPG|PNG/", $file) && is_file($i_f)) {
                 $imageFile[$i][0] = $file;
                 $imageFile[$i][1] = filemtime($i_f);
                 $i++;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: category_item.php 1689 2012-10-05 15:18:57Z lefteris.kavadas $
+ * @version		$Id: category_item.php 1766 2012-11-22 14:10:24Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 
 // Define default image size (do not change)
 K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
+
 ?>
 
 <!-- Start K2 Item Layout -->
@@ -136,10 +137,14 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 	  	<h4><?php echo JText::_('K2_ADDITIONAL_INFO'); ?></h4>
 	  	<ul>
 			<?php foreach ($this->item->extra_fields as $key=>$extraField): ?>
-			<?php if($extraField->value): ?>
+			<?php if($extraField->value != ''): ?>
 			<li class="<?php echo ($key%2) ? "odd" : "even"; ?> type<?php echo ucfirst($extraField->type); ?> group<?php echo $extraField->group; ?>">
+				<?php if($extraField->type == 'header'): ?>
+				<h4 class="catItemExtraFieldsHeader"><?php echo $extraField->name; ?></h4>
+				<?php else: ?>
 				<span class="catItemExtraFieldsLabel"><?php echo $extraField->name; ?></span>
 				<span class="catItemExtraFieldsValue"><?php echo $extraField->value; ?></span>
+				<?php endif; ?>
 			</li>
 			<?php endif; ?>
 			<?php endforeach; ?>
