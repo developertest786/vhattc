@@ -1,10 +1,10 @@
 <?php
-if(isset($_GET['jak2_reindex'])&&($_GET['jak2_reindex']==1))
+if(isset($_GET['hik2_reindex'])&&($_GET['hik2_reindex']==1))
 {
 	define( '_JEXEC', 1 );
 	define( 'DS', DIRECTORY_SEPARATOR );
 
-	$pathbase = str_replace(DS.'plugins'.DS.'k2'.DS.'jak2_indexing','',dirname(__FILE__));
+	$pathbase = str_replace(DS.'plugins'.DS.'k2'.DS.'hik2_indexing'.DS.'hik2_indexing','',dirname(__FILE__));
 	
 	define('JPATH_BASE',$pathbase );
 	define('JPATH_COMPONENT_ADMINISTRATOR',$pathbase.DS.'administrator'.DS.'components'.DS.'com_k2' );

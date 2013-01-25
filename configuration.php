@@ -14,7 +14,7 @@ class JConfig {
 	public $dbtype = 'mysqli';
 	public $host = 'localhost';
 	public $user = 'root';
-	public $password = '';
+	public $password = 'abc@123';
 	public $db = 'vhattc';
 	public $dbprefix = 'jos25_';
 	public $live_site = '';
@@ -53,8 +53,8 @@ class JConfig {
 	public $sef_suffix = '0';
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
-	public $log_path = 'E:\\xampp\\htdocs\\joomla25/logs';
-	public $tmp_path = 'E:\\xampp\\htdocs\\joomla25/tmp';
+	public $log_path = './logs';
+	public $tmp_path = './tmp';
 	public $lifetime = '60';
 	public $session_handler = 'database';
 	public $MetaRights = '';

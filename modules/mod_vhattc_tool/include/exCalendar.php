@@ -1,6 +1,6 @@
 <?php
 /**
- * @version		$Id: calendarClass.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
+ * @version		$Id: exCalendar.php 1618 2012-09-21 11:23:08Z lefteris.kavadas $
  * @package		K2
  * @author		JoomlaWorks http://www.joomlaworks.net
  * @copyright	Copyright (c) 2006 - 2012 JoomlaWorks Ltd. All rights reserved.
@@ -331,7 +331,9 @@ class ExCalendar
 
         // Make sure we know when today is, so that we can use a different CSS style
         $today = getdate(time());
-    	
+
+//        var_dump($s); exit;
+
     	while ($d <= $daysInMonth)
     	{
     	    $s .= "<tr>\n";       
@@ -342,6 +344,7 @@ class ExCalendar
     	              
     	        if ($d > 0 && $d <= $daysInMonth){
     	            $link = $this->getDateLink($d, $month, $year);
+//                    var_dump($link);exit;
     	            if($link == ""){
     	            	$s .= "<td class=\"{$class}\">$d</td>\n"; 
     	            } else {
@@ -357,7 +360,7 @@ class ExCalendar
     	}
     	
     	$s .= "</tbody></table></div>\n";
-    	
+//    	var_dump($s); exit;
     	return $s;  	
     }
     

@@ -28,24 +28,9 @@ class plgK2HIK2_Indexing extends JPlugin
 	// Extend user forms with K2 fields
 	function onAfterK2Save(&$row, $isNew)
 	{
-		//Extra fields
-        $objects = array();
-        $variables = JRequest::get('post', 4);
-        foreach ($variables as $key=>$value) {
-            if (( bool )JString::stristr($key, 'K2ExtraField_')) {
-                $object = new JObject;
-                $object->set('id', JString::substr($key, 13));
-                $object->set('value', $value);
-                unset($object->_errors);
-                $objects[] = $object;
-            }
-        }
-		
-		if (!count($objects)) return ;
 		$db = & JFactory::getDBO();
 		
-		$sql = '
-CREATE TABLE IF NOT EXISTS `jos25_hik2_index` (
+		$sql = 'CREATE TABLE IF NOT EXISTS `#__hik2_index` (
   `item_id` int(11) NOT NULL,
   `extra_id` int(11) NOT NULL,
   `extra_key` varchar(255) NOT NULL,
@@ -56,57 +41,73 @@ CREATE TABLE IF NOT EXISTS `jos25_hik2_index` (
   `type` varchar(255) NOT NULL,
   KEY `extra_id` (`extra_id`),
   KEY `item_id` (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
-CREATE TABLE IF NOT EXISTS `#__ja_k2extrafields` (
-			  `id` int(11) NOT NULL auto_increment,
-			  `itemid` int(11) NOT NULL,
-			  `exfid` int(11) NOT NULL,
-			  `value` varchar(255) character set utf8 NOT NULL,
-			  PRIMARY KEY  (`id`),
-			  UNIQUE KEY `id` (`id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=latin1';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;';
 		// create table if not exist
 		$db->setQuery($sql);
 		$db->query();
+
+        //DELETE old indexing
+        $query = "DELETE FROM #__hik2_index WHERE item_id = " .$row->id;
+        $db->setQuery($query);
+        $db->query();
+
+        $objs = json_decode($row->extra_fields);
 		
 		// get extrafields list for itemid
-		$db->setQuery("SELECT DISTINCT id,exfid FROM `#__ja_k2extrafields` WHERE itemid = {$row->id}");
-		$list = $db->loadObjectList('exfid');
-		require_once(JPATH_COMPONENT_ADMINISTRATOR.DS.'models'.DS.'extrafield.php');
-		$ext_model = new K2ModelExtraField();
-		foreach ($objects as $extrafield)
-		{
-			$object = new stdClass();
-			$object->itemid =$row->id;
-			$object->exfid = $extrafield->id;
-			$object->value = method_exists($ext_model,'getSearchValue')?$ext_model->getSearchValue($extrafield->id, $extrafield->value):$extrafield->value;
-			if (!array_key_exists($extrafield->id,$list))
-			{
-				$db->insertObject('#__ja_k2extrafields',$object,'id');
-			}
-			else 
-			{
-				$object->id = $list[$extrafield->id]->id;
-				$db->updateObject('#__ja_k2extrafields',$object,'id');
-			}
-		}
+
+        foreach ($objs as $obj) {
+            $query = "SELECT * FROM #__k2_extra_fields WHERE id = " .$obj->id;
+            $db->setQuery($query);
+            $ef = $db->loadObject();
+            $ef->value = json_decode($ef->value);
+
+            if ($ef->type == 'select' || 'radio' == $ef->type) {
+                foreach ($ef->value as $v) {
+                    if ($v->value == $obj->value) {
+                        $index = new stdClass();
+                        $index->item_id = $row->id;
+                        $index->number_value = $ef->id;
+                        $index->extra_id = $ef->id;
+                        $index->text_value = $v->name;
+                        $index->extra_key = str_replace(' ', '_', strtolower($ef->name));
+                        $db->insertObject('#__hik2_index', $index);
+                    }
+                }
+            } else if ($ef->type == 'multipleSelect' ) {
+                $select_value = array();
+                foreach ($ef->value as $v) {
+                    foreach ($obj->value as $obv) {
+                        if ($v->value == $obv) {
+                            $index = new stdClass();
+                            $index->item_id = $row->id;
+                            $index->number_value = $ef->id;
+                            $index->extra_id = $ef->id;
+                            $index->text_value = $v->name;
+                            $index->extra_key = str_replace(' ', '_', strtolower($ef->name));
+                            $db->insertObject('#__hik2_index', $index);
+                        }
+                    } //end foreach $obj->value
+                }//end foreach $ef->value
+            } else {
+                $index = new stdClass();
+                $index->item_id = $row->id;
+                $index->extra_id = $ef->id;
+                $index->extra_key = str_replace(' ', '_', strtolower($ef->name));
+                switch ($ef->type) {
+                    case "date":
+                        $index->date_value = $obj->value;
+                        break;
+                    default:
+                        $index->text_value = $obj->value;
+                }
+                $db->insertObject('#__hik2_index', $index);
+            }
+        }
 	}
 
 	function K2Extrafield_reindex($start,$numitems)
 	{
 		$db = & JFactory::getDBO();
-		$sql = 'CREATE TABLE IF NOT EXISTS `#__ja_k2extrafields` (
-			  `id` int(11) NOT NULL auto_increment,
-			  `itemid` int(11) NOT NULL,
-			  `exfid` int(11) NOT NULL,
-			  `value` varchar(255) character set utf8 NOT NULL,
-			  PRIMARY KEY  (`id`),
-			  UNIQUE KEY `id` (`id`)
-			) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;';
-		// create table if not exist
-		$db->setQuery($sql);
-		$db->query();
 		$db->setQuery("SELECT COUNT(id) FROM #__k2_items WHERE trash=0 ");
 		$total = $db->loadResult();
 		if (!$total ||($total<$start))return '1';
@@ -118,6 +119,8 @@ CREATE TABLE IF NOT EXISTS `#__ja_k2extrafields` (
 		
 		foreach ($list as $item)
 		{
+            self::onAfterK2Save($item, false); continue;
+
 			$item->extra_fields = str_replace(array("\r", "\r\n", "\n","\\"), '', $item->extra_fields);
 			$extrafields = json_decode($item->extra_fields);
 			if ($extrafields)

@@ -11,8 +11,9 @@
 defined('_JEXEC') or die;
 
 // Define default image size (do not change)
-K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
+//K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 $fields = array();
+//xdebug_var_dump($this->item); exit;
 foreach ($this->item->extra_fields as $key=>$extraField) {
     $name = str_replace(' ', '_', strtolower($extraField->name));
     $fields[$name] = $extraField->value;
@@ -27,8 +28,8 @@ foreach ($this->item->extra_fields as $key=>$extraField) {
 
 <div class="event-item media">
     <div class="duration-time"><!--left-->
-        <div class="box-time"><?php echo $fields['start_date'] ?><?php if ($fields['end_date']) : ?>
-            - <?php echo $fields['start_date'] ?>
+        <div class="box-time"><?php echo $fields['start_date'] ?><?php if (isset($fields['end_date'])) : ?>
+            - <?php echo $fields['end_date'] ?>
             <?php endif ?>
         </div>
         <div class="time-left">

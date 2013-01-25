@@ -1296,9 +1296,12 @@ class K2ModelItem extends K2Model
 		$db->setQuery($query);
 		$group = $db->loadResult();
 
+//        var_dump($item); exit;
+
 		$query = "SELECT * FROM #__k2_extra_fields WHERE `group` = ".(int)$group." AND published=1 AND (id IN ({$condition}) OR `type` = 'header') ORDER BY ordering ASC";
 		$db->setQuery($query);
 		$rows = $db->loadObjectList();
+//        print_r($rows); exit;
 		$size = count($rows);
 
 		for ($i = 0; $i < $size; $i++)

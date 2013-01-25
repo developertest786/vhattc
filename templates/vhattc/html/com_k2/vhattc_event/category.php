@@ -24,8 +24,13 @@ defined('_JEXEC') or die;
                 <?php foreach ($this->leading as $leading) : ?>
                 <?php
                     $this->item=$leading;
-                    if (is_scalar($this->item->extra_fields))
-                        $this->item->extra_fields = K2Model::getInstance('Item', 'K2Model')->getItemExtraFields($this->item->extra_fields);
+                    if (is_scalar($this->item->extra_fields)) {
+//                        var_dump($this->item);
+                        $model = K2Model::getInstance('Item', 'K2Model');
+                        $this->item->extra_fields = $model->getItemExtraFields($this->item->extra_fields, $this->item);
+//                        var_dump($this->item); exit;
+                    }
+
                     echo $this->loadTemplate('item');
                 ?>
                 <!--END: event-item-->
