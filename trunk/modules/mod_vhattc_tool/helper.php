@@ -7,14 +7,13 @@
  * To change this template use File | Settings | File Templates.
  */
 
-require_once (dirname(__FILE__).DS.'include'.DS.'calendarClass.php');
+require_once (dirname(__FILE__).DS.'include'.DS.'exCalendar.php');
 
 class modVHATTCToolHelper {
     public static function getArchive(&$params) {}
 
     public static function calendar($params)
     {
-
         $month = JRequest::getInt('month');
         $year = JRequest::getInt('year');
 
@@ -53,44 +52,31 @@ class FieldCalendar extends ExCalendar
         $aid = $user->get('aid');
         $db = JFactory::getDBO();
 
-        $jnow = JFactory::getDate();
-        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+//        $jnow = JFactory::getDate();
+//        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
 
-        $nullDate = $db->getNullDate();
+//        $nullDate = $db->getNullDate();
+
+//        var_dump(K2_JVERSION); exit;
 
         $languageCheck = '';
-        if (K2_JVERSION != '15')
+
+        $accessCheck = " access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
+        if ($mainframe->getLanguageFilter())
         {
-            $accessCheck = " access IN(".implode(',', $user->getAuthorisedViewLevels()).") ";
-            if ($mainframe->getLanguageFilter())
-            {
-                $languageTag = JFactory::getLanguage()->getTag();
-                $languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
-            }
-        }
-        else
-        {
-            $accessCheck = " access <= {$aid}";
+            $languageTag = JFactory::getLanguage()->getTag();
+            $languageCheck = " AND language IN (".$db->Quote($languageTag).", ".$db->Quote('*').") ";
         }
 
-        $query = "SELECT COUNT(*)
-                    FROM #__k2_items AS i
-//                        WHERE ((YEAR(i.created)={$year} AND MONTH(i.created)={$month} AND DAY(i.created)={$day}))
-                            AND i.published=1
-                            AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now)." )
-                            AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
-                            AND i.trash=0 AND {$accessCheck} {$languageCheck}
-                            AND EXISTS(SELECT * FROM #__k2_categories
-                                WHERE i.id= #__k2_items.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
         $query = "SELECT COUNT(*) FROM #__k2_items AS i
-                    WHERE i.id IN (SELECT item_id FROM #__k2_item_ef_value WHERE item_id = i.id
+                    WHERE i.id IN (SELECT item_id FROM #__hik2_index WHERE item_id = i.id
                                     AND extra_id IN (" .implode(',', $this->extraField) .")
                                     AND YEAR(date_value) = {$year}
                                     AND MONTH(date_value) = {$month}
                                     AND DAY(date_value) = {$day})
                         AND i.published=1
-                        AND (i.publish_up = ".$db->Quote($nullDate)." OR i.publish_up <= ".$db->Quote($now).")
-                        AND (i.publish_down = ".$db->Quote($nullDate)." OR i.publish_down >= ".$db->Quote($now)." )
+                        AND (i.publish_up = '0000-00-00 00:00:00' OR i.publish_up <= NOW() )
+                        AND (i.publish_down = '0000-00-00 00:00:00' OR i.publish_down >= NOW() )
                         AND i.trash=0 AND {$accessCheck} {$languageCheck}
                         AND EXISTS(SELECT * FROM #__k2_categories WHERE id= i.catid AND published=1 AND trash=0 AND {$accessCheck} {$languageCheck})";
 
@@ -98,8 +84,10 @@ class FieldCalendar extends ExCalendar
         if ($catid > 0)
             $query .= " AND catid IN (" . implode(',', $catid) .")";
 
+//        var_dump($query); exit;
         $db->setQuery($query);
         $result = $db->loadResult();
+//        var_dump($result);exit;
         if ($db->getErrorNum())
         {
             echo $db->stderr();
@@ -109,11 +97,21 @@ class FieldCalendar extends ExCalendar
         if ($result > 0)
         {
             $itemID = JRequest::getInt('Itemid');
-            if ($catid > 0)
-                return JRoute::_('index.php?option=com_k2&view=itemlist&task=list&year='.$year.'&month='.$month.'&day='.$day.'&catid='.$catid.'&Itemid='.$itemID);
-            else
-                return JRoute::_('index.php?option=com_k2&view=itemlist&task=filter&year='.$year.'&month='.$month.'&day='.$day.'&Itemid='.$itemID);
+            $link = 'index.php?option=com_k2&view=ef&task=list&year='.$year.'&month='.$month.'&day='.$day.'&Itemid='.$itemID;
+            if (!empty($catid)) {
+                foreach ($catid as $cid) {
+                    $link .='&catid[]=' .$cid;
+                }
 
+            }
+
+            if (!empty($this->extraField)) {
+                foreach($this->extraField as $ef) {
+                    $link .='&exf[]=' .$ef;
+                }
+            }
+
+            return JRoute::_($link);
         }
         else
         {
@@ -123,11 +121,23 @@ class FieldCalendar extends ExCalendar
 
     function getCalendarLink($month, $year)
     {
+        $catid = $this->category;
         $itemID = JRequest::getInt('Itemid');
-        if ($this->category > 0)
-            return JURI::root(true)."/index.php?option=com_k2&amp;view=itemlist&amp;task=calendar&amp;month={$month}&amp;year={$year}&amp;catid={$this->category}&amp;Itemid={$itemID}";
-        else
-            return JURI::root(true)."/index.php?option=com_k2&amp;view=itemlist&amp;task=calendar&amp;month=$month&amp;year=$year&amp;Itemid={$itemID}";
+        $link = '/index.php?option=com_k2&amp;view=ef&amp;task=list&amp;year='.$year.'&amp;month='.$month.'&amp;Itemid='.$itemID;
+        if (!empty($catid)) {
+            foreach ($catid as $cid) {
+                $link .='&amp;catid[]=' .$cid;
+            }
+
+        }
+
+        if (!empty($this->extraField)) {
+            foreach($this->extraField as $ef) {
+                $link .='&amp;exf[]=' .$ef;
+            }
+        }
+
+        return JURI::root(true) .$link;
     }
 
 }

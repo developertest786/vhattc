@@ -36,7 +36,7 @@ switch ($module_usage)
 
     case '2' :
         $calendar = modVHATTCToolHelper::calendar($params);
-        require (JModuleHelper::getLayoutPath('mod_k2_tools', 'calendar'));
+        require (JModuleHelper::getLayoutPath('mod_vhattc_tool', 'calendar'));
         break;
 
     case '3' :
