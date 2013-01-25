@@ -31,7 +31,7 @@ $categoriesId = $params->get('category_id');
             <!-- K2 Plugins: K2BeforeDisplay -->
             <?php echo $item->event->K2BeforeDisplay; ?>
 
-            <?php if(is_scalar($item->extra_fields)) $item->extra_fields = K2Model::getInstance('Item', 'K2Model')->getItemExtraFields($item->extra_fields);
+            <?php if(is_scalar($item->extra_fields)) $item->extra_fields = K2Model::getInstance('Item', 'K2Model')->getItemExtraFields($item->extra_fields, $item);
 
                 $fields = array();
                 foreach ($item->extra_fields as $key=>$extraField) {

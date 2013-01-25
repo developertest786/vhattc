@@ -10,6 +10,26 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controller');
 class K2ControllerEf extends K2Controller {
+    public function display($cachable = false, $urlparams = array())
+    {
+        $model = $this->getModel('extrafield');
+        $format = JRequest::getWord('format', 'html');
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = $this->getView('itemlist', $viewType);
+        $view->setModel($model);
+        $user = JFactory::getUser();
+        if ($user->guest)
+        {
+            $cache = true;
+        }
+        else
+        {
+            $cache = false;
+        }
+        parent::display($cache);
+    }
+
     function calendar() {
         require_once (JPATH_SITE.DS.'modules'.DS.'mod_vhattc_tool'.DS.'include'.DS.'exCalendar.php');
         require_once (JPATH_SITE.DS.'modules'.DS.'mod_vhattc_tool'.DS.'helper.php');

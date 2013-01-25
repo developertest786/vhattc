@@ -29,7 +29,7 @@ defined('_JEXEC') or die;
                     <?php foreach ($this->items as $item) : ?>
                     <?php
                     $this->item=$item;
-                    $this->item->extra_fields = K2ModelItem::getItemExtraFields($this->item->extra_fields);
+                    $this->item->extra_fields = K2Model::getInstance('Item', 'K2Model')->getItemExtraFields($item->extra_fields, $item);
                     $fields = array();
                     foreach ($this->item->extra_fields as $key=>$extraField) {
                         $name = str_replace(' ', '_', strtolower($extraField->name));
@@ -39,8 +39,8 @@ defined('_JEXEC') or die;
                     ?>
                     <div class="event-item media">
                         <div class="duration-time"><!--left-->
-                            <div class="box-time"><?php echo $fields['start_date'] ?><?php if ($fields['end_date']) : ?>
-                                - <?php echo $fields['start_date'] ?>
+                            <div class="box-time"><?php echo $fields['start_date'] ?><?php if (isset($fields['end_date'])) : ?>
+                                - <?php echo $fields['end_date'] ?>
                                 <?php endif ?>
                             </div>
                             <div class="time-left">

@@ -228,6 +228,35 @@ class K2ModelItemlist extends K2Model
                     $query .= " AND i.catid = {$categories}";
                 break;
 
+            case "exfilter":
+//                var_dump($_REQUEST); exit;
+                $month = JRequest::getInt('m');
+                $year = JRequest::getInt('y');
+                $day = JRequest::getInt('d');
+                $catid = JRequest::getVar('catid');
+                $exf = JRequest::getVar('exf');
+                if (!empty($catid)) {
+                    $query .= " AND i.catid IN (" . implode(',', $catid) .")";
+                }
+
+                $extra = " AND i.id IN (SELECT item_id FROM #__hik2_index WHERE item_id = i.id";
+                if ($month)
+                    $extra .= " AND MONTH(date_value) = {$month}";
+
+                if ($year)
+                    $extra .= " AND YEAR(date_value) = {$year}";
+
+                if ($day)
+                    $extra .= " AND DAY(date_value) = {$day}";
+
+                if (!empty($exf)) {
+                    $extra .= " AND extra_id IN (" .implode(',', $exf) .")";
+                }
+
+                $extra .= ")";
+                $query .= $extra;
+                break;
+
             default :
                 $searchIDs = $params->get('categories');
 
@@ -338,8 +367,10 @@ class K2ModelItemlist extends K2Model
         $dispatcher = JDispatcher::getInstance();
         JPluginHelper::importPlugin('k2');
         $dispatcher->trigger('onK2BeforeSetQuery', array(&$query));
+//        print_r($query);exit;
         $db->setQuery($query, $limitstart, $limit);
         $rows = $db->loadObjectList();
+//        var_dump($rows); exit;
         return $rows;
     }
 
@@ -526,6 +557,35 @@ class K2ModelItemlist extends K2Model
                     $query .= " AND i.catid IN(".implode(',', $categories).")";
                 if (is_string($categories))
                     $query .= " AND i.catid = {$categories}";
+                break;
+
+            case "exfilter":
+//                var_dump($_REQUEST); exit;
+                $month = JRequest::getInt('m');
+                $year = JRequest::getInt('y');
+                $day = JRequest::getInt('d');
+                $catid = JRequest::getVar('catid');
+                $exf = JRequest::getVar('exf');
+                if (!empty($catid)) {
+                    $query .= " AND i.catid IN (" . implode(',', $catid) .")";
+                }
+
+                $extra = " AND i.id IN (SELECT item_id FROM #__hik2_index WHERE item_id = i.id";
+                if ($month)
+                    $extra .= " AND MONTH(date_value) = {$month}";
+
+                if ($year)
+                    $extra .= " AND YEAR(date_value) = {$year}";
+
+                if ($day)
+                    $extra .= " AND DAY(date_value) = {$day}";
+
+                if (!empty($exf)) {
+                    $extra .= " AND extra_id IN (" .implode(',', $exf) .")";
+                }
+
+                $extra .= ")";
+                $query .= $extra;
                 break;
 
             default :

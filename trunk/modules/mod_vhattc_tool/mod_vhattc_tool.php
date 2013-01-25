@@ -27,7 +27,7 @@ switch ($module_usage)
         $months = modVHATTCToolHelper::getArchive($params);
         if (count($months))
         {
-            require (JModuleHelper::getLayoutPath('mod_k2_tools', 'archive'));
+            require (JModuleHelper::getLayoutPath('mod_vhattc_tool', 'archive'));
         }
         break;
 
