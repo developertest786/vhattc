@@ -10,7 +10,66 @@
 require_once (dirname(__FILE__).DS.'include'.DS.'exCalendar.php');
 
 class modVHATTCToolHelper {
-    public static function getArchive(&$params) {}
+    public static function getArchive(&$params) {
+        $mainframe = JFactory::getApplication();
+        $user = JFactory::getUser();
+        $aid = (int)$user->get('aid');
+        $db = JFactory::getDBO();
+
+        $jnow = JFactory::getDate();
+        $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
+
+        $nullDate = $db->getNullDate();
+
+        $query = "SELECT DISTINCT MONTH(date_value) as m, YEAR(date_value) as y FROM #__hik2_index";
+
+        $catid = $params->get('archiveCategory', 0);
+        if ($catid > 0)
+            $query .= " WHERE item_id IN (SELECT id FROM #__k2_items WHERE catid = {$catid})";
+
+        $query .= " ORDER BY date_value DESC";
+
+        $db->setQuery($query, 0, 12);
+        $rows = $db->loadObjectList();
+        $months = array(JText::_('K2_JANUARY'), JText::_('K2_FEBRUARY'), JText::_('K2_MARCH'), JText::_('K2_APRIL'), JText::_('K2_MAY'), JText::_('K2_JUNE'), JText::_('K2_JULY'), JText::_('K2_AUGUST'), JText::_('K2_SEPTEMBER'), JText::_('K2_OCTOBER'), JText::_('K2_NOVEMBER'), JText::_('K2_DECEMBER'), );
+        if (count($rows))
+        {
+
+            foreach ($rows as $row)
+            {
+                if ($params->get('archiveItemsCounter'))
+                {
+                    $row->numOfItems = self::countArchiveItems($row->m, $row->y, $catid);
+                }
+                else
+                {
+                    $row->numOfItems = '';
+                }
+                $row->name = $months[($row->m) - 1];
+                $row->catid = $catid;
+                $archives[] = $row;
+            }
+
+            return $archives;
+
+        }
+    }
+
+    public static function countArchiveItems($month, $year, $catid = 0) {
+        $month = (int)$month;
+        $year = (int)$year;
+        $db = JFactory::getDBO();
+
+        $query = "SELECT COUNT(DISTINCT item_id) FROM #__hik2_index WHERE MONTH(date_value) = {$month} AND YEAR(date_value) = {$year}";
+        if ($catid > 0) {
+            $query .= " AND item_id IN (SELECT id FROM #__k2_items WHERE catid = {$catid})";
+        }
+
+        $db->setQuery($query);
+        $total = $db->loadResult();
+        return $total;
+
+    }
 
     public static function calendar($params)
     {
@@ -97,7 +156,7 @@ class FieldCalendar extends ExCalendar
         if ($result > 0)
         {
             $itemID = JRequest::getInt('Itemid');
-            $link = 'index.php?option=com_k2&view=ef&task=list&year='.$year.'&month='.$month.'&day='.$day.'&Itemid='.$itemID;
+            $link = 'index.php?option=com_k2&view=itemlist&task=exfilter&y='.$year.'&m='.$month.'&d='.$day.'&Itemid='.$itemID;
             if (!empty($catid)) {
                 foreach ($catid as $cid) {
                     $link .='&catid[]=' .$cid;
@@ -123,7 +182,7 @@ class FieldCalendar extends ExCalendar
     {
         $catid = $this->category;
         $itemID = JRequest::getInt('Itemid');
-        $link = '/index.php?option=com_k2&amp;view=ef&amp;task=list&amp;year='.$year.'&amp;month='.$month.'&amp;Itemid='.$itemID;
+        $link = '/index.php?option=com_k2&amp;view=ef&amp;task=calendar&amp;year='.$year.'&amp;emonth='.$month.'&amp;Itemid='.$itemID;
         if (!empty($catid)) {
             foreach ($catid as $cid) {
                 $link .='&amp;catid[]=' .$cid;

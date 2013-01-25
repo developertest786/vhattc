@@ -229,6 +229,19 @@ switch ($view)
 					$title[] = $searchword;
 				break;
 
+            case 'exfilter' :
+                $title[] = 'exfilter';
+                if (!empty($year))
+                    $title[] = $year;
+
+                if (!empty($month))
+                    $title[] = $month;
+
+                if (!empty($day))
+                    $title[] = $day;
+
+                break;
+
 			case 'date' :
 				$title[] = 'date';
 				if (!empty($year))

@@ -304,6 +304,33 @@ class K2ViewItemlist extends K2View
 
                 break;
 
+            case 'exfilter' :
+                // Set layout
+                $this->setLayout('generic');
+
+                // Set limit
+                $limit = $params->get('genericItemCount');
+
+                // Set title
+                if (JRequest::getInt('d'))
+                {
+                    $date = strtotime(JRequest::getInt('y').'-'.JRequest::getInt('m').'-'.JRequest::getInt('d'));
+                    $dateFormat = (K2_JVERSION == '15') ? '%A, %d %B %Y' : 'l, d F Y';
+                    $title = JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.JHTML::_('date', $date, $dateFormat);
+                }
+                else
+                {
+                    $date = strtotime(JRequest::getInt('y').'-'.JRequest::getInt('m'));
+                    $dateFormat = (K2_JVERSION == '15') ? '%B %Y' : 'F Y';
+                    $title = JText::_('K2_ITEMS_FILTERED_BY_DATE').' '.JHTML::_('date', $date, $dateFormat);
+                }
+                // Set ordering
+                $ordering = 'rdate';
+
+                $addHeadFeedLink = $params->get('genericFeedLink', 1);
+
+                break;
+
             default :
                 // Set layout
                 $this->setLayout('category');
