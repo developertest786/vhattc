@@ -14,7 +14,7 @@ class modVHATTCToolHelper {
         $mainframe = JFactory::getApplication();
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
-        $db = JFactory::getDBO();
+        $db = JFactory::getDbo();
 
         $jnow = JFactory::getDate();
         $now = K2_JVERSION == '15' ? $jnow->toMySQL() : $jnow->toSql();
