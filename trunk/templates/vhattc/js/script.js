@@ -17,16 +17,29 @@ $j(function () {
         $j("#sys_choose_lang").submit();
     });*/
 
+    /*if($j("#datepicker_custom").length>0) {
+     $j("#datepicker_custom").datepicker({
+     showOtherMonths: true,
+     selectOtherMonths: true
+     });
+     }*/
+
     if($j("#all-news").find(".news-item").length>3) {
         $j("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
     }
 
-    /*if($j("#datepicker_custom").length>0) {
-        $j("#datepicker_custom").datepicker({
-            showOtherMonths: true,
-            selectOtherMonths: true
+    if ($j("#main-menu").length > 0) {
+        var root_menu = $j("#main-menu").find("ul.root-menu").first().children(":not(.sep)");
+        //console.log();
+        root_menu.on("mouseover",function(){
+            $(this).addClass("hover");
         });
-    }*/
+        root_menu.on("mouseout",function(){
+            $(this).removeClass("hover");
+        });
+
+    }
+
     if($j("#main-slider-code").length>0) {
         $j("#main-slider-code").tinycarousel({
             pager:true,

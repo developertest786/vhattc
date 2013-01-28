@@ -457,25 +457,28 @@ textarea {
 #main-menu {
     background: #00467f;
 }
-#main-menu ul {
+#main-menu ul.root-menu {
     float: left;
 }
-#main-menu ul > li {
+#main-menu ul.root-menu > li {
     padding: 0;
     margin: 0;
     float: left;
     position: relative;
+    list-style: none;
 }
-#main-menu ul > li:first-child {
+#main-menu ul.root-menu > li:first-child {
     display: none;
 }
-#main-menu ul > li.active > a {
+#main-menu ul.root-menu > li.active > a {
     color: #FFF;
     height: 36px;
     line-height: 34px;
     border-top: 3px solid #990000;
 }
-#main-menu ul > li > a {
+#main-menu ul.root-menu > li > a,
+#main-menu ul.root-menu > li > span {
+    cursor: pointer;
     display: block;
     color: #b1dafb;
     text-transform: uppercase;
@@ -484,7 +487,10 @@ textarea {
     padding: 0 30px;
     font-weight: bold;
 }
-#main-menu ul > li > a:hover {
+#main-menu ul.root-menu > li > a:hover,
+#main-menu ul.root-menu > li.hover > a,
+#main-menu ul.root-menu > li > span:hover,
+#main-menu ul.root-menu > li.hover > span{
     text-decoration: none;
     background: #FFF;
     color: #00467f;
@@ -492,7 +498,26 @@ textarea {
     line-height: 34px;
     border-top: 3px solid #990000;
 }
-#main-menu ul > li .dropdown {
+#main-menu ul.root-menu li.parent ul{
+    display: none;
+    list-style: none;
+    position: absolute;
+    width: 220px;
+    background: #FFF;
+    z-index: 1;
+    top: 39px;
+    left: 0;
+    border-bottom: 1px solid #990000;
+    padding: 0 0 10px 30px;
+}
+#main-menu ul.root-menu li.parent:hover ul{
+    display: block;
+}
+
+#main-menu ul.root-menu li.parent li{
+    padding: 7px 0 2px;
+}
+/*#main-menu ul > li .dropdown {
     display: none;
     position: absolute;
     width: 180px;
@@ -504,8 +529,8 @@ textarea {
     border-width: 3px 0 1px 0;
     padding-bottom: 15px;
     text-align: center;
-}
-#main-menu ul > li .dropdown > a {
+}*/
+/*#main-menu ul > li .dropdown > a {
     display: block;
     color: #00467f;
     padding: 3px;
@@ -522,12 +547,16 @@ textarea {
 }
 #main-menu ul > li:hover .dropdown {
     display: block;
-}
+}*/
 #main-menu ul > li.sep {
     width: 2px;
     background: url("../images/sep-menu.png") no-repeat center center;
     height: 39px;
 }
+#main-menu .root-menu li.parent li.sep {
+    display: none;
+}
+
 /* ------------- slide ------------- */
 #main-slide {
     background: url("../images/slide-bg.png") repeat-x top center;
