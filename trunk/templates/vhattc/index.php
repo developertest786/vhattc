@@ -79,7 +79,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                 <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/logo.png" alt="<?php echo htmlspecialchars($templateparams->get('sitetitle'));?>">
             </a>
         </h1>
-        <div class="right-panel">&nbsp;
+        <div class="right-panel">
             <div class="clearfix">
                 <jdoc:include type="modules" name="position-1" />
                 <!-- <div class="language">
