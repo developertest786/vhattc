@@ -225,7 +225,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                 </div><!--end: col-type1 -->
                 <div class="col-type1">
                     <div class="wrap-foot-item">
-                        <h5 class="rs title">Contact Us</h5>
+                        <h5 class="rs title"><?php echo JText::_('CONTACT_US') ?></h5>
                         <p class="rs desc-contact">
                             <!-- Vietnam HIV Addiction Technology Transfer Center
                             Center for Research and Training on HIV/AIDS -->
@@ -249,7 +249,7 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
                 </div><!--end: col-type1 -->
                 <div class="col-type2">
                     <div class="wrap-foot-item">
-                        <h5 class="rs title">Find us on Facebook</h5>
+                        <h5 class="rs title"><?php echo JText::_("FIND_US_ON_FACEBOOK") ?></h5>
                         <div class="social-contact">
                             <a href="https://www.facebook.com/vhattc" target="_blank">
                                 <i class="icon iFb"></i>
