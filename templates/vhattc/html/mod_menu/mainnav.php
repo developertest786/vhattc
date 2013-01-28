@@ -10,6 +10,7 @@
 defined('_JEXEC') or die;
 
 // Note. It is important to remove spaces between elements.
+//print_r($list); exit;
 ?>
 
 <ul class="menu <?php echo $class_sfx;?>"<?php
