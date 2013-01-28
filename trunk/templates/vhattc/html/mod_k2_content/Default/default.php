@@ -46,8 +46,8 @@ $categoriesId = $params->get('category_id');
                 </h4>
                 <p class="rs date">
                     <?php echo ($fields['type']) ?> , <?php echo JText::_('FROM') ?>
-                    <?php echo(@$fields['start_date']); ?><?php if ($fields['end_date']) {?> <?php echo JText::_('TO') ?> <?php echo $fields['end_date']; } ?>,
-                    at <?php echo ($fields['venue']) ?>
+                    <?php echo(@$fields['start_date']); ?><?php if (isset($fields['end_date'])) {?> <?php echo JText::_('TO') ?> <?php echo @$fields['end_date']; } ?>,
+                    <?php echo JText::_('AT') ?> <?php echo ($fields['venue']) ?>
                 </p>
                 <p class="rs desc"><?php echo $item->introtext; ?></p>
 
