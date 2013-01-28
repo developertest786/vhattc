@@ -1,6 +1,6 @@
 <?php
 class JConfig {
-	public $offline = '1';
+	public $offline = '0';
 	public $offline_message = 'Trang web này đang được bảo trì.</br>Xin quay trở lại sau. ';
 	public $display_offline_message = '1';
 	public $offline_image = '';
