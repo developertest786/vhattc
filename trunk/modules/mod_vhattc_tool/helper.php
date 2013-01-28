@@ -182,7 +182,7 @@ class FieldCalendar extends ExCalendar
     {
         $catid = $this->category;
         $itemID = JRequest::getInt('Itemid');
-        $link = '/index.php?option=com_k2&amp;view=ef&amp;task=calendar&amp;year='.$year.'&amp;emonth='.$month.'&amp;Itemid='.$itemID;
+        $link = '/index.php?option=com_k2&amp;view=ef&amp;task=calendar&amp;year='.$year.'&amp;month='.$month.'&amp;Itemid='.$itemID;
         if (!empty($catid)) {
             foreach ($catid as $cid) {
                 $link .='&amp;catid[]=' .$cid;
