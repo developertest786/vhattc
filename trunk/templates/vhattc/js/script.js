@@ -10,12 +10,12 @@ var $j = jQuery.noConflict();
 
 $j(function () {
     /*--language--*/
-    $j("#sys-lst-language").on("click", "li", function () {
+    /*$j("#sys-lst-language").on("click", "li", function () {
         var lang = $j(this).data('lang');
         window.location = base_url +'/' +lang;
-        //$j("#sys_language_select").children(":eq(" + $j(this).index() + ")").attr("selected","true");
-        //$j("#sys_choose_lang").submit();
-    });
+        $j("#sys_language_select").children(":eq(" + $j(this).index() + ")").attr("selected","true");
+        $j("#sys_choose_lang").submit();
+    });*/
 
     if($j("#all-news").find(".news-item").length>3) {
         $j("#all-news").find(".news-item:nth-child(3n+1)").css("clear", "left");
