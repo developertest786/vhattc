@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 //print_r($list); exit;
 ?>
 
-<ul class="menu <?php echo $class_sfx;?>"<?php
+<ul class="root-menu menu<?php echo $class_sfx;?>"<?php
 	$tag = '';
 	if ($params->get('tag_id')!=NULL) {
 		$tag = $params->get('tag_id').'';
