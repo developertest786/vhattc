@@ -15,7 +15,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 $pageClass = $this->params->get('pageclass_sfx');
 ?>
-<section class="category-list<?php echo $this->pageclass_sfx;?>">
+<div class="category-list<?php echo $this->pageclass_sfx;?>">
 <?php if ($this->params->get('show_page_heading')) : ?>
 <?php if ($this->params->get('show_page_heading') and ($this->params->get('show_category_title') or $this->params->get('page_subheading'))) : ?>
 <hgroup>
@@ -26,12 +26,11 @@ $pageClass = $this->params->get('pageclass_sfx');
 <?php endif; ?>
 
 <?php if ($this->params->get('show_category_title') or $this->params->get('page_subheading')) : ?>
-<h2>
+<h2 class="rs">
 	<?php echo $this->escape($this->params->get('page_subheading')); ?>
 	<?php if ($this->params->get('show_category_title'))
 	{
-
-		echo '<span class="subheading-category">'.$this->category->title.'</span>';
+		echo '<span class="_hoangnm_ subheading-category">'.$this->category->title.'</span>';
 	}
 	?>
 </h2>
@@ -76,5 +75,5 @@ $pageClass = $this->params->get('pageclass_sfx');
 		<?php echo $this->loadTemplate('articles'); ?>
 	</div>
 
-</section>
+</div>
 

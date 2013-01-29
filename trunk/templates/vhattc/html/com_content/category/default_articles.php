@@ -28,9 +28,8 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 	<?php endif; ?>
 
 <?php else : ?>
-
 <div class="col">
-    <div id="all-news" class="clearfix">
+    <div class="clearfix lst-news-about">
         <?php foreach ($this->items as $i => &$article) :
                 $article->images = json_decode($article->images);
                 if(preg_match('/<img src="([^"]*)"/i', $article->introtext, $m)) {
@@ -39,14 +38,14 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
                 }
         ?>
             <div class="news-item clearfix">
-                <div class="wrap-content">
-                    <a class="thumb" href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid)); ?>">
-                    <?php if ($article->images->image_intro) :?>
-                        <img src="<?php echo $article->images->image_intro ?>" alt="<?php echo $this->escape($article->title); ?>" class="article-img">
-                    <?php else :?>
-                        <img src="images/banners/logo dai hoc y.jpg" alt="<?php echo $this->escape($article->title); ?>"  class="article-img">
-                    <?php endif; ?>
-                    </a>
+                <a class="thumb" href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid)); ?>">
+                <?php if ($article->images->image_intro) :?>
+                    <img src="<?php echo $article->images->image_intro ?>" alt="<?php echo $this->escape($article->title); ?>" class="article-img">
+                <?php else :?>
+                    <img src="images/banners/logo dai hoc y.jpg" alt="<?php echo $this->escape($article->title); ?>"  class="article-img">
+                <?php endif; ?>
+                </a>
+                <div class="right-info">
                     <h3 class="rs title">
                         <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid)); ?>">
                             <?php echo $this->escape($article->title); ?>
