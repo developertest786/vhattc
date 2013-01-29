@@ -486,6 +486,7 @@ textarea {
     line-height: 40px;
     padding: 0 30px;
     font-weight: bold;
+    border-bottom: 1px solid #00467f;
 }
 #main-menu ul.root-menu > li > a:hover,
 #main-menu ul.root-menu > li.hover > a,
@@ -497,6 +498,9 @@ textarea {
     height: 36px;
     line-height: 34px;
     border-top: 3px solid #990000;
+    border-bottom: 1px solid #FFF;
+    position: relative;
+    z-index: 2;
 }
 #main-menu ul.root-menu li.parent ul{
     display: none;
@@ -506,9 +510,11 @@ textarea {
     background: #FFF;
     z-index: 1;
     top: 39px;
-    left: 0;
-    border-bottom: 1px solid #990000;
+    left: -1px;
+    border: 1px solid #990000;
     padding: 0 0 10px 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 #main-menu ul.root-menu li.parent:hover ul{
     display: block;
@@ -1131,6 +1137,31 @@ textarea {
 #about-page .lst-nav li a {
     color: #333;
 }
+/*.lst-news-about{}*/
+.lst-news-about .news-item{
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    overflow: hidden;
+}
+.lst-news-about .news-item:first-child{
+    border-top: none;
+    padding-top: 0;
+}
+.lst-news-about .thumb{
+    float: left;
+    width: 128px;
+    padding-right: 14px;
+}
+.lst-news-about .thumb img.article-img {
+    width: 100%;
+}
+.lst-news-about .right-info{
+    overflow: hidden;
+}
+.lst-news-about h3.title{
+    padding-bottom: 5px;
+}
+
 /* ------------- Breadcrumb ------------- */
 #breadcrumb {
     padding: 10px 0;
@@ -1170,18 +1201,6 @@ textarea {
 }
 #all-news .wrap-content .thumb img {
     width: 100%;
-}
-
-#about-page .wrap-content a.thumb {
-
-}
-
-#about-page .wrap-content img.article-img {
-    display: block;
-    text-align: center;
-    width: 128px;
-    /*margin-left: auto;   margin-right: auto;*/
-    margin-bottom: 20px;
 }
 
 
@@ -1338,7 +1357,6 @@ textarea {
     vertical-align: middle;
 }
 #datepicker_custom table td {
-    cursor: pointer;
     width: 39px;
     height: 28px;
     text-align: center;
@@ -1348,6 +1366,9 @@ textarea {
 }
 #datepicker_custom table td a {
     color: #666;
+    display: block;
+    height: 28px;
+    line-height: 28px;
 }
 #datepicker_custom table td a:hover {
     text-decoration: none;
@@ -1368,8 +1389,8 @@ textarea {
     color: #FFF !important;
 }
 
-.calendarDateLinked a {
-    color: #004781 !important;
+#datepicker_custom table td.calendarDateLinked a {
+    color: #004781;
 }
 
 /* -------------  Articles Archive ------------- */
