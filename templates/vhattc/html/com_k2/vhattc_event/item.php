@@ -60,12 +60,16 @@ foreach ($this->item->extra_fields as $key=>$extraField) {
         </div>
 
         <div class="text-content">
-            <p><?php if(!empty($this->item->fulltext)): ?>
+            <p>
                 <!-- Item introtext -->
-                <?php echo $this->item->introtext; ?><br />
+                <div class="event-introtext">
+                <?php echo $this->item->introtext; ?>
+                </div>
+                <?php if(!empty($this->item->fulltext)): ?>
+                <div class="event-fulltext">
                 <?php echo $this->item->fulltext; ?>
-
-            <?php endif; ?>
+                </div>
+                <?php endif; ?>
         </p>
 
         </div>
