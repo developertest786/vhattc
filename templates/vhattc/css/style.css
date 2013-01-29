@@ -311,6 +311,9 @@ textarea {
     text-transform: uppercase;
     position: relative;
 }
+.block.lst-partner-trained > h3.title {
+    font-size: 1.583em;
+}
 .block > h3.title .more {
     position: absolute;
     top: 17px;
