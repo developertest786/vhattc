@@ -641,7 +641,7 @@ class K2ViewItemlist extends K2View
         $this->_addPath('template', JPATH_SITE.DS.'templates'.DS.$mainframe->getTemplate().DS.'html'.DS.'com_k2');
 
         // Look for specific K2 theme files
-//        print_r($params); exit;
+        print_r($params); exit;
         if ($params->get('theme'))
         {
             $this->_addPath('template', JPATH_COMPONENT.DS.'templates'.DS.$params->get('theme'));
