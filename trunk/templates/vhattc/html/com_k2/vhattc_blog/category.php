@@ -11,31 +11,38 @@
 defined('_JEXEC') or die;
 ?>
 <!-- Start K2 Category Layout -->
-<div id="training-event" class="row l656 fixCenter1K itemListView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
+<div id="news-list" class="row l656 fixCenter1K itemListView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
     <div class="col">
-        <div class="all-event">
-            <?php if(isset($this->category) || ( $this->params->get('subCategories') && isset($this->subCategories) && count($this->subCategories) )): ?>
-            <div class="quick-filter">
-                <!--<span class="fw-b">All:</span> <a href="#">Upcoming Events</a>  /  <a href="#">Past Events</a>-->
-                <?php echo $this->category->name; ?>
-            </div>
-            <?php endif; ?>
-            <div class="lst-event">
-                <?php foreach ($this->leading as $leading) : ?>
-                <?php
-                    $this->item=$leading;
-                    if (is_scalar($this->item->extra_fields)) {
-//                        var_dump($this->item);
-                        $model = K2Model::getInstance('Item', 'K2Model');
-                        $this->item->extra_fields = $model->getItemExtraFields($this->item->extra_fields, $this->item);
-//                        var_dump($this->item); exit;
-                    }
+        <div>
+        <?php
+        $modules =  JModuleHelper::getModules('other-news');
+        if (!empty($modules)) : ?>
+            <?php foreach ($modules as $module) {
+                echo JModuleHelper::renderModule($module);
+            }
+            ?>
+        </div>
+        <?php endif; ?>
 
-                    echo $this->loadTemplate('item');
+        <div id="all-news" class="clearfix">
+            <?php if (!empty($this->leading)) :?>
+                <?php foreach ($this->leading as $leading) : ?>
+                <?php $this->item=$leading;
+                if (is_scalar($this->item->extra_fields)) {
+    //                        var_dump($this->item);
+                    $model = K2Model::getInstance('Item', 'K2Model');
+                    $this->item->extra_fields = $model->getItemExtraFields($this->item->extra_fields, $this->item);
+    //                        var_dump($this->item); exit;
+                }
+
+                echo $this->loadTemplate('item');
                 ?>
-                <!--END: event-item-->
                 <?php endforeach; ?>
-            </div>
+            <?php else :?>
+            <p style="text-align: center; margin: 20px 0; font-weight: bold;a"><?php echo JText::_('K2_NOT_FOUND_CONTENT'); ?></p>
+            <?php endif; ?>
+            <!--END: event-item-->
+
         </div>
 
         <!-- Pagination -->
