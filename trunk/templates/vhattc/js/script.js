@@ -42,9 +42,12 @@ $j(function () {
 
     if($j("#main-slider-code").length>0) {
         $j("#main-slider-code").tinycarousel({
-            pager:true,
-            interval:true
+            interval:true,
+            pager:true
         });
+    }
+    if($j("#sys_slide_top_news").length>0) {
+        $j("#sys_slide_top_news").tinycarousel();
     }
     if($j("#slider_partner").length>0) {
         $j("#slider_partner").tinycarousel();

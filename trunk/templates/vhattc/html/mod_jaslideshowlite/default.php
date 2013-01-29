@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 <div id="main-slider-code">
     <a href="#" class="buttons prev">left</a>
     <div class="viewport">
-        <ul class="overview rs">
+        <ul class="overview rs clearfix">
         <?php for ($i=0; $i< count($images); $i++): ?>
             <li><img src="<?php echo $images[$i];?>"/></li>
         <?php endfor; ?>
