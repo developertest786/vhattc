@@ -53,8 +53,8 @@ defined('_JEXEC') or die('Restricted access');
         </div>
 
         <div class="text-content">
-            <p class="k2-news-introtext"><?php echo $this->item->introtext; ?></p>
-            <p class="k2-news-fulltext"><?php echo $this->item->fulltext; ?></p>
+            <p class="k2-blog-introtext"><?php echo $this->item->introtext; ?></p>
+            <p class="k2-blog-fulltext"><?php echo $this->item->fulltext; ?></p>
         </div>
 
         <!--
