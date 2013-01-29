@@ -11,7 +11,90 @@
 defined('_JEXEC') or die;
 ?>
 
-<div id="k2ModuleBox<?php echo $module->id; ?>" class="k2ItemsBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
+<div id="k2ModuleBox<?php echo $module->id; ?>" class="_k2ItemsBlock<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>">
+
+    <div class="slide-top-news" id="sys_slide_top_news">
+        <h2 class="slide-title rs">News top</h2>
+        <div class="top-news">
+            <a class="buttons prev" href="#">«</a>
+            <a class="buttons next" href="#">»</a>
+            <div class="viewport">
+                <ul class="rs clearfix overview lst-top-news">
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a style="display: none" href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                            <p class="rs">Rối loạn sử dụng chất gây nghiện từ lâu đã trở thành một vấn đề sức khỏe toàn ...</p>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                    <li><!--218-->
+                        <div class="wrap-content">
+                            <h3 class="rs news-title">
+                                <a href="#">Hội thảo "Các rối loạn do sử dụng chất gây nghiện và HIV ở Việt Nam" (16-18 tháng Ba, 2012)</a>
+                            </h3>
+                            <a href="#" class="thumb">
+                                <img src="images/banners/th-111x111.jpg" alt="$NEWS_TITLE">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <?php if($params->get('itemPreText')): ?>
     <p class="modulePretext"><?php echo $params->get('itemPreText'); ?></p>
