@@ -1140,17 +1140,17 @@ textarea {
 /*.lst-news-about{}*/
 .lst-news-about .news-item{
     border-top: 1px solid #ccc;
-    padding: 10px 0;
+    padding: 20px 0;
     overflow: hidden;
 }
 .lst-news-about .news-item:first-child{
-    border-top: none;
-    padding-top: 0;
+    /*border-top: none;*/
+    /*padding-top: 0;*/
 }
 .lst-news-about .thumb{
     float: left;
     width: 128px;
-    padding-right: 14px;
+    padding-right: 20px;
 }
 .lst-news-about .thumb img.article-img {
     width: 100%;
