@@ -306,13 +306,16 @@ textarea {
     margin: 0;
     padding: 0;
     font-family: 'MyriadPro-Cond', Arial, sans-serif;
-    font-size: 1.583em;
+    font-size:1.767em;
     line-height: 2em;
     text-transform: uppercase;
     position: relative;
 }
 .block.lst-partner-trained > h3.title {
     font-size: 1.583em;
+}
+.block > h3.title a{
+    color: #333;
 }
 .block > h3.title .more {
     position: absolute;
