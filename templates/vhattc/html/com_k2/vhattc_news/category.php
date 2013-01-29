@@ -13,6 +13,17 @@ defined('_JEXEC') or die;
 <!-- Start K2 Category Layout -->
 <div id="news-list" class="row l656 fixCenter1K itemListView<?php if($this->params->get('pageclass_sfx')) echo ' '.$this->params->get('pageclass_sfx'); ?>">
     <div class="col">
+        <div>
+        <?php
+        $modules =  JModuleHelper::getModules('other-news');
+        if (!empty($modules)) : ?>
+            <?php foreach ($modules as $module) {
+                echo JModuleHelper::renderModule($module);
+            }
+            ?>
+        </div>
+        <?php endif; ?>
+
         <div id="all-news" class="clearfix">
             <?php foreach ($this->leading as $leading) : ?>
             <?php
