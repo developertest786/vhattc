@@ -1137,6 +1137,10 @@ textarea {
 #about-page .lst-nav li a {
     color: #333;
 }
+.category-list .title-page{
+    line-height: 1.667em;
+    padding-bottom: 15px;
+}
 /*.lst-news-about{}*/
 .lst-news-about .news-item{
     border-top: 1px solid #ccc;
