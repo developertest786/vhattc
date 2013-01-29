@@ -25,20 +25,24 @@ defined('_JEXEC') or die;
         <?php endif; ?>
 
         <div id="all-news" class="clearfix">
-            <?php foreach ($this->leading as $leading) : ?>
-            <?php
-            $this->item=$leading;
-            if (is_scalar($this->item->extra_fields)) {
-//                        var_dump($this->item);
-                $model = K2Model::getInstance('Item', 'K2Model');
-                $this->item->extra_fields = $model->getItemExtraFields($this->item->extra_fields, $this->item);
-//                        var_dump($this->item); exit;
-            }
+            <?php if (!empty($this->leading)) :?>
+                <?php foreach ($this->leading as $leading) : ?>
+                <?php $this->item=$leading;
+                if (is_scalar($this->item->extra_fields)) {
+    //                        var_dump($this->item);
+                    $model = K2Model::getInstance('Item', 'K2Model');
+                    $this->item->extra_fields = $model->getItemExtraFields($this->item->extra_fields, $this->item);
+    //                        var_dump($this->item); exit;
+                }
 
-            echo $this->loadTemplate('item');
-            ?>
+                echo $this->loadTemplate('item');
+                ?>
+                <?php endforeach; ?>
+            <?php else :?>
+            <p style="text-align: center; margin: 20px 0; font-weight: bold;a"><?php echo JText::_('K2_NOT_FOUND_CONTENT'); ?></p>
+            <?php endif; ?>
             <!--END: event-item-->
-            <?php endforeach; ?>
+
         </div>
 
         <!-- Pagination -->
