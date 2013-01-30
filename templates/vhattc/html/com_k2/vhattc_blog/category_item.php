@@ -34,7 +34,7 @@ if(mb_strlen($this->item->introtext) > 140) {
     <div class="news-item">
         <?php if (isset($this->item->image)) :?>
         <a href="<?php echo $this->item->link ?>" class="thumb">
-            <img src="images/banners/th-111x111.jpg" alt="<?php echo $this->item->title; ?>">
+            <img src="<?php echo $this->item->image ?>" alt="<?php echo $this->item->title; ?>">
         </a>
         <?php endif;?>
         <div class="wrap-content">
