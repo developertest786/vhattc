@@ -104,8 +104,9 @@ class modVHATTCToolHelper {
 //        print_r($params); exit;
         $exf = $params->get('extraFieldsFilter');
         $query = "SELECT * FROM #__k2_extra_fields e WHERE e.id IN (" .implode(',', $exf) .")";
-        $db->setQuery($query, 0, 1);
+        $db->setQuery($query);
         $rows = $db->loadObjectList();
+        var_dump($rows); exit;
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 $row->value = json_decode($row->value, true);
