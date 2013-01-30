@@ -255,7 +255,7 @@ class K2ModelItemlist extends K2Model
                 }
 
                 if ($exf_value) {
-                    $extra .= " AND number_value = '" .$exf_value ."'";
+                    $extra .= " AND text_value = '" .$exf_value ."'";
                 }
 
                 $extra .= ")";
