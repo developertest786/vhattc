@@ -285,6 +285,11 @@ textarea {
     height: 19px;
     background-position: -158px 0;
 }
+.iArrowBlack {
+    width: 11px;
+    height: 10px;
+    background-position: -177px 0;
+}
 .iPlay{
     width: 32px;
     height: 32px;
@@ -1522,6 +1527,7 @@ textarea {
     line-height: 1.3em;
 }
 #article-detail .art-ultility,
+.resource-detail .art-ultility,
 #event-detail .art-ultility {
     background: #f9f9f9;
     padding: 5px 8px;
@@ -1531,6 +1537,7 @@ textarea {
     border-radius: 3px;
 }
 #article-detail .art-ultility .date-created,
+.resource-detail .art-ultility .date-created,
 #event-detail .art-ultility .date-created {
     float: left;
     margin-top: 3px;
@@ -1538,19 +1545,23 @@ textarea {
     color: #666;
 }
 #article-detail .art-ultility .date-created .sep,
+.resource-detail .art-ultility .date-created .sep,
 #event-detail .art-ultility .date-created .sep {
     margin: 0 7px;
 }
 #article-detail .art-ultility .art-tool,
+.resource-detail .art-ultility .art-tool,
 #event-detail .art-ultility .art-tool {
     float: right;
 }
 #article-detail .art-ultility .art-tool > span,
+.resource-detail .art-ultility .art-tool > span,
 #event-detail .art-ultility .art-tool > span {
     float: left;
     margin-top: 3px;
 }
 #article-detail .art-ultility .art-tool > span.sep,
+.resource-detail .art-ultility .art-tool > span.sep,
 #event-detail .art-ultility .art-tool > span.sep {
     height: 16px;
     border-left: 1px solid #e7e7e7;
@@ -1558,6 +1569,7 @@ textarea {
     margin: 3px 9px 0;
 }
 #article-detail .art-ultility .art-tool > span.like-fb,
+.resource-detail .art-ultility .art-tool > span.like-fb,
 #event-detail .art-ultility .art-tool > span.like-fb {
     position: relative;
     width: 71px;
@@ -1565,11 +1577,13 @@ textarea {
     margin: 0;
 }
 #article-detail .art-ultility .art-tool .iPrinter,
+.resource-detail .art-ultility .art-tool .iPrinter,
 #event-detail .art-ultility .art-tool .iPrinter {
     vertical-align: -2px;
     margin-right: 2px;
 }
 #article-detail .art-ultility .art-tool .iEmail,
+.resource-detail .art-ultility .art-tool .iEmail,
 #event-detail .art-ultility .art-tool .iEmail {
     vertical-align: -1px;
     margin-right: 2px;
@@ -1877,7 +1891,50 @@ textarea {
     padding-top: 6px;
 }
 
+.resource-detail{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    border-top: 1px solid #dfdfdf;
+    overflow: hidden;
+}
+.resource-detail .left-info{
+    float: left;
+    width: 175px;
+    padding-right: 22px;
+}
+.resource-detail .right-info{
+    overflow: hidden;
+}
+.resource-detail .thumb-img{
+    margin-bottom:8px;
+    width: 100%;
+}
+.resource-detail .btn-download{
+    background: url("../images/btn-download-bg.png") no-repeat top left;
+    display: block;
+    height: 36px;
+    line-height: 36px;
+    width: 175px;
+    text-align: center;
+    text-shadow: 0 1px #ffd874;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+.resource-detail .btn-download:hover{
+    text-decoration: none;
+}
+.resource-detail .btn-download .icon{
+    vertical-align: -2px;
+    margin-left: 5px;
+}
+.resource-detail .file-info{
+    font-size: 0.917em;
+}
 
+.resource-detail .art-ultility .date-created{
+    font-size: 0.917em;
+}
 
 
 
