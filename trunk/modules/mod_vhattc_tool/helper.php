@@ -102,6 +102,15 @@ class modVHATTCToolHelper {
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
         print_r($params); exit;
+        $query = "SELECT * FROM #__k2_extra_fields e WHERE e.id=" .$params->get('extraFieldsFilter', 0);
+        $db->setQuery($query, 0, 1);
+        $rows = $db->loadObjectList();
+        if (!empty($rows)) {
+            foreach ($rows as $row) {
+                $row->value = json_decode($row->value, true);
+                return $row->value;
+            }
+        }
     }
 }
 
