@@ -574,7 +574,7 @@ class K2ModelItemlist extends K2Model
                 $catid = JRequest::getVar('catid');
                 $exf = JRequest::getVar('exf');
                 if (is_string($catid)) {
-                    $query .= " AND i.catid IN = {$catid}";
+                    $query .= " AND i.catid = {$catid}";
                 } else if (is_array($catid) && !empty($catid)) {
                     $query .= " AND i.catid IN (" . implode(',', $catid) .")";
                 }
