@@ -6,10 +6,11 @@
  * Time: 9:45 AM
  * To change this template use File | Settings | File Templates.
  */
-$link = 'index.php?option=com_k2&view=itemlist&catid=' .$params->get('extraFieldsCategory', 0);
-var_dump($filters, $params->get('extraFieldsFilter', 0)); exit;
+$itemID = JRequest::getInt('Itemid');
+$link = 'index.php?option=com_k2&view=itemlist&Itemid='.$itemID;
+//var_dump($filters, $params->get('extraFieldsFilter', 0)); exit;
 ?>
 <span class=""><a href="<?php echo JRoute::_($link) ?>">' .JText::_('K2_ALL') .'</a></span>
 <?php foreach ($filters as $filter) {
-    echo '<a href="' .JRoute::_($link.'&exf[]='.$params->get('extraFieldsFilter', 0).'&exf_val=' .$filter['value']) .'">' .$filter['name'] .'</a>';
+    echo '<a href="' .JRoute::_($link.'&task=exfilter&catid=' .$params->get('extraFieldsCategory', 0) .'&exf[]='.$params->get('extraFieldsFilter', 0).'&exf_val=' .$filter['value']) .'">' .$filter['name'] .'</a>';
 } ?>
