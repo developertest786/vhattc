@@ -25,15 +25,19 @@ if(mb_strlen($this->item->introtext) > 140) {
 ?>
 
 <div class="news-item clearfix">
+    <?php if ($this->item->imageSmall) : ?>
+    <a href="<?php echo $this->item->link ?>" class="thumb">
+        <img src="<?php echo $this->item->imageMedium; ?>" alt="<?php echo $this->item->title; ?>">
+    </a>
+    <?php endif; ?>
     <div class="wrap-content">
-        <?php if ($this->item->imageSmall) : ?>
-        <a href="<?php echo $this->item->link ?>" class="thumb">
-            <img src="<?php echo $this->item->imageMedium; ?>" alt="<?php echo $this->item->title; ?>">
-        </a>
-        <?php endif; ?>
-        <h3 class="rs title" style="margin-top: 10px;"><a href="<?php echo $this->item->link ?>"><?php echo $this->item->title; ?></a></h3>
-        <p class="rs date"><?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC')); ?></p>
+        <h3 class="rs title">
+            <a href="<?php echo $this->item->link ?>"><?php echo $this->item->title; ?></a>
+            <span class="date"> - [<?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC')); ?>]</span>
+        </h3>
         <p class="rs lead-news"><?php echo $this->item->introtext; ?></p>
-        <a class="view-detail" href="<?php echo $this->item->link ?>"><?php echo JText::_('K2_READ_MORE'); ?><i class="icon iPickReadR"></i></a>
+        <p class="rs ta-r fs11">
+            <a class="view-detail" href="<?php echo $this->item->link ?>"><?php echo JText::_('K2_READ_MORE'); ?> <i class="icon iPickReadR"></i></a>
+        </p>
     </div>
 </div>

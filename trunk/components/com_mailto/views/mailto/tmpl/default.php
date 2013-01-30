@@ -205,6 +205,7 @@ JHtml::_('behavior.keepalive');
     }
     #mailto-window .wrap-btn-action{
         padding: 10px 0;
+        text-align: right;
     }
     #mailto-window .wrap-btn-action button{
         padding: 4px 10px;
