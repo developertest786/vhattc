@@ -95,6 +95,14 @@ class modVHATTCToolHelper {
             return $cal->getCurrentMonthView();
         }
     }
+
+    public static function filter($params) {
+        $mainframe = JFactory::getApplication();
+        $user = JFactory::getUser();
+        $aid = (int)$user->get('aid');
+        $db = JFactory::getDbo();
+        print_r($params); exit;
+    }
 }
 
 class FieldCalendar extends ExCalendar
