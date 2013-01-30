@@ -853,11 +853,11 @@ textarea {
 #footer .top-thumb {
     padding-top: 35px;
     padding-bottom: 20px;
-    text-align: center;
+    /*text-align: center;*/
 }
 #footer .top-thumb img {
-    margin-left: 25px;
-    height: 50px;
+    /*margin-left: 25px;*/
+    /*height: 50px;*/
 }
 #footer .top-thumb img:first-child {
     margin: 0;
