@@ -236,10 +236,10 @@ class K2ModelItemlist extends K2Model
                 $catid = JRequest::getVar('catid');
                 $exf = JRequest::getVar('exf');
                 $exf_value = JRequest::getVar('exf_val');
-                if (is_array($catid) && !empty($catid)) {
-                    $query .= " AND i.catid IN (" . implode(',', $catid) .")";
-                } elseif (is_string($catid)) {
+                if (is_string($catid)) {
                     $query .= " AND i.catid = {$catid}";
+                }else if (is_array($catid) && !empty($catid)) {
+                    $query .= " AND i.catid IN (" . implode(',', $catid) .")";
                 }
 
                 $extra = " AND i.id IN (SELECT item_id FROM #__hik2_index WHERE item_id = i.id";
