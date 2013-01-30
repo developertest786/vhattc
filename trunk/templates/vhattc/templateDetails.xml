@@ -73,6 +73,7 @@
         <position>debug</position>
         <position>mega1</position>
         <position>mega2</position>
+        <position>event-type</position>
         <positiong>other-news</positiong>
     </positions>
 

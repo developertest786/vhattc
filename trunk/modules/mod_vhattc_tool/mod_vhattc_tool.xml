@@ -55,6 +55,7 @@
                 <!-- Category Select Box Settings -->
                 <field name="" type="header" default="Extra Field Filter" label="" description=""/>
                 <field name="extraFieldsFilter" type="extrafieldsmultiple" default="" label="Extra Fields" description="Select the extra field make filter option"/>
+                <field name="extraFieldsCategory" type="categories" label="Category filter" description="" default=""/>
             </fieldset>
 
             <fieldset name="advanced">
