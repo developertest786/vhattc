@@ -16,8 +16,14 @@ defined('_JEXEC') or die;
         <div class="all-event">
             <?php if(isset($this->category) || ( $this->params->get('subCategories') && isset($this->subCategories) && count($this->subCategories) )): ?>
             <div class="quick-filter">
+                <?php $modules = JModuleHelper::getModules('event-type');
+                if (!empty($modules)) {
+                    foreach ($modules as $module) {
+                        echo JModuleHelper::renderModule($module);
+                    }
+                } ?>
                 <!--<span class="fw-b">All:</span> <a href="#">Upcoming Events</a>  /  <a href="#">Past Events</a>-->
-                <?php echo $this->category->name; ?>
+                <!--<?php echo $this->category->name; ?>-->
             </div>
             <?php endif; ?>
             <div class="lst-event">
