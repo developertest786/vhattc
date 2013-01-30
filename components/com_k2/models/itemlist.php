@@ -235,6 +235,7 @@ class K2ModelItemlist extends K2Model
                 $day = JRequest::getInt('d');
                 $catid = JRequest::getVar('catid');
                 $exf = JRequest::getVar('exf');
+                $exf_value = JRequest::getVar('exf_val');
                 if (!empty($catid)) {
                     $query .= " AND i.catid IN (" . implode(',', $catid) .")";
                 }
@@ -251,6 +252,10 @@ class K2ModelItemlist extends K2Model
 
                 if (!empty($exf)) {
                     $extra .= " AND extra_id IN (" .implode(',', $exf) .")";
+                }
+
+                if ($exf_value) {
+                    $extra .= " AND number_value = '" .$exf_value .'"';
                 }
 
                 $extra .= ")";
