@@ -120,33 +120,6 @@ class plgK2HIK2_Indexing extends JPlugin
 		foreach ($list as $item)
 		{
             self::onAfterK2Save($item, false); continue;
-
-			$item->extra_fields = str_replace(array("\r", "\r\n", "\n","\\"), '', $item->extra_fields);
-			$extrafields = json_decode($item->extra_fields);
-			if ($extrafields)
-			{
-				foreach ($extrafields as $index)
-				{
-					$object = new stdClass();
-					$object->itemid =$item->id;
-					$object->exfid = $index->id;
-					$object->value = $this->getSearchValue($index->id,$index->value);
-					$db->setQuery("SELECT * FROM `#__ja_k2extrafields` WHERE itemid = {$object->itemid} AND exfid = {$object->exfid} LIMIT 1");
-					$rs = $db->loadObject();
-					if ($rs)
-					{
-						if ($rs->value !=$object->value)
-						{
-							$object->id = $rs->id;
-							$db->updateObject('#__ja_k2extrafields',$object,'id');
-						}
-					}
-					else 
-					{
-						$db->insertObject('#__ja_k2extrafields',$object,'id');
-					}
-				}
-			}
 		}
 		$n=count($list);
 		return ($start +$n).','.$start;
