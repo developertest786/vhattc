@@ -43,19 +43,18 @@ defined('_JEXEC') or die;
                     </div>
                 </div>
             </div>
-            <div class="news-paging" style="display: none">
+
+            <!-- Pagination -->
+            <?php if(count($this->pagination->getPagesLinks())): ?>
+            <div class="news-paging">
                 <div class="line-through"></div>
-                <span class="wrap-pager">
-                    <a href="#" class="nobor">Prev</a>
-                    <a href="#">1</a>
-                    <a href="#">...</a>
-                    <a href="#">3</a>
-                    <a href="#" class="active">4</a>
-                    <a href="#">5</a>
-                    <a href="#">...</a>
-                    <a href="#" class="nobor">Next</a>
-                </span>
+                <?php if($this->params->get('catPagination')) echo $this->pagination->getPagesLinks(); ?>
+                <!--<div class="clr"></div>
+            <?php if($this->params->get('catPaginationResults')) echo $this->pagination->getPagesCounter(); ?>
+            -->
             </div>
+            <?php endif; ?>
+
         </div>
     </div>
 
