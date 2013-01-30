@@ -80,7 +80,7 @@ class plgK2HIK2_Indexing extends JPlugin
                         if ($v->value == $obv) {
                             $index = new stdClass();
                             $index->item_id = $row->id;
-                            $index->number_value = $ef->value;
+                            $index->number_value = $v->value;
                             $index->extra_id = $ef->id;
                             $index->text_value = $v->name;
                             $index->extra_key = str_replace(' ', '_', strtolower($ef->name));
@@ -119,6 +119,7 @@ class plgK2HIK2_Indexing extends JPlugin
 		
 		foreach ($list as $item)
 		{
+            echo 'ok';
             self::onAfterK2Save($item, false); continue;
 		}
 		$n=count($list);
