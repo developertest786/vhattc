@@ -38,7 +38,7 @@ class K2ElementExtraFieldsMultiple extends K2Element
         {
             foreach ($mitems as $v)
             {
-                $options[] = JHTML::_('select.option', 'name', $v->value);
+                $options[] = JHTML::_('select.option', 'name', $v->id);
             }
         }
         $size = sizeof($options) + 3;
