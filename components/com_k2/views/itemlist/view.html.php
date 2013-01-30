@@ -14,7 +14,6 @@ jimport('joomla.application.component.view');
 
 class K2ViewItemlist extends K2View
 {
-
     function display($tpl = null)
     {
         $mainframe = JFactory::getApplication();
@@ -248,7 +247,7 @@ class K2ViewItemlist extends K2View
 
             case 'tag' :
                 // Set layout
-                $this->setLayout('tag');
+                $this->setLayout('generic');
 
                 // Set limit
                 $limit = $params->get('tagItemCount');
@@ -304,7 +303,32 @@ class K2ViewItemlist extends K2View
 
                 break;
 
+
+            /**
+             * @FIXME addition here for search display by category
+             */
             case 'exfilter' :
+                $id = JRequest::getVar('catid');
+                JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+                $category = JTable::getInstance('K2Category', 'Table');
+                $category->load($id[0]);
+                $category->event = new stdClass;
+
+                $cparams = class_exists('JParameter') ? new JParameter($category->params) : new JRegistry($category->params);
+
+                // Get the meta information before merging params since we do not want them to be inherited
+                $category->metaDescription = $cparams->get('catMetaDesc');
+                $category->metaKeywords = $cparams->get('catMetaKey');
+                $category->metaRobots = $cparams->get('catMetaRobots');
+                $category->metaAuthor = $cparams->get('catMetaAuthor');
+
+                if ($cparams->get('inheritFrom'))
+                {
+                    $masterCategory = JTable::getInstance('K2Category', 'Table');
+                    $masterCategory->load($cparams->get('inheritFrom'));
+                    $cparams = class_exists('JParameter') ? new JParameter($masterCategory->params) : new JRegistry($masterCategory->params);
+                }
+                $params->merge($cparams);
                 // Set layout
                 $this->setLayout('generic');
 
