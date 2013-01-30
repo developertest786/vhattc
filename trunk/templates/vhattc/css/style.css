@@ -265,6 +265,16 @@ textarea {
     height: 14px;
     background-position: -102px 0;
 }
+.iArrowDown {
+    width: 11px;
+    height: 10px;
+    background-position: -120px 0;
+}
+.iArrowRight{
+    width: 9px;
+    height: 12px;
+    background-position: -131px 0;
+}
 .iPlace {
     width: 18px;
     height: 20px;
@@ -274,6 +284,11 @@ textarea {
     width: 19px;
     height: 19px;
     background-position: -158px 0;
+}
+.iPlay{
+    width: 32px;
+    height: 32px;
+    background-position: -201px 0;
 }
 /*row 2*/
 .iPickRightW {
@@ -312,10 +327,10 @@ textarea {
 }
 .block > h3.title {
     margin: 0;
-    padding: 0;
+    padding: 9px 0;
     font-family: 'MyriadPro-Cond', Arial, sans-serif;
     font-size:1.767em;
-    line-height: 2em;
+    line-height: 1.2em;
     text-transform: uppercase;
     position: relative;
 }
@@ -1740,12 +1755,18 @@ textarea {
 
 /* lst-rating-project : Đánh giá dự án*/
 .lst-rating-project{
-    padding-top: 15px;
+    padding-top: 20px;
     border-top: 1px solid #dfdfdf;
 }
 .lst-rating-project .news-item{
     overflow: hidden;
     padding-bottom: 20px;
+    border-top: 1px solid #e1e1e1;
+    padding-top: 20px;
+}
+.lst-rating-project .news-item:first-child{
+    border-top: 0;
+    padding-top: 0;
 }
 .lst-rating-project .thumb{
     display: block;
@@ -1775,6 +1796,91 @@ textarea {
 .lst-rating-project .lead-news{
     padding-bottom: 5px;
 }
+
+/* resource*/
+.block-resc{
+    border-top: 1px solid #dfdfdf;
+    padding-top: 7px;
+    padding-bottom: 50px;
+}
+.block.block-resc > .title{
+    padding-bottom: 0;
+}
+.block-resc .lst-resource-page{
+    padding-bottom: 20px;
+}
+.lst-resource-page .wrap-inside{
+    overflow: hidden;
+}
+.lst-resource-page .wrap-lst{
+    margin-bottom: -1px;
+    margin-left: -32px;
+}
+.lst-resource-page .resc-item{
+    float: left;
+    width: 50%;
+}
+.lst-resource-page .resc-info{
+    margin-left: 32px;
+    overflow: hidden;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 20px 0;
+}
+.lst-resource-page .resc-info .thumb{
+    float: left;
+    line-height:0;
+    padding-top: 3px;
+    position: relative;
+}
+.lst-resource-page .thumb img{
+    width: 91px;
+    height: 91px;
+    margin-right:11px;
+}
+.lst-resource-page .thumb .iPlay{
+    position: absolute;
+    top:30px;
+    left:30px;
+}
+.lst-resource-page .right-info{
+    overflow: hidden;
+}
+.lst-resource-page .resc-title{
+    font-size: 1em;
+    padding-bottom: 10px;
+}
+.lst-resource-page .resc-title a{
+    color: #333;
+}
+.lst-resource-page .btn-download{
+    float: left;
+    margin-right:10px;
+    background: #ebebeb;
+    border: 1px solid #d6d5d5;
+    border-radius: 2px;
+    padding: 4px 11px 5px;
+    color: #195189;
+    font-size: 0.917em;
+    box-shadow: 0 0 1px #FFF;
+}
+.lst-resource-page .btn-download:hover{
+    text-decoration: none;
+}
+.lst-resource-page .btn-download .icon{
+    vertical-align: -2px;
+    margin-left:6px;
+}
+.lst-resource-page .file-size{
+    color: #777777;
+    font-size: 0.917em;
+    float: left;
+    padding-top: 6px;
+}
+
+
+
+
+
 
 
 
