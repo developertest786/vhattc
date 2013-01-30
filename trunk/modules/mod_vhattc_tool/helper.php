@@ -101,12 +101,12 @@ class modVHATTCToolHelper {
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
-        print_r($params); exit;
+//        print_r($params); exit;
         $exf = $params->get('extraFieldsFilter');
         $query = "SELECT * FROM #__k2_extra_fields e WHERE e.id IN (" .implode(',', $exf) .")";
         $db->setQuery($query);
         $rows = $db->loadObjectList();
-        var_dump($rows); exit;
+//        var_dump($rows); exit;
         if (!empty($rows)) {
             foreach ($rows as $row) {
                 $row->value = json_decode($row->value, true);
