@@ -156,6 +156,7 @@ class FieldCalendar extends ExCalendar
         if ($result > 0)
         {
             $itemID = JRequest::getInt('Itemid');
+//            var_dump($itemID);
             $link = 'index.php?option=com_k2&view=itemlist&task=exfilter&y='.$year.'&m='.$month.'&d='.$day.'&Itemid='.$itemID;
             if (!empty($catid)) {
                 foreach ($catid as $cid) {
