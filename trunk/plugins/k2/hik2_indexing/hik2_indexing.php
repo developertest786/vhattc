@@ -116,7 +116,7 @@ class plgK2HIK2_Indexing extends JPlugin
 		$query = "SELECT id, extra_fields FROM #__k2_items WHERE trash=0 LIMIT $start , $numitems ";
 		$db->setQuery($query);
 		$list = $db->loadObjectList();
-        print_r($list); exit;
+//        print_r($list); exit;
 		if (!$list) return '1';
 		
 		foreach ($list as $item)
