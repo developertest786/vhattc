@@ -101,8 +101,9 @@ class modVHATTCToolHelper {
         $user = JFactory::getUser();
         $aid = (int)$user->get('aid');
         $db = JFactory::getDbo();
-        print_r($params); exit;
-        $query = "SELECT * FROM #__k2_extra_fields e WHERE e.id=" .$params->get('extraFieldsFilter', 0);
+//        print_r($params); exit;
+        $exf = $params->get('extraFieldsFilter');
+        $query = "SELECT * FROM #__k2_extra_fields e WHERE e.id IN (" .implode(',', $exf) .")";
         $db->setQuery($query, 0, 1);
         $rows = $db->loadObjectList();
         if (!empty($rows)) {
