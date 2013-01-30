@@ -234,7 +234,7 @@ class K2ModelItemlist extends K2Model
                 $year = JRequest::getInt('y');
                 $day = JRequest::getInt('d');
                 $catid = JRequest::getVar('catid');
-                var_dump($catid);
+                var_dump($catid); exit;
                 $exf = JRequest::getVar('exf');
                 $exf_value = JRequest::getVar('exf_val');
                 if (is_array($catid) && !empty($catid)) {
