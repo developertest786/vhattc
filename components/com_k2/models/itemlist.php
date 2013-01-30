@@ -573,7 +573,9 @@ class K2ModelItemlist extends K2Model
                 $day = JRequest::getInt('d');
                 $catid = JRequest::getVar('catid');
                 $exf = JRequest::getVar('exf');
-                if (!empty($catid)) {
+                if (is_string($catid)) {
+                    $query .= " AND i.catid IN = {$catid}";
+                } else if (is_array($catid) && !empty($catid)) {
                     $query .= " AND i.catid IN (" . implode(',', $catid) .")";
                 }
 
