@@ -593,6 +593,11 @@ class K2ModelItemlist extends K2Model
                     $extra .= " AND extra_id IN (" .implode(',', $exf) .")";
                 }
 
+                $exf_value = JRequest::getVar('exf_val');
+                if ($exf_value) {
+                    $extra .= " AND text_value = '" .$exf_value ."'";
+                }
+
                 $extra .= ")";
                 $query .= $extra;
                 break;
