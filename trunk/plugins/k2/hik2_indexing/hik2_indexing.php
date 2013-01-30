@@ -66,7 +66,7 @@ class plgK2HIK2_Indexing extends JPlugin
                     if ($v->value == $obj->value) {
                         $index = new stdClass();
                         $index->item_id = $row->id;
-                        $index->number_value = $ef->id;
+                        $index->number_value = $ef->value;
                         $index->extra_id = $ef->id;
                         $index->text_value = $v->name;
                         $index->extra_key = str_replace(' ', '_', strtolower($ef->name));
