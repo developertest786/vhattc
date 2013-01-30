@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 $link = 'index.php?option=com_k2&view=itemlist&catid=' .$params->get('extraFieldsCategory', 0);
-var_dump($filter, $params->get('extraFieldsFilter', 0)); exit;
+var_dump($filters, $params->get('extraFieldsFilter', 0)); exit;
 ?>
 <span class=""><a href="<?php echo JRoute::_($link) ?>">' .JText::_('K2_ALL') .'</a></span>
 <?php foreach ($filters as $filter) {
