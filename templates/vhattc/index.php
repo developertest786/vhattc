@@ -198,12 +198,12 @@ $doc->addScript($this->baseurl.'/templates/'.$this->template.'/javascript/md_sty
         <div class="fixCenter1K">
             <div class="top-thumb">
                 <a href="http://www.nimh.gov.vn/" target="_blank">
-                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-logo.png" alt="" height="50">
+                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-logo.png" alt="" height="50" style=" margin-right: 180px; ">
                 </a>
-                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50.png" alt="">
                 <a href="http://www.samhsa.gov/index.aspx" target="_blank">
-                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-1.png" alt="">
+                    <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-1.png" alt="" style=" margin-right: 150px; ">
                 </a>
+                <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50.png" alt="" style=" margin-right: 190px; ">
                 <a href="http://uclaisap.org" target="_blank">
                     <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/ex/th-227x50-2.png" alt="">
                 </a>
