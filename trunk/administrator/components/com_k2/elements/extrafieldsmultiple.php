@@ -45,7 +45,7 @@ class K2ElementExtraFieldsMultiple extends K2Element
         if($size > 10) {
             $size = 10;
         }
-        $output = JHTML::_('select.genericlist', $options, $name.'[]', 'class="inputbox" size=" ' .$size .'"', 'value', 'text', $value);
+        $output = JHTML::_('select.genericlist', $options, $name.'[]', 'class="inputbox"', 'value', 'text', $value);
         return $output;
     }
 }
