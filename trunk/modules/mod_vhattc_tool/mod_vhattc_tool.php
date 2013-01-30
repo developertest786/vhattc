@@ -59,6 +59,6 @@ switch ($module_usage)
 
     case '9':
         $filters = modVHATTCToolHelper::filter($params);
-        require (JModuleHelper::getLayoutPath('mod_vhattc_tool', 'filters'));
+        require (JModuleHelper::getLayoutPath('mod_vhattc_tool', 'filter'));
         break;
 }
