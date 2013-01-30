@@ -62,7 +62,14 @@ defined('_JEXEC') or die;
 
     </div>
     <div class="col">
-        <div style="background: red;color: #FFF"><br /> Cột phải <br /><br /></div>
+        <div id="training-page">
+        <?php
+            $modules =  JModuleHelper::getModules('right');
+            foreach ($modules as $module) {
+                echo JModuleHelper::renderModule($module);
+            }
+        ?>
+        </div>
     </div>
 </div>
 <!-- End K2 Category Layout -->
