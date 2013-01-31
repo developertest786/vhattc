@@ -200,6 +200,7 @@ textarea {
 .ta-r{
     text-align: right;
 }
+.pt0{padding-top: 0}
 .fixCenter1K {
     display: block;
     margin-left: auto;
@@ -338,6 +339,9 @@ textarea {
     line-height: 1.2em;
     text-transform: uppercase;
     position: relative;
+}
+.block > h3.title.pt0{
+    padding-top: 0;
 }
 .block.lst-partner-trained > h3.title {
     font-size: 1.583em;
@@ -1936,8 +1940,38 @@ textarea {
     font-size: 0.917em;
 }
 
+.lastest-news-resc{
+    padding-top: 10px;
+    border-top: 1px solid #dfdfdf;
+}
+.lst-lastest-news .news-item{
+   border-top: 1px dotted #dfdfdf;
+    padding:15px 0;
+}
+.lst-lastest-news .news-item:first-child{
+    border-top: 0;
+    padding-top: 0;
+}
+.lst-lastest-news .news-item .date{
+    font-size: 0.917em;
+    color: #666;
+}
 
+.lst-lastest-news .news-item h3.title{
+    font-size: 1.083em;
+    padding-bottom: 8px;
+}
+.lst-lastest-news .news-item h3.title a{
+    color: #333;
+}
 
-
-
+.resource-right-side #article-detail .relation-articles{
+    padding-bottom: 10px;
+}
+.resource-right-side .tags-cloud{
+    margin-bottom: 24px;
+}
+.resource-right-side .search-box-common{
+    margin-bottom: 20px;
+}
 
