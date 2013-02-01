@@ -1485,7 +1485,8 @@ textarea {
 }
 
 #datepicker_custom table td.calendarDateLinked a {
-    color: #004781;
+    color: #fff;
+    background-color: #f2c038;
 }
 
 /* -------------  Articles Archive ------------- */
