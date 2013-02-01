@@ -19,7 +19,7 @@ defined('_JEXEC') or die;
             <?php foreach ($items as $key=>$item) :
                 $item->introtext = strip_tags($item->introtext);
                 if (mb_strlen($item->introtext) > 140) {
-                    $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
+                    $item->introtext = mb_substr($item->introtext, 0, 80) .'...';
                 }
             ?>
             <div class="news-item">
