@@ -25,11 +25,6 @@ if(mb_strlen($this->item->introtext) > 140) {
 ?>
 
 <div class="news-item clearfix">
-    <?php if ($this->item->imageSmall) : ?>
-    <a href="<?php echo $this->item->link ?>" class="thumb">
-        <img src="<?php echo $this->item->imageMedium; ?>" alt="<?php echo $this->item->title; ?>">
-    </a>
-    <?php endif; ?>
     <!--demo truong hoop anh-->
     <div class="news-item">
         <?php if (isset($this->item->image)) :?>
