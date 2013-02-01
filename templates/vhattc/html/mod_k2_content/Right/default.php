@@ -17,6 +17,7 @@ defined('_JEXEC') or die;
     <div class="block-content">
         <div class="lst-lastest-news">
             <?php foreach ($items as $key=>$item) :
+                $item->introtext = strip_tags($item->introtext);
                 if (mb_strlen($item->introtext) > 140) {
                     $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
                 }
