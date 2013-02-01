@@ -24,7 +24,7 @@ defined('_JEXEC') or die;
 
             <!-- K2 Plugins: K2BeforeDisplay -->
             <?php echo $item->event->K2BeforeDisplay; ?>
-            <li><?php echo $item->title; ?></li>
+            <li><a href="<?php echo $item->link?>"><?php echo $item->title; ?></a></li>
             <!-- Plugins: AfterDisplay -->
             <?php echo $item->event->AfterDisplay; ?>
 
