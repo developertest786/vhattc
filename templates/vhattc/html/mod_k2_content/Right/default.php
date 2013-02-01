@@ -16,7 +16,11 @@ defined('_JEXEC') or die;
     <h3 class="title rs"><?php echo $module->title; ?></h3>
     <div class="block-content">
         <div class="lst-lastest-news">
-            <?php foreach ($items as $key=>$item) :?>
+            <?php foreach ($items as $key=>$item) :
+                if (mb_strlen($item->introtext) > 140) {
+                    $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
+                }
+            ?>
             <div class="news-item">
                 <p class="rs date"><?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC')); ?></p>
                 <h3 class="rs title"><a href="<?php echo $item->link; ?>"><?php echo $item->title; ?></a></h3>
