@@ -26,23 +26,17 @@ $categoriesId = $params->get('category_id');
     <div class="block-content">
         <?php if(count($items)) :?>
             <?php foreach ($items as $key=>$item) :
-            $item->introtext = strip_tags($item->introtext);
-            if (mb_strlen($item->introtext) > 140) {
-                $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
-            }
+                $item->introtext = strip_tags($item->introtext);
+                if (mb_strlen($item->introtext) > 140) {
+                    $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
+                }
             ?>
-            <!-- Plugins: BeforeDisplay -->
-            <?php echo $item->event->BeforeDisplay; ?>
-
-            <!-- K2 Plugins: K2BeforeDisplay -->
-            <?php echo $item->event->K2BeforeDisplay; ?>
-
             <div class="train-item">
                 <h4 class="rs">
                     <?php echo $item->title; ?>
                 </h4>
                 <p class="rs date">
-                    <?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC')); ?>
+                    <?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC')); ?>
                 </p>
                 <p class="rs desc">
                     <?php if ($item->image) : ?>
@@ -68,12 +62,7 @@ $categoriesId = $params->get('category_id');
                         <a href="#">Register</a>
                     </span>-->
                 </div>
-            </div><!--end: train-item-->
-            <!-- Plugins: AfterDisplay -->
-            <?php echo $item->event->AfterDisplay; ?>
-
-            <!-- K2 Plugins: K2AfterDisplay -->
-            <?php echo $item->event->K2AfterDisplay; ?>
+            </div>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
