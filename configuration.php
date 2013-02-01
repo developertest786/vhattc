@@ -15,7 +15,7 @@ class JConfig {
 	public $host = '112.213.87.56';
 	public $user = 'vhattc';
 	public $password = '628LkOqpN';
-	public $db = 'vhattctest';
+	public $db = 'vhattc';
 	public $dbprefix = 'jos25_';
 	public $live_site = '';
 	public $secret = 'upfXxDKDEdKR7ZqT';
