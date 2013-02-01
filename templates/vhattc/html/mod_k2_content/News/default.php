@@ -25,7 +25,9 @@ defined('_JEXEC') or die;
 
         <div class="top-news">
             <a class="buttons prev" href="#">«</a>
+            <span class="dis-btn p"></span>
             <a class="buttons next" href="#">»</a>
+            <span class="dis-btn n"></span>
             <div class="viewport">
                 <ul class="rs clearfix overview lst-top-news">
                     <?php foreach ($items as $key=>$item):	?>
