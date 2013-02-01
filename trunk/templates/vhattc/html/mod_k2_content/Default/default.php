@@ -24,7 +24,12 @@ $categoriesId = $params->get('category_id');
     </h3>
     <div class="block-content">
         <?php if(count($items)) :?>
-            <?php foreach ($items as $key=>$item) :?>
+            <?php foreach ($items as $key=>$item) :
+            $item->introtext = strip_tags($item->introtext);
+            if (mb_strlen($item->introtext) > 140) {
+                $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
+            }
+            ?>
             <!-- Plugins: BeforeDisplay -->
             <?php echo $item->event->BeforeDisplay; ?>
 
