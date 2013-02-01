@@ -47,11 +47,11 @@ $categoriesId = $params->get('category_id');
                         <?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC')); ?>
                     </p>
                     <p class="rs lead-news"><?php echo $item->introtext; ?></p>
-                    <div class="link-action">
+                    <!--<div class="link-action">
                     <span>
                         <a href="<?php echo $item->link ?>"><?php echo JText::_('K2_READ_MORE') ?></a>
                     </span>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <?php endforeach; ?>
