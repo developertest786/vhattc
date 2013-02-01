@@ -1337,7 +1337,8 @@ textarea {
     position: relative;
     margin: 0 30px 0 20px;
 }
-.slide-top-news .top-news .buttons{
+.slide-top-news .top-news .buttons,
+.slide-top-news .top-news .dis-btn{
     position: absolute;
     top: 60px;
     left: -20px;
@@ -1357,8 +1358,17 @@ textarea {
 .slide-top-news .top-news .buttons:hover{
     text-decoration: none;
 }
-.slide-top-news .top-news .buttons.disable{
-    display: none;
+.slide-top-news .top-news .dis-btn{
+    z-index: 1;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+}
+.slide-top-news .top-news .dis-btn.n{
+    left: auto;
+    right: -30px;
+}
+.slide-top-news .top-news .buttons.disable+.dis-btn{
+    z-index: 99;
 }
 /* -------------  DatePicker ------------- */
 #datepicker_custom {
