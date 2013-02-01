@@ -27,9 +27,9 @@ defined('_JEXEC') or die('Restricted access');
         <h2 class="rs art-title"><?php echo $this->item->title; ?></h2>
         <div class="art-ultility clearfix">
             <div class="date-created">
-                <span><?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC')); ?></span>
-                <span class="sep">|</span>
-                <span><?php echo $this->item->author->name; ?></span>
+                <span><?php echo JHTML::_('date', $this->item->created , JText::_('K2_DATE_FORMAT_LC2')); ?></span>
+                <!--<span class="sep">|</span>
+                <span><?php echo $this->item->author->name; ?></span>-->
             </div>
             <div class="art-tool">
                 <span class="like-fb">
