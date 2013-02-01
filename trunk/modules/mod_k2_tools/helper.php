@@ -519,7 +519,7 @@ class modK2ToolsHelper
 
         if ($level < intval($end_level) || is_null($end_level))
         {
-            $output .= '<ul class="level'.$level.'">';
+            $output .= '<ul class="rs level'.$level.'">';
             foreach ($rows as $row)
             {
                 if ($params->get('categoriesListItemsCounter'))
