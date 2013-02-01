@@ -872,10 +872,7 @@ textarea {
     padding-bottom: 20px;
     /*text-align: center;*/
 }
-#footer .top-thumb img {
-    /*margin-left: 25px;*/
-    /*height: 50px;*/
-}
+#footer .top-thumb img {}
 #footer .top-thumb img:first-child {
     margin: 0;
 }
