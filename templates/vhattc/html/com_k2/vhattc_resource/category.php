@@ -61,7 +61,7 @@ defined('_JEXEC') or die;
 
     </div>
     <div class="col">
-        <div id="training-page">
+        <div class="resource-right-side">
         <?php
             $modules =  JModuleHelper::getModules('right');
             foreach ($modules as $module) {
