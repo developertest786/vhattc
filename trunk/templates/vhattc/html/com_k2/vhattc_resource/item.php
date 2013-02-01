@@ -17,13 +17,13 @@ defined('_JEXEC') or die;
                 <img class="thumb-img" src="/images/banners/th-111x111.jpg" alt="<?php echo $this->item->title; ?>">
                 <?php foreach ($this->item->attachments as $attachment): ?>
                     <a title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>" class="btn-download">
-                        Download
+                        <?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS') ?>
                         <i class="icon iArrowBlack"></i>
                     </a>
                 <?php endforeach; ?>
                 <div class="file-info">
-                    <p class="rs"><span class="fw-b">File size:</span> 4MBs</p>
-                    <p class="rs"><span class="fw-b">Download count:</span>
+                    <!--<p class="rs"><span class="fw-b">File size:</span> 4MBs</p> -->
+                    <p class="rs"><span class="fw-b"><?php echo JText::_('K2_DOWNLOAD') ?>:</span>
                         <?php foreach ($this->item->attachments as $attachment): ?>
                             <?php echo $attachment->hits; ?>
                         <?php endforeach; ?>

@@ -38,37 +38,14 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
                 <?php endif; ?>
             </h3>
             <div class="clearfix wrap-btn-down" >
+            <?php foreach ($this->item->attachments as $attachment): ?>
                     <a href="<?php echo $attachment->link; ?>" class="btn-download" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>">
-                        <?php echo JText::_('K2_DOWNLOAD') ?>
+                        <?php echo JText::_('K2_DOWNLOAD_ATTACHMENTS') ?>
                         <i class="icon iArrowDown"></i>
                     </a>
-                    <!--<a title="<?php /*echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); */?>" href="<?php /*echo $attachment->link; */?>" class="btn-download">
-                        Download
-                        <i class="icon iArrowDown"></i>
-                    </a>-->
-                <span class="file-size" style="display: none;"><span class="fw-b">5</span>MBs</span>
+                <!--<span class="file-size" style="display: none;"><span class="fw-b">5</span>MBs</span>-->
+            <?php endforeach; ?>
             </div>
         </div>
     </div>
 </div>
-<!--media: -->
-<!--<div class="resc-item">
-    <div class="resc-info">
-        <a href="#" class="thumb">
-            <img src="../images/ex/th-91x91.png" alt="$TITLE">
-            <i class="icon iPlay"></i>
-        </a>
-        <div class="right-info">
-            <h3 class="rs resc-title">
-                <a href="#">Comprehensive Comunity Mental Health Service for Children and Their Families Program, Evaluation</a>
-            </h3>
-            <div class="clearfix wrap-btn-down">
-                <a href="#" class="btn-download">
-                    View
-                    <i class="icon iArrowRight"></i>
-                </a>
-                <span class="file-size"><span class="fw-b">5</span>MBs</span>
-            </div>
-        </div>
-    </div>
-</div>-->
