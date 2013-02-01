@@ -22,9 +22,11 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
 </pre>-->
 <div class="resc-item">
     <div class="resc-info">
-        <a href="#" class="thumb">
+        <?php if ($this->item->image) :?>
+        <a href="<?php echo $this->item->link; ?>" class="thumb">
             <img src="<?php echo $this->item->imageLarge ;?>" alt="<?php echo $this->item->title; ?>">
         </a>
+        <?php endif; ?>
         <div class="right-info">
             <h3 class="rs resc-title">
                 <?php if ($this->item->params->get('catItemTitleLinked')): ?>
@@ -36,8 +38,8 @@ K2HelperUtilities::setDefaultImage($this->item, 'itemlist', $this->params);
                 <?php endif; ?>
             </h3>
             <div class="clearfix wrap-btn-down" >
-                    <a href="#" class="btn-download">
-                        Download
+                    <a href="<?php echo $attachment->link; ?>" class="btn-download" title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>">
+                        <?php echo JText::_('K2_DOWNLOAD') ?>
                         <i class="icon iArrowDown"></i>
                     </a>
                     <!--<a title="<?php /*echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); */?>" href="<?php /*echo $attachment->link; */?>" class="btn-download">
