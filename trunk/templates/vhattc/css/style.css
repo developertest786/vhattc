@@ -1164,9 +1164,11 @@ textarea {
     /*border-top: none;*/
     /*padding-top: 0;*/
 }
-.lst-news-about .thumb{
+
+.train-item .thumb, .lst-news-about .thumb{
     float: left;
     width: 128px;
+    padding-right: 20px;
     padding-right: 20px;
 }
 .lst-news-about .thumb img.article-img {
