@@ -10,7 +10,7 @@
 // no direct access
 defined('_JEXEC') or die;
 $categoriesId = $params->get('category_id');
-//var_dump($items);
+//print_r($items); exit;
 ?>
 
 <div class="block lst-training<?php if($params->get('moduleclass_sfx')) echo ' '.$params->get('moduleclass_sfx'); ?>"
@@ -31,36 +31,27 @@ $categoriesId = $params->get('category_id');
                     $item->introtext = mb_substr($item->introtext, 0, 140) .'...';
                 }
             ?>
-            <div class="train-item">
-                <h4 class="rs">
-                    <?php echo $item->title; ?>
-                </h4>
-                <p class="rs date">
-                    <?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC')); ?>
-                </p>
-                <p class="rs desc">
-                    <?php if ($item->image) : ?>
-                    <a href="<?php echo $item->link ?>" class="thumb">
-                        <img src="<?php echo $item->image?>">
-                    </a>
-                    <?php endif;?>
-                    <p class="rs lead-news"><?php echo $this->item->introtext; ?></p>
-                </p>
 
-                <div class="link-action">
+
+            <div class="train-item clearfix">
+                <?php if (isset($item->image)) :?>
+                <a href="<?php echo $item->link ?>" class="thumb">
+                    <img src="<?php echo $item->image ?>" alt="<?php echo $item->title; ?>">
+                </a>
+                <?php endif;?>
+                <div class="wrap-content">
+                    <h4 class="rs title">
+                        <a href="<?php echo $item->link ?>"><?php echo $item->title; ?></a>
+                    </h4>
+                    <p class="rs date">
+                        <?php echo JHTML::_('date', $item->created , JText::_('K2_DATE_FORMAT_LC')); ?>
+                    </p>
+                    <p class="rs lead-news"><?php echo $item->introtext; ?></p>
+                    <div class="link-action">
                     <span>
                         <a href="<?php echo $item->link ?>"><?php echo JText::_('K2_READ_MORE') ?></a>
                     </span>
-                    <!--<span class="sep">|</span>
-                    <span>
-                        <i class="icon iComment"></i>
-                        <a href="#">6 Comments</a>
-                    </span>
-                    <span class="sep">|</span>
-                    <span>
-                        <i class="icon iNote"></i>
-                        <a href="#">Register</a>
-                    </span>-->
+                    </div>
                 </div>
             </div>
             <?php endforeach; ?>
