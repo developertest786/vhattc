@@ -1872,6 +1872,7 @@ textarea {
     font-size: 1em;
     padding-bottom: 10px;
     height: 70px;
+    overflow: hidden;
 }
 .lst-resource-page .resc-title a{
     color: #333;
