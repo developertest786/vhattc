@@ -52,7 +52,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
                         </a>
                     </h3>
                     <p class="rs lead-news">
-                        <?php echo strip_tags($article->introtext); ?>
+                        <?php echo strip_tags($article->introtext, '<br><span><a><p>'); ?>
                     </p>
                 </div>
             </div>
