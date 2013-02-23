@@ -18,6 +18,7 @@ foreach ($this->item->extra_fields as $key=>$extraField) {
     $name = str_replace(' ', '_', strtolower($extraField->name));
     $fields[$name] = $extraField->value;
 }
+$this->item->introtext = strip_tags($this->item->introtext, '<br><a><p>');
 ?>
 
 <!-- Plugins: BeforeDisplay -->
