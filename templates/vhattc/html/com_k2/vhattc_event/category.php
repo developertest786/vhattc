@@ -57,6 +57,7 @@ defined('_JEXEC') or die;
         <!-- End pagination -->
 
     </div>
+    <!-- End col -->
     <div class="col">
         <div id="training-page">
         <?php
