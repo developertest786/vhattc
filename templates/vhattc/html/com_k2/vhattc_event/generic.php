@@ -55,7 +55,9 @@ defined('_JEXEC') or die;
                             </div>
                         </div><!--end: left-->
                         <div class="media-body">
-                            <h4 class="name-event rs"><?php echo $this->item->title; ?></h4>
+                            <h4 class="name-event rs">
+                                <a href="<?php echo $this->item->link ?>"><?php echo $this->item->title; ?></a>
+                            </h4>
                             <?php if(count($this->item->extra_fields)): ?>
                             <p class="desc-event rs">
                                 <?php echo @$fields['type'] ?> - <?php echo @$fields['venue'] ?>
