@@ -54,6 +54,7 @@ defined('_JEXEC') or die;
             -->
         </div>
         <?php endif; ?>
+        <!-- End pagination -->
 
     </div>
     <div class="col">
