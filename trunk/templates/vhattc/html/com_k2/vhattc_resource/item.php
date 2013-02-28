@@ -15,7 +15,7 @@ defined('_JEXEC') or die;
         <div class="resource-detail">
             <div class="left-info">
                 <?php if ($this->item->image) :?>
-                    <img class="thumb-img" src="<?php $this->item->image ?>k" alt="<?php echo $this->item->title; ?>">
+                    <img class="thumb-img" src="<?php echo $this->item->image ?>" alt="<?php echo $this->item->title; ?>">
                 <?php endif; ?>
                 <?php foreach ($this->item->attachments as $attachment): ?>
                     <a title="<?php echo K2HelperUtilities::cleanHtml($attachment->titleAttribute); ?>" href="<?php echo $attachment->link; ?>" class="btn-download">
